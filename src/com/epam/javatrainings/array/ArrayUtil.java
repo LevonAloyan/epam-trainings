@@ -9,24 +9,56 @@ public class ArrayUtil {
      * if the second element is odd. And so on for the next elements of the array
      *
      */
-    public void sortByOddAndEven(int[] array) {
-
+    public static void sortByOddAndEven(int[] array) {
+        for(int i = 0; i < array.length; i++) {
+            if(array[i] % 2 != 0) {                             //checks if current is odd or even
+                boolean found = false;
+                for(int j = i + 1; j < array.length; j++) {         //finds even in the array
+                    if(found == false && array[j] % 2 == 0) {
+                        int temp = array[i + 1];
+                        array[i + 1] = array[j];
+                        array[j] = temp;
+                        found = true;
+                    }
+                }
+            } else {
+                boolean found = false;
+                for(int j = i + 1; j < array.length; j++) {         //finds odd in the array
+                    if(found == false && array[j] % 2 != 0) {
+                        int temp = array[i + 1];
+                        array[i + 1] = array[j];
+                        array[j] = temp;
+                        found = true;
+                    }
+                }
+            }
+        }
     }
 
     /**
      * Return maximum element from given array
      */
     public static int getMaximum(int[] array) {
-
-        return 0;
+        int max = array[0];
+        for(int i = 0; i < array.length; i++) {
+            if(array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
     }
 
     /**
      * Return minimum element from given array
      */
     public static int getMinimum(int[] array) {
-
-        return 0;
+        int min = array[0];
+        for(int i = 0; i < array.length; i++) {
+            if(array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
     }
 
     /**
@@ -36,8 +68,11 @@ public class ArrayUtil {
      * @return the sum of the specified array elements
      */
     public static int getSum(int[] array) {
-
-        return 0;
+        int sum = 0;
+        for(int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
     }
 
     /**
@@ -47,8 +82,12 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-
-        return null;
+        for(int i = 0, j = array.length - 1; i < (array.length / 2); i++, j--) {
+            int tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        }
+        return array;
     }
 
     /**
@@ -57,8 +96,9 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
     }
-
-
 }
