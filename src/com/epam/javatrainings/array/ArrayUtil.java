@@ -10,6 +10,22 @@ public class ArrayUtil {
      *
      */
     public void sortByOddAndEven(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                int temp;
+                if (array[i - 1] % 2 != 0 && array[j] % 2 == 0) {
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    break;
+                } else if (array[i - 1] % 2 == 0 && array[j] % 2 != 0) {
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    break;
+                }
+            }
+        }
 
     }
 
@@ -18,7 +34,13 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
 
-        return 0;
+        int maxValue = array[0];
+        for(int i=1;i < array.length;i++){
+            if(array[i] > maxValue){
+                maxValue = array[i];
+            }
+        }
+        return maxValue;
     }
 
     /**
@@ -26,8 +48,15 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
 
-        return 0;
+        int minValue = array[0];
+        for(int i=1;i<array.length;i++){
+            if(array[i] < minValue){
+                minValue = array[i];
+            }
+        }
+        return minValue;
     }
+
 
     /**
      * Calculates the sum of specified array  elements
@@ -36,8 +65,11 @@ public class ArrayUtil {
      * @return the sum of the specified array elements
      */
     public static int getSum(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
 
-        return 0;
+        }return sum;
     }
 
     /**
@@ -47,9 +79,17 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-
-        return null;
+        for (int i = 0; i < array.length / 2; i++) {
+            int temp = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = temp;
+        }return array;
     }
+
+
+
+
+
 
     /**
      * Prints all elements in an array.
@@ -57,6 +97,10 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + ", ");
+
+        }
 
     }
 
