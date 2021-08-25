@@ -5,7 +5,6 @@ public class ArrayUtilTest {
     public static void main(String[] args) {
         ArrayUtil arrayUtil = new ArrayUtil();
         int []array = {2, 9, 8, 4, 6, 5, 1, 3};
-
         System.out.println("Max element is " + ArrayUtil.getMaximum(array));
         System.out.println("Min element is " + ArrayUtil.getMinimum(array));
         System.out.println("Sum of array is " + ArrayUtil.getSum(array));
