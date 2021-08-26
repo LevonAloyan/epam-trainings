@@ -10,23 +10,65 @@ public class ArrayUtil {
      *
      */
     public void sortByOddAndEven(int[] array) {
-
+       for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length - 1; j++) {
+                if ((array[i] % 2 == 0 && array[j] % 2 == 0) || (array[i] % 2 != 0 && array[j] % 2 != 0)) {
+                    if (array[i] % 2 == 0) {
+                        for (int k = j + 1; k < array.length-2; k++) {
+                            if (array[k] % 2 != 0) {
+                                int t = array[j];
+                                array[j] = array[k];
+                                array[k] = t;
+                                break;
+                            }
+                        }
+                        break;
+                    }else {
+                        for (int k = j + 1; k < array.length-1; k++) {
+                            if (array[k] % 2 == 0) {
+                                int t = array[j];
+                                array[j] = array[k];
+                                array[k] = t;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
     }
 
     /**
      * Return maximum element from given array
      */
     public static int getMaximum(int[] array) {
+int max = array[0];
 
-        return 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        return max;
     }
 
     /**
      * Return minimum element from given array
      */
     public static int getMinimum(int[] array) {
+            
+        int minimum = array[0];
 
-        return 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < minimum) {
+                minimum = array[i];
+            }
+        }
+
+        return minimum;
     }
 
     /**
@@ -36,8 +78,13 @@ public class ArrayUtil {
      * @return the sum of the specified array elements
      */
     public static int getSum(int[] array) {
+        int sum = 0;
 
-        return 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+
+        return sum;
     }
 
     /**
@@ -48,7 +95,15 @@ public class ArrayUtil {
      */
     public static int[] reverse(int[] array) {
 
-        return null;
+        int reversedArray[] = new int[array.length];
+        int index = 0;
+
+        for (int i = array.length - 1; i >= 0; i--) {
+            reversedArray[index] = array[i];
+            index++;
+        }
+
+        return reversedArray;
     }
 
     /**
@@ -57,8 +112,11 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-
+        
+            for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+            System.out.print(" ");
+        }
     }
-
 
 }
