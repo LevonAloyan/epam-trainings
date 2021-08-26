@@ -14,7 +14,7 @@ public class ArrayUtilTest {
       System.out.println("minimum is " + ArrayUtil.getMinimum(arr));
       System.out.println("maximum is " + ArrayUtil.getMaximum(arr));
 
-      ArrayUtil.sortByOddAndEven(arr);
+     // ArrayUtil.sortByOddAndEven(arr);
 
       }
 
