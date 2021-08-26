@@ -9,24 +9,54 @@ public class ArrayUtil {
      * if the second element is odd. And so on for the next elements of the array
      *
      */
-    public void sortByOddAndEven(int[] array) {
-
+    public static void sortByOddAndEven(int[] array) {
+        int length = array.length;
+        int temp;
+        Boolean swapped  = false, isEven;
+        for(int i = 1; i < length; i++){
+            isEven = isEven(array[i - 1]);
+            if (isEven(array[i]) == isEven &&  i + 1 <= length){
+                swapped = false;
+                for(int j = i + 1; j < length && !swapped; j++){
+                    if(isEven(array[j]) != isEven){
+                        temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                        swapped = true;
+                    }
+                }
+            }
+        }
     }
 
-    /**
-     * Return maximum element from given array
-     */
-    public static int getMaximum(int[] array) {
+    public static Boolean isEven(int number) {
+        return number % 2 == 0;
+    }
 
-        return 0;
+        /**
+         * Return maximum element from given array
+         */
+    public static int getMaximum(int[] array) {
+       int max = array[0];
+       for (int temp : array){
+           if(temp > max){
+               max = temp;
+           }
+       }
+        return max;
     }
 
     /**
      * Return minimum element from given array
      */
     public static int getMinimum(int[] array) {
-
-        return 0;
+        int min = array[0];
+        for (int temp : array){
+            if(temp < min){
+                min = temp;
+            }
+        }
+        return min;
     }
 
     /**
@@ -36,8 +66,11 @@ public class ArrayUtil {
      * @return the sum of the specified array elements
      */
     public static int getSum(int[] array) {
-
-        return 0;
+        int sum = 0;
+        for (int temp : array) {
+            sum += temp;
+        }
+            return sum;
     }
 
     /**
@@ -47,8 +80,13 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
+        int length = array.length;
+        int [] result = new int[length];
+        for(int i = 0; i < length; i++){
+            result[i] = array[length - i - 1];
+        }
 
-        return null;
+        return  result;
     }
 
     /**
@@ -57,7 +95,9 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-
+        for (int temp : array){
+            System.out.print(temp + "  ");
+        }
     }
 
 
