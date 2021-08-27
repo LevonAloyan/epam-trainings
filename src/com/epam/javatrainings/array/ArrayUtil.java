@@ -9,7 +9,7 @@ public class ArrayUtil {
      * if the second element is odd. And so on for the next elements of the array
      *
      */
-    /public void sortByOddAndEven(int[] array) {
+    public void sortByOddAndEven(int[] array) {
 
     }
 
