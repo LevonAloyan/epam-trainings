@@ -12,7 +12,7 @@ public class ArrayUtil {
         for(int i = 1; i < array.length - 1; i++) {
             if((array[i-1] + array[i]) % 2 == 0) {
                 for(int j = i + 1; j < array.length; j++) {
-                    if((arr[i] + arr[j]) % 2 != 0) {
+                    if((array[i] + array[j]) % 2 != 0) {
                         int temp = array[i];
                         array[i] = array[j];
                         array[j] = temp;
