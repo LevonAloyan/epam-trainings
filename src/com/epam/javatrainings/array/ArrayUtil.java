@@ -7,21 +7,23 @@ public class ArrayUtil {
      * such that if first number is odd then second must be even number
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
+     *
      */
     public void sortByOddAndEven(int[] array) {
+        int oddIndex = 0;
+        int evenIndex = 1;
+        int[] sorted = new int[array.length];
 
-        boolean ok = false;
-        while (!ok) {
-            ok = true;
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    int temp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = temp;
-                    ok = false;
-                }
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] % 2 != 0) {
+                sorted[oddIndex] = array[i];
+                oddIndex += 2;
+            } else {
+                sorted[evenIndex] = array[i];
+                evenIndex += 2;
             }
         }
+        array = sorted;
     }
 
     /**
@@ -29,11 +31,13 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
         int max = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (max < array[i]) {
+
+        for (int i = 1; i < array.length; i++) {
+            if(max < array[i]) {
                 max = array[i];
             }
         }
+
         return max;
     }
 
@@ -42,13 +46,14 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
         int min = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (min > array[i]) {
+
+        for (int i = 1; i < array.length; i++) {
+            if(min > array[i]) {
                 min = array[i];
             }
         }
-        return min;
 
+        return min;
     }
 
     /**
@@ -59,9 +64,11 @@ public class ArrayUtil {
      */
     public static int getSum(int[] array) {
         int sum = 0;
+
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
+
         return sum;
     }
 
@@ -72,12 +79,12 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-        int k = array.length - 1;
-        for (int i = 0; i <array.length; i++) {
-            int temp=array[i];
-            array[i]=array[k];
-            array[k]=temp;
-            k--;
+        int temp;
+
+        for (int i = 0; i < array.length/2; i++) {
+            temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
         }
 
         return array;
@@ -89,9 +96,14 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+        StringBuilder stringBuilder = new StringBuilder().append("{");
+
+        for (int j : array) {
+            stringBuilder.append(j).append(", ");
         }
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).append("}");
+
+        System.out.println(stringBuilder);
     }
 
 
