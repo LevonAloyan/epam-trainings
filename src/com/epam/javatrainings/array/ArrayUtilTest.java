@@ -6,7 +6,7 @@ package com.epam.javatrainings.array;
 public class ArrayUtilTest {
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2,5,7,3,2,6};
+        int[] arr = new int[]{1,3,7,10,1};
         //Test method getMinimum
         System.out.println(ArrayUtil.getMinimum(arr));
         //Test method getMaximum

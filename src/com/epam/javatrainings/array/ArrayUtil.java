@@ -12,29 +12,35 @@ public class ArrayUtil {
      */
     public static void sortByOddAndEven(int[] array) {
 
-        List<Integer> even = new LinkedList<>();
-        List<Integer> odd = new LinkedList<>();
+        List<Integer> even = new ArrayList<>();
+        List<Integer> odd = new ArrayList<>();
         for (int k : array)
             if (k % 2 == 0) {
                 even.add(k);
             } else {
                 odd.add(k);
             }
-        int index = 0, i = 0, j = 0;
+        int index = 0, i = 0;
 
         boolean flag = false;
         if (array[0] % 2 == 0)
             flag = true;
         while (index < array.length) {
             if (flag) {
-                array[index] = even.get(i);
-                i += 1;
+                if(even.size()!=0){
+                    array[index] = even.get(i);
+                    even.remove(i);
+                    index += 1;
+                }
             } else {
-                array[index] = odd.get(j);
-                j += 1;
+                if(odd.size()!=0){
+                    array[index] = odd.get(i);
+                    odd.remove(i);
+                    index ++;
+                }
             }
-            index += 1;
             flag = !flag;
+
         }
     }
 
