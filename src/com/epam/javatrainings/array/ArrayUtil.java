@@ -10,9 +10,17 @@ public class ArrayUtil {
      *
      */
     public void sortByOddAndEven(int[] array) {
-        int oddIndex = 0;
-        int evenIndex = 1;
+        int oddIndex;
+        int evenIndex;
         int[] sorted = new int[array.length];
+
+        if(array[0] % 2 == 0) {
+            oddIndex = 1;
+            evenIndex = 0;
+        } else {
+            oddIndex = 0;
+            evenIndex = 1;
+        }
 
         for (int i = 0; i < array.length; i++) {
             if(array[i] % 2 != 0) {
