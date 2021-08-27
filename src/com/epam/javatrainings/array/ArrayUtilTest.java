@@ -7,7 +7,7 @@ public class ArrayUtilTest {
     public static void main(String[] args) {
         int array[] = {6, 1, -3, 100, 25, 800, -500,};
         ArrayUtil arrayUtil = new ArrayUtil();
-        arrayUtil.sortByOddAndEven(array);
+        arrayUtil.sortByOddEven(array);
         arrayUtil.print(array);
         int max = arrayUtil.getMaximum(array);
         System.out.println("maxium" + " " + max);
