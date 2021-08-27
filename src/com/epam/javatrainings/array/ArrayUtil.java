@@ -9,13 +9,53 @@ public class ArrayUtil {
      * if the second element is odd. And so on for the next elements of the array
      *
      */
-    public void sortByOddAndEven(int[] array) {
+    /*public class Main {
+        public static void main(String[] args) {
+            int array [] = {1,3,2,4,5,7};
 
+            ArrayUtil arrayUtil = new ArrayUtil();
+            arrayUtil.sortByOddAndEven(array);
+
+            arrayUtil.print(array);
+        }
+
+        public class ArrayUtil {
+    public void sortByOddAndEven(int[] array) {
+        int j;
+
+        for (int k = 0; k < array.length - 2; k++) {
+            j = k + 1;
+            while ((array[k] + array[j]) % 2 == 0) {
+
+                j++;
+                if (j > array.length) {
+                    return;
+                }
+            }
+            swap(array, k + 1, j);
+        }
     }
 
-    /**
-     * Return maximum element from given array
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public void print(int array []) {
+        for (int element: array) {
+            System.out.print(element+" ");
+        }
+
+    }
+}
+
      */
+
+
+/**
+ * Return maximum element from given array
+ */
    /* public class Main {
     public static void main(String[] args) {
        int max [] = {6,66,26,76,16,3,46,33};
