@@ -1,24 +1,20 @@
 package com.epam.javatrainings.array;
 
-import java.util.Arrays;
-
 public class ArrayUtilTest {
 
     public static void main(String[] args) {
-        int array[] = {6, 1, -3, 100, 25, 800, -500,};
-        ArrayUtil arrayUtil = new ArrayUtil();
-        arrayUtil.sortByOddAndEven(array);
-        arrayUtil.print(array);
-        int max = arrayUtil.getMaximum(array);
-        System.out.println("maxium" + " " + max);
-        int min = arrayUtil.getMinimum(array);
-        System.out.println("minimum" + " " + min);
-        int sum=arrayUtil.getSum(array);
-        System.out.println("sum"+" "+sum);
-//        System.out.println(Arrays.toString(array));
-        System.out.println("reverse");
-        int reversd []=arrayUtil.reverse(array);
-        System.out.println(Arrays.toString(reversd));
+        int[] arr = new int[] {1, 5, 2, 9, 3, 6, 4, 8};
+
+        ArrayUtil util = new ArrayUtil();
+        util.sortByOddAndEven(arr);
+
+        ArrayUtil.print(arr);
+
+        System.out.println(ArrayUtil.getMaximum(arr));
+        System.out.println(ArrayUtil.getMinimum(arr));
+        System.out.println(ArrayUtil.getSum(arr));
+
+        ArrayUtil.print(ArrayUtil.reverse(arr));
 
     }
 }
