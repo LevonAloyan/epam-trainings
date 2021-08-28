@@ -7,44 +7,53 @@ public class ArrayUtil {
      * such that if first number is odd then second must be even number
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
-     *
      */
-    /public void sortByOddAndEven(int[] array) {
+    public static void sortByOddEven(int[] array) {
+        for (int i = 0; i < array.length - 2; i++) {
+            int j = i + 1;
+            while ((array[i] + array[j]) % 2 == 0) {
+                j++;
+                if (j >= array.length) {
+                    return;
+                }
+            }
 
+            swap(array, i + 1, j);
+        }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     /**
      * Return maximum element from given array
      */
-   /* public class Main {
-    public static void main(String[] args) {
-       int max [] = {6,66,26,76,16,3,46,33};
-       int largest = max[0];
-        for (int i = 0; i < 8; i++) {
-            if (max[i]>largest) largest = max[i];
-
+    public static int getMaximum(int[] array) {
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
         }
-        System.out.println("The maximum element is " + largest);
+        return max;
     }
-    }
-} */
 
     /**
      * Return minimum element from given array
      */
-   /* public class Main {
-        public static void main(String[] args) {
-            int min [] = {6,66,26,76,16,3,46,33};
-            int smallest = min[0];
-            for (int i = 0; i < 8; i++) {
-                if (min[i]<smallest) smallest = min[i];
-
+    public static int getMinimum(int[] array) {
+        int min = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
             }
-            System.out.println("The minimum element is " + smallest);
         }
+        return min;
+
     }
-
-
 
     /**
      * Calculates the sum of specified array  elements
@@ -52,30 +61,13 @@ public class ArrayUtil {
      * @param array specified int array
      * @return the sum of the specified array elements
      */
-
-   /*public class Main {
-       public static void main(String[] args) {
-           int arr[] = new int[8];
-           arr[0] =1;
-           arr[1] =2;
-           arr[2] =3;
-           arr[3] =4;
-           arr[4] =5;
-           arr[5] =6;
-           arr[6] =7;
-           arr[7] =8;
-
-           int sum = 0;
-
-           int lengthOfArray = arr.length;
-           for (int i = 0; i < lengthOfArray; i++) {
-
-               sum = sum + arr[i];
-           }
-           System.out.println(sum);
-       }
-   }
-
+    public static int getSum(int[] array) {
+        int sum = 0;
+        for (int j : array) {
+            sum += j;
+        }
+        return sum;
+    }
 
     /**
      * Revers given array
@@ -83,40 +75,31 @@ public class ArrayUtil {
      * Given array [2,5,7,3,2,6]
      * Expected array [6,2,3,7,5,2]
      */
+    public static int[] reverse(int[] array) {
+        int i = 0;
+        int j = array.length - 1;
 
+        while (i < j) {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            i++;
+            j--;
+        }
 
-   /*public class Main {
-       public static void main(String[] args) {
-           int [] arr1 = new int[]{2,5,7,3,2,6};
-           System.out.println("The original array is : ");
-           for (int i = 0; i < arr1.length; i++) {
-               System.out.print(arr1[i]);
-
-           }
-           System.out.println();
-           System.out.println("The reversed array is : ");
-           for (int i= arr1.length-1;i>=0; i--) {
-               System.out.print(arr1[i]);
-           }
-       }
-   }
-
-    */
+        return array;
+    }
 
     /**
      * Prints all elements in an array.
      *
      * @param array the array to print
      */
-    /*public class Main {
-        public static void main(String[] args) {
-            String [] arr1 = new String[]{"Red","Yellow","Orange","Blue"};
-            System.out.println(arr1);
-            for (int i = 0; i < arr1.length; i++) {
-                System.out.println(arr1[i]);
-
-            }
-
+    public static void print(int[] array) {
+        for (int j : array) {
+            System.out.print(j + " ");
         }
+    }
 
 
+}
