@@ -96,6 +96,8 @@ public class Pizza {
             cost += offeredIngredients.get(ingredient);
         }
 
+        cost += this.type == TYPE_REGULAR ? 1 : 1.5;
+
         return this.quantity * cost;
     }
 
