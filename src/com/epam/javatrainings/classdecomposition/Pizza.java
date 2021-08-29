@@ -28,9 +28,9 @@ public class Pizza {
 
     public Pizza(String name, String type, List<String> ingredients){
         this();
+        this.ingredients = ingredients;
         this.name = name;
         this.setType(type);
-        this.setIngredients(ingredients);
 
     }
 
@@ -40,14 +40,6 @@ public class Pizza {
             exit(1);
         }
         this.type = type;
-    }
-
-    public void setIngredients(List<String> ingredients){
-        for (String ingredient : ingredients)
-            if (ingredientPrice.containsKey(ingredient)){
-                System.out.println("Wrong ingredients - invalid order");
-                exit(1);
-            }
     }
 
     public List<String> getIngredients(){

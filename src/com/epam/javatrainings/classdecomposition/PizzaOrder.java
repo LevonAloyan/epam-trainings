@@ -9,7 +9,7 @@ public class PizzaOrder {
         List <String> ingredients = new ArrayList<>();
         ingredients.add("Corn");
         ingredients.add("Olives");
-        ingredients.add("Pepperoni");
+        ingredients.add("Garlic");
         Order order = new Order("Tatev", "pizza1", "REGULAR", 2, ingredients);
         System.out.println(order.getOrderPrice());
         System.out.println(order);
