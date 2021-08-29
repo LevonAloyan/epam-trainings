@@ -39,7 +39,6 @@ public class Pizza {
             System.out.println("Wrong type - invalid order");
             exit(1);
         }
-        else
         this.type = type;
     }
 

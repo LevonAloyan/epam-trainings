@@ -6,7 +6,6 @@ import java.util.List;
 public class PizzaOrder {
 
     public static void main(String[] args) {
-
         List <String> ingredients = new ArrayList<>();
         ingredients.add("Corn");
         ingredients.add("Olives");

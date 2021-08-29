@@ -54,7 +54,6 @@ public class Order {
         if (! (name.length() >= 4 && name.length() <=20))
             name = customerName + getOrderNumber();
         return name;
-
     }
 
     public double getOrderPrice(){
