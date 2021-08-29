@@ -35,7 +35,7 @@ public class Order {
         System.out.println("**************************Order info**************************");
         System.out.println("Order number: "+OrderNumber);
         System.out.println("Costumer number: "+CostumerNumber);
-        System.out.println("Payment: "+Payment());
+        System.out.println("Payment: "+Payment()+"$ ");
         System.out.println("**************************************************************");
     }
 }

@@ -1,12 +1,15 @@
 package com.epam.javatrainings.Pizzeria;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pizzeria {
     public static String Name="Palmetto";
     private static int CustomerCount=0;
+    private static ArrayList<Order> OrderHistory=new ArrayList<Order>();
     public static void MakeOrder() {
         var order=new Order();
+        OrderHistory.add(order);
         while(CheckingIsThereAnyAdding()){
             order.AddingNewPizzaToOrder();
         }

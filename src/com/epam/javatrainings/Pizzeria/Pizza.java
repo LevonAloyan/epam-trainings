@@ -153,7 +153,7 @@ public class Pizza {
         System.out.println("Type: "+ChosenType.GetName());
         ShowChosedIngredients();
         System.out.println("Quantity: "+Quantity);
-        System.out.println("Payment: "+Payment());
+        System.out.println("Payment: "+Payment()+"$ ");
         System.out.println("**************************************************************");
     }
 }
