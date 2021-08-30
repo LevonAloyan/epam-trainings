@@ -8,19 +8,19 @@ public class ArrayUtil {
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
      */
-    public static void sortByOddEven(int[] array) {
-        for (int i = 0; i < array.length - 2; i++) {
-            int j = i + 1;
-            while ((array[i] + array[j]) % 2 == 0) {
-                j++;
-                if (j >= array.length) {
-                    return;
+    public static void sortByOddAndEven(int[] array) {
+        for(int i = 1; i < array.length - 1; i++) {
+            if((array[i-1] + array[i]) % 2 == 0) {
+                for(int j = i + 1; j < array.length; j++) {
+                    if((array[i] + array[j]) % 2 != 0) {
+                        swap(array, i, j);
+                        break;
+                    }
                 }
             }
-
-            swap(array, i + 1, j);
         }
-    }
+    } 
+ 
 
     private static void swap(int[] array, int i, int j) {
         int temp = array[i];
@@ -33,8 +33,8 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
         int max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > max) {
+        for(int i = 1; i < array.length; i++) {
+            if(array[i] > max) {
                 max = array[i];
             }
         }
@@ -46,13 +46,11 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
         int min = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-            }
+        for (int i = 1; i < array.length; i++) {
+        if (array[i] < min) {
+            min = array[i];
         }
         return min;
-
     }
 
     /**
@@ -63,8 +61,8 @@ public class ArrayUtil {
      */
     public static int getSum(int[] array) {
         int sum = 0;
-        for (int j : array) {
-            sum += j;
+        for (int i : array) {
+            sum += i;
         }
         return sum;
     }
@@ -80,9 +78,7 @@ public class ArrayUtil {
         int j = array.length - 1;
 
         while (i < j) {
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+            swap(array, i, j);
             i++;
             j--;
         }
@@ -95,11 +91,10 @@ public class ArrayUtil {
      *
      * @param array the array to print
      */
-    public static void print(int[] array) {
-        for (int j : array) {
-            System.out.print(j + " ");
+    public static void print(int[] array) { 
+        for(int i : array) {
+            System.out.print(i + " ");
         }
+        System.out.println();
     }
-
-
 }
