@@ -1,5 +1,6 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +9,14 @@ public class Order {
 
     private int orderNumber;
     private Customer customer;
+    private LocalTime localTime;
 
     private List<Pizza> orderItems = new ArrayList<Pizza>();
 
     public Order(Customer customer) {
         orderNumber = orderCurrentNumber++;
         this.customer = customer;
+        this.localTime = LocalTime.now();
     }
 
     public int getOrderNumber() {
@@ -22,6 +25,10 @@ public class Order {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
     }
 
     public List<Pizza> getOrderItems() {

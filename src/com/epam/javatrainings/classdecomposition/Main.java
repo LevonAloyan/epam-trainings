@@ -20,9 +20,6 @@ public class Main {
         pizzaTmp.addIngredient("Pepperoni");
         pizzaTmp.addIngredient("Garlic");
         pizzaTmp.addIngredient("Bacon");
-        // System.out.println("Pizza Ingredients: " + pizzaTmp.getIngredients());
-        // System.out.print("Pizza added to the order - ");
-        // Helper.displayAttributes(pizzaTmp, order1);
 
         // Add the second pizza for the customer 1
         pizzaTmp = order1.addOrderItem(Helper.validatePizzaName("PepperoniOro", order1), Pizza.TYPE_REGULAR, 3); // The name of pizza will be overidden, as it is too short
@@ -33,8 +30,9 @@ public class Main {
 
         System.out.println("");
         Helper.printCheck(order1);
+        System.out.println("");
 
-        // Add the first pizza for the customer 1
+        // Add a pizza for the customer 2
         pizzaTmp = order2.addOrderItem(Helper.validatePizzaName("BasePZZ", order2), Pizza.TYPE_REGULAR, 12);
         pizzaTmp.addIngredient("Cheese");
         pizzaTmp.addIngredient("Garlic");

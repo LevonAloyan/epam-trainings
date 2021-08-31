@@ -1,5 +1,7 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.time.format.DateTimeFormatter;
+
 public class Helper {
     private Helper() {
 
@@ -22,6 +24,8 @@ public class Helper {
         var offeredIngredients = Pizza.offeredIngredients;
 
         System.out.println("********************************");
+
+        System.out.println("Time: " +  order.getLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         System.out.println("Order: " + order.getOrderNumber());
         System.out.println("Client: " + order.getCustomer().getId());
 
