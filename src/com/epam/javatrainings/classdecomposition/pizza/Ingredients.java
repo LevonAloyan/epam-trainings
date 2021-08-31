@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition;
+package com.epam.javatrainings.classdecomposition.pizza;
 
 public class Ingredients {
     private String name;
@@ -6,7 +6,7 @@ public class Ingredients {
 
     Ingredients(){}
 
-    Ingredients(String name, double price) {
+    public Ingredients(String name, double price) {
         this.name = name;
         this.price = price;
     }

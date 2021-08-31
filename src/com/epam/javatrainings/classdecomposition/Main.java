@@ -1,5 +1,10 @@
 package com.epam.javatrainings.classdecomposition;
 
+import com.epam.javatrainings.classdecomposition.customer.Customer;
+import com.epam.javatrainings.classdecomposition.order.Order;
+import com.epam.javatrainings.classdecomposition.pizza.Ingredients;
+import com.epam.javatrainings.classdecomposition.pizza.Pizza;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +12,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to pizzeria 'PALMETTO'");
         Customer customer = new Customer();
+    /*    Customer customer1 = new Customer();
+        Customer customer2 = new Customer();
+        Customer customer3 = new Customer();*/
 
-        Scanner scanner = new Scanner(System.in);
-        Pizza.pizzaName();
+        Order order = new Order();
+        order.pizzaQuantity(Customer.getCustomerName());
 
         Ingredients[] pizzaIngredients = new Ingredients[10];
 
