@@ -24,17 +24,13 @@ public class Pizza {
     private String name;
     private int type;
     private int quantity;
-    private Customer customer;
-    private Order order;
     private double cost;
 
     private HashSet<String> ingredients;
 
-    public Pizza(Customer customer, Order order, String name, int type, int quantity) {
-        this.customer = customer;
-        this.order = order;
+    public Pizza(String name, int type, int quantity) {
         this.type = type;
-        this.setName(name);
+        this.name = name;
         this.setQuantity(quantity);
 
         ingredients = new HashSet<>();
@@ -45,11 +41,7 @@ public class Pizza {
     }
 
     public void setName(String name) {
-        if (name.length() < 4 || name.length() > 20) {
-            this.name = customer.getName() + "_" + order.getOrderNumber();
-        } else {
-            this.name = name;
-        }
+        this.name = name;
     }
 
     public int getType() {
@@ -99,9 +91,5 @@ public class Pizza {
         cost += this.type == TYPE_REGULAR ? 1 : 1.5;
 
         return this.quantity * cost;
-    }
-
-    public String toString() {
-        return "[" + order.getOrderNumber() + " : " + customer.getId() + ": " + name + ": " + quantity + "]";
     }
 }

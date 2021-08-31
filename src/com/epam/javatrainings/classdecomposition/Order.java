@@ -19,8 +19,12 @@ public class Order {
         return orderNumber;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
     public Pizza addOrderItem(String name, int type, int quantity) {
-        Pizza pizza = new Pizza(this.customer, this, name, type, quantity);
+        Pizza pizza = new Pizza(name, type, quantity);
         orderItems.add(pizza);
 
         return pizza;
