@@ -8,6 +8,7 @@ public class Order {
 
     private int orderNumber;
     private Customer customer;
+
     private List<Pizza> orderItems = new ArrayList<Pizza>();
 
     public Order(Customer customer) {
@@ -23,6 +24,10 @@ public class Order {
         return customer;
     }
 
+    public List<Pizza> getOrderItems() {
+        return orderItems;
+    }
+
     public Pizza addOrderItem(String name, int type, int quantity) {
         Pizza pizza = new Pizza(name, type, quantity);
         orderItems.add(pizza);
@@ -33,7 +38,7 @@ public class Order {
     public double cost() {
         double totalCost = 0;
         for (Pizza pizza : orderItems) {
-            totalCost += pizza.getCost();
+            totalCost += pizza.getCost() * pizza.getQuantity();
         }
 
         return totalCost;

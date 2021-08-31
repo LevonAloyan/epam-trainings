@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Pizza {
-    private static HashMap<String, Double> offeredIngredients;
+    public static HashMap<String, Double> offeredIngredients;
 
     static {
         offeredIngredients = new HashMap<>();
@@ -36,6 +36,15 @@ public class Pizza {
         ingredients = new HashSet<>();
     }
 
+    public static HashMap<Integer, String> getPizzaTypeNames() {
+        HashMap<Integer, String> pizzaTypes = new HashMap<>();
+
+        pizzaTypes.put(TYPE_REGULAR, "Regular");
+        pizzaTypes.put(TYPE_CALZONE, "Calzone");
+
+        return pizzaTypes;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,6 +67,7 @@ public class Pizza {
 
     public void setQuantity(int quantity) {
         if (quantity > 10) {
+            System.out.println("The quantity can not be more than 10 items");
             quantity = 10;
         } else if (quantity <= 0) {
             quantity = 1;
@@ -70,16 +80,24 @@ public class Pizza {
         return ingredients;
     }
 
-    public void setIngredients(HashSet<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public boolean addIngredient(String ingredient) {
-        if (!offeredIngredients.keySet().contains(ingredient)) {
+        if (ingredients.size() == offeredIngredients.size()) {
+            System.out.println("The pizza is already full");
             return false;
         }
 
-        return ingredients.add(ingredient);
+        if (!offeredIngredients.keySet().contains(ingredient)) {
+            System.out.println("Invalid Ingredient");
+            return false;
+        }
+
+        boolean ingredientAdded = ingredients.add(ingredient);
+
+        if (!ingredientAdded) {
+            System.out.println("Duplicate Ingredient, please check the order again");
+        }
+
+        return ingredientAdded;
     }
 
     public double getCost() {
@@ -90,6 +108,6 @@ public class Pizza {
 
         cost += this.type == TYPE_REGULAR ? 1 : 1.5;
 
-        return this.quantity * cost;
+        return cost;
     }
 }
