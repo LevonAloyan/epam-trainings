@@ -4,19 +4,19 @@ public class Pizzeria {
 	public static void main(String[] args) {
 		Customer customer = new Customer("Margarita");
 
-		Pizza pizza1 = new Pizza(PizzaType.REGULAR).ingredient(Ingredient.TOMATO_PASTE).
-								   					ingredient(Ingredient.CHEESE).
-								   					ingredient(Ingredient.BACON).
-								   					ingredient(Ingredient.SALAMI);
+		Pizza pizza1 = new Pizza(PizzaType.REGULAR).ingredient(Ingredient.TOMATO_PASTE)
+						           .ingredient(Ingredient.CHEESE)
+							   .ingredient(Ingredient.BACON)
+							   .ingredient(Ingredient.SALAMI);
 
-		Pizza pizza2 = new Pizza(PizzaType.REGULAR).ingredient(Ingredient.OLIVES).
-								   					ingredient(Ingredient.CHEESE).
-								   					ingredient(Ingredient.PEPPERONI).
-								   					ingredient(Ingredient.SALAMI);
+		Pizza pizza2 = new Pizza(PizzaType.REGULAR).ingredient(Ingredient.OLIVES)
+							   .ingredient(Ingredient.CHEESE)
+						           .ingredient(Ingredient.PEPPERONI)
+							   .ingredient(Ingredient.SALAMI);
 
 		Pizza pizza3 = new Pizza(PizzaType.CALZONE).ingredient(Ingredient.OLIVES).
-								   					ingredient(Ingredient.PEPPERONI).
-								   					ingredient(Ingredient.CORN);
+							   .ingredient(Ingredient.PEPPERONI).
+							   .ingredient(Ingredient.CORN);
 
 		OrderPizza orderPizza1 = new OrderPizza(pizza1, 3);
 		OrderPizza orderPizza2 = new OrderPizza(pizza2, "Olivessalami", 2);
