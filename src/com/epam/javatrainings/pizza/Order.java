@@ -1,6 +1,6 @@
 package com.epam.javatrainings.pizza;
 
-public class DoOrder {
+public class Order {
 
     private static int globalOrderNumber = 10000;
 

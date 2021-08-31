@@ -11,7 +11,7 @@ public class PizzaBasket {
 
     public PizzaBasket(int customerNumber) {
         pizzas = new ArrayList<>();
-        this.orderNumber = DoOrder.getGlobalOrderNumber();
+        this.orderNumber = Order.getGlobalOrderNumber();
         this.customerNumber = customerNumber;
     }
 
