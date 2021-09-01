@@ -4,8 +4,7 @@ import java.util.List;
 
 public class Calzone extends Pizza {
 
-    public Calzone(int orderNumber) {
-        super(orderNumber);
+    public Calzone() {
         setBasePrice(1.5);
     }
 

@@ -4,8 +4,7 @@ import java.util.List;
 
 public class RegularPizza extends Pizza {
 
-    public RegularPizza(int orderNumber) {
-        super(orderNumber);
+    public RegularPizza() {
         setBasePrice(1.0);
     }
 

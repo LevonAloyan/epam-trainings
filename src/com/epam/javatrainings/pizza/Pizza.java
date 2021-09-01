@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Pizza {
-    private final int orderNumber;
+    private int orderNumber;
     private int quantity;
     private double basePrice;
     private String name;
-    private List<Ingredient> ingredients;
+    private final List<Ingredient> ingredients;
 
-    public Pizza(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public Pizza() {
         ingredients = new ArrayList<>();
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public abstract double calculatePrice();
@@ -39,11 +42,28 @@ public abstract class Pizza {
         this.name = name;
     }
 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public List<Ingredient> getIngredients() {
-        return ingredients;
+        List<Ingredient> cloneList = this.ingredients; //To avoid adding other Ingredients in main list by using this getter
+        return cloneList;
     }
 
     public void addIngredient(Ingredient ingredient) {
+        assert !ingredients.contains(ingredient) : "The Ingredient : " + ingredient + " you are trying to add has already been added";
+        assert ingredients.size() < 7 : "The Pizza is already full, you can't add more ingredients";
+
         ingredients.add(ingredient);
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
     }
 }
