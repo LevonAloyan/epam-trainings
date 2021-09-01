@@ -2,20 +2,9 @@ package com.epam.javatrainings.classdecomposition;
 
 import java.util.Locale;
 
-public class PizzaValidationService {
+public final class PizzaValidationService {
 
-    private Pizza pizza;
-
-    public PizzaValidationService(Pizza pizza) {
-        this.pizza = pizza;
-    }
-
-    public boolean pizzaValidation(){
-        if (pizza.getType() == null || pizza.getDefaultName() == null) {return false;}
-
-        return true;
-
-    }
+    private PizzaValidationService(){}
 
 
     /**
@@ -24,7 +13,7 @@ public class PizzaValidationService {
      * @param name
      * @return
      */
-    private boolean isValidName(String name) {
+    public static boolean isValidName(String name) {
         boolean validName = false;
         if (name != null && name.length() >= 4 && name.length() <= 20) {
             validName = isLatin(name);
@@ -39,7 +28,7 @@ public class PizzaValidationService {
      * @param name
      * @return
      */
-    private boolean isLatin(String name) {
+    private static boolean isLatin(String name) {
         boolean validName = true;
         char[] nameArray = name.toLowerCase(Locale.ROOT).toCharArray();
         for (char ch : nameArray) {
