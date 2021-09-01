@@ -1,7 +1,5 @@
 package com.epam.javatrainings.array;
 
-import com.epam.javatrainings.array.exeption.EmptyArrayException;
-
 public class ArrayUtil {
 
     /**

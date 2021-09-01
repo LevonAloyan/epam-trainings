@@ -1,4 +1,4 @@
-package com.epam.javatrainings.array.exeption;
+package com.epam.javatrainings.array;
 
 
 
