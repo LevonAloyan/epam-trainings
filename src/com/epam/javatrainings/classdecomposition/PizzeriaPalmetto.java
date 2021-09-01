@@ -50,7 +50,7 @@ public class PizzeriaPalmetto {
     public void orderPizza(Scanner scanner) {
 
         if (scanner == null) {
-            System.out.println("Scanner is null");
+            System.out.println("Connection is failed");
             return;
         }
 

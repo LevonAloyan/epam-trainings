@@ -11,6 +11,17 @@ public class Pizza {
     private Set<String> ingredientList;
     private int pizzaQuantity;
 
+    public String getDefaultName() {
+        return defaultName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Set<String> getIngredientList() {
+        return ingredientList;
+    }
 
     public int getPizzaQuantity() {
         return pizzaQuantity;
@@ -20,64 +31,64 @@ public class Pizza {
         return name;
     }
 
-    public void setPizzaQuantity(int pizzaQuantity) {
-        this.pizzaQuantity = pizzaQuantity;
-    }
+//    public void setPizzaQuantity(int pizzaQuantity) {
+//        this.pizzaQuantity = pizzaQuantity;
+//    }
 
-    public void setName(String name) {
-        boolean isValidName = isValidName(name);
-        if (isValidName) {
-            this.name = name;
-        } else {
-            this.name = defaultName;
-        }
+//    public void setName(String name) {
+//        boolean isValidName = isValidName(name);
+//        if (isValidName) {
+//            this.name = name;
+//        } else {
+//            this.name = defaultName;
+//        }
+//
+//    }
 
-    }
+//    /**
+//     * name must contain at least 4 and no more than 20 Latin characters
+//     *
+//     * @param name
+//     * @return
+//     */
+//    private boolean isValidName(String name) {
+//        boolean validName = false;
+//        if (name != null && name.length() >= 4 && name.length() <= 20) {
+//            validName = isLatin(name);
+//        }
+//
+//        return validName;
+//    }
+//
+//    /**
+//     * name must contain only Latin characters
+//     *
+//     * @param name
+//     * @return
+//     */
+//    private boolean isLatin(String name) {
+//        boolean validName = true;
+//        char[] nameArray = name.toLowerCase(Locale.ROOT).toCharArray();
+//        for (char ch : nameArray) {
+//            if (ch < 97 || ch > 122) {
+//                validName = false;
+//                break;
+//            }
+//        }
+//     return validName;
+//    }
 
-    /**
-     * name must contain at least 4 and no more than 20 Latin characters
-     *
-     * @param name
-     * @return
-     */
-    private boolean isValidName(String name) {
-        boolean validName = false;
-        if (name != null && name.length() >= 4 && name.length() <= 20) {
-            validName = isLatin(name);
-        }
+//    public void setType(String type) {
+//        this.type = type;
+//    }
 
-        return validName;
-    }
+//    public void setIngredientList(Set<String> ingredientList) {
+//        this.ingredientList = ingredientList;
+//    }
 
-    /**
-     * name must contain only Latin characters
-     *
-     * @param name
-     * @return
-     */
-    private boolean isLatin(String name) {
-        boolean validName = true;
-        char[] nameArray = name.toLowerCase(Locale.ROOT).toCharArray();
-        for (char ch : nameArray) {
-            if (ch < 97 || ch > 122) {
-                validName = false;
-                break;
-            }
-        }
-        return validName;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setIngredientList(Set<String> ingredientList) {
-        this.ingredientList = ingredientList;
-    }
-
-    public void setDefaultName(String defaultName) {
-        this.defaultName = defaultName;
-    }
+//    public void setDefaultName(String defaultName) {
+//        this.defaultName = defaultName;
+//    }
 
     @Override
     public String toString() {
