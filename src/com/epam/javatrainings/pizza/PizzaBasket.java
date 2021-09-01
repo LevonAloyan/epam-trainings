@@ -1,5 +1,8 @@
 package com.epam.javatrainings.pizza;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +13,11 @@ public class PizzaBasket {
     private List<Pizza> pizzas;
     private final Customer customer;
     private final int orderNumber;
+    private final LocalDateTime orderTime;
 
     public PizzaBasket(Customer customer) {
         pizzas = new ArrayList<>();
+        orderTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         this.orderNumber = globalOrderNumber++;
         this.customer = customer;
     }
@@ -41,6 +46,7 @@ public class PizzaBasket {
         }
         System.out.println("--------------------------------");
         System.out.println("Total amount : " + calculateTotalPrice() + " $");
+        System.out.println(orderTime);
     }
 
     public double calculateTotalPrice() {
