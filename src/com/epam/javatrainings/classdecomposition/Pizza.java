@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Pizza {
-    public static HashMap<String, Double> offeredIngredients;
+    public static final HashMap<String, Double> offeredIngredients;
 
     static {
         offeredIngredients = new HashMap<>();
@@ -18,8 +18,8 @@ public class Pizza {
         offeredIngredients.put("Olives", 0.5);
     }
 
-    public static int TYPE_REGULAR = 1;
-    public static int TYPE_CALZONE = 2;
+    public static final int TYPE_REGULAR = 1;
+    public static final int TYPE_CALZONE = 2;
 
     private String name;
     private int type;
