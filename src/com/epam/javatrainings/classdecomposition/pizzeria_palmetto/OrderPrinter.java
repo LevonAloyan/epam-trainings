@@ -1,6 +1,6 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
 
-public class PrintCheck {
+public class OrderPrinter {
 
     static void printCheck(PlacingAnOrder placingAnOrder){
         System.out.println("********************************");
