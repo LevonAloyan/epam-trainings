@@ -32,11 +32,11 @@ public class Console {
         pizza.addIngredient("Cheese");
         pizza.addIngredient("Pepperoni");
         pizza.addIngredient("Olives");
-        placingAnOrder1.printCheck();
+        PrintCheck.printCheck(placingAnOrder1);
         placingAnOrder2.create(NAME_PIZZA_3, TYPE_PIZZA_2, QUANTITY_PIZZA_3, placingAnOrder2);
         pizza.addIngredient("Tomato paste");
         pizza.addIngredient("Cheese");
-        placingAnOrder2.printCheck();
+        PrintCheck.printCheck(placingAnOrder2);
 
     }
 }
