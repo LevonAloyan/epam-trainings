@@ -1,42 +1,37 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
 
-public class Pizza implements IngredientsCreator {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Pizza implements IngredientsCreator, Validator {
     private String name;
     private Type type;
     private int quantity;
-    private Customer customer;
     private PlacingAnOrder order;
-    private double costPizza;
-    private Ingredients ingredients;
+    public static List<String> ingredientsList;
 
-    public Pizza(Customer customer, String type, int quantity, PlacingAnOrder order) {
-        this.customer = customer;
-        this.quantity = quantity;
-        this.order = order;
-        this.name = customer.getNameCustomer() + "_" + order.getOrderNumber();
+    public Pizza(String name, String type, int quantity, PlacingAnOrder placingAnOrder) {
+        this.setQuantity(quantity);
+        this.order = placingAnOrder;
+        this.setName(name);
         this.setType(type);
-        this.costPizza = quantity * this.type.getCost();
-
+        ingredientsList = new ArrayList<>();
     }
 
-    public Pizza(Customer customer, String type) {
-        this.customer = customer;
-        this.setType(type);
-        this.costPizza = quantity * this.type.getCost();
-        this.setName(customer.getNamePizza());
-
-    }
 
     public String getName() {
         return name;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public void setName(String name) {
         if (this.isValidName(name)) {
             this.name = name;
         } else {
-            this.name = customer.getNameCustomer() + "_" + order.getOrderNumber();
-
+            this.name = order.getCustomer().getNameCustomer() + "_" + order.getOrderNumber();
         }
     }
 
@@ -55,37 +50,19 @@ public class Pizza implements IngredientsCreator {
         }
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public PlacingAnOrder getOrder() {
-        return order;
-    }
-
-    public void setOrder(PlacingAnOrder order) {
-        this.order = order;
-    }
 
     public double getCostPizza() {
-        return costPizza;
+        double costPizza = 0;
+        for (Ingredients ingredients : Ingredients.values()) {
+            for (String name : ingredientsList) {
+                if (name.equals(ingredients.getKey())) {
+                    costPizza += ingredients.getCost();
+                }
+            }
+        }
+        return costPizza + type.getCost();
     }
 
-    public Ingredients getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Ingredients ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setCostPizza(double costPizza) {
-        this.costPizza = costPizza;
-    }
 
 
     public void setType(String type) {
@@ -96,10 +73,7 @@ public class Pizza implements IngredientsCreator {
         }
     }
 
-    public Customer getCustomers() {
-        return customer;
-    }
-
+    @Override
     public boolean isValidName(String namePizza) {
         return ((namePizza != null)
                 && (namePizza.matches("^[a-zA-Z]*$"))
@@ -110,17 +84,25 @@ public class Pizza implements IngredientsCreator {
     @Override
     public String toString() {
         return "[" + order.getOrderNumber() +
-                ":" + customer.getNumberCustomer() +
-                ":" + customer.getNameCustomer() +
+                ":" + order.getCustomer().getNumberCustomer() +
+                ":" + getName() +
                 ":" + quantity + "]";
     }
 
+
     @Override
     public boolean addIngredient(String ingredient) {
+        if (ingredientsList.size() == 8) {
+            System.out.println("The pizza is already full");
+            return false;
+        }
+        if (ingredientsList.contains(ingredient)) {
+            System.out.println("Duplicate Ingredient, please check the order again");
+            return false;
+        }
         for (Ingredients ingredients : Ingredients.values()) {
             if (ingredients.getKey().equals(ingredient)) {
-                ingredients.getList().add(ingredients);
-                this.costPizza = this.quantity * (costPizza + ingredients.getCost());
+                ingredientsList.add(ingredient);
             }
         }
         return true;

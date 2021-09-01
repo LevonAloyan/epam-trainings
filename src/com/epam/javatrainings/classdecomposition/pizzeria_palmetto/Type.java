@@ -2,8 +2,8 @@ package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
 
 public enum Type {
     REGULAR("regular", 1.0), CALZONE("calzone", 1.5);
-    private double cost;
-    private String key;
+    private final double cost;
+    private final String key;
 
     Type(String key, double cost) {
         this.cost = cost;
@@ -14,15 +14,8 @@ public enum Type {
         return cost;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
     public String getKey() {
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
 }

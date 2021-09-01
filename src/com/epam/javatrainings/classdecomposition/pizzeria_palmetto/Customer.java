@@ -2,17 +2,10 @@ package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
 
 public class Customer {
     private final int numberCustomer;
-    private String nameCustomer;
-    private String namePizza;
+    private final String nameCustomer;
 
-    public Customer(String nameCustomer, String namePizza) {
-        this.numberCustomer = PlacingAnOrder.GeneratorNumber.initialNumberCustomer++;
-        this.nameCustomer = nameCustomer;
-        this.namePizza = namePizza;
-    }
-
-    public Customer(String nameCustomer) {
-        this.numberCustomer = PlacingAnOrder.GeneratorNumber.initialNumberCustomer++;
+    public Customer(String nameCustomer, int numberCustomer) {
+        this.numberCustomer = numberCustomer;
         this.nameCustomer = nameCustomer;
     }
 
@@ -23,18 +16,5 @@ public class Customer {
     public String getNameCustomer() {
         return nameCustomer;
     }
-
-    public void setNameCustomer(String nameCustomer) {
-        this.nameCustomer = nameCustomer;
-    }
-
-    public String getNamePizza() {
-        return namePizza;
-    }
-
-    public void setNamePizza(String namePizza) {
-        this.namePizza = namePizza;
-    }
-
 
 }
