@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Pizzeria {
 
     public static void startApp() {
-        System.out.println();
         System.out.println("Welcome to Pizzeria Palmetto!");
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -17,9 +16,10 @@ public class Pizzeria {
     }
 
     private static void startPizzeria() {
-        Pizza.showAllAvailableIngredients();        //shows ingredients' list
 
-        System.out.println("______________________________________________________________");
+        Pizza newPizza = makePizza();
+
+        Pizza.showAllAvailableIngredients();        //shows ingredients' list
         System.out.println("Please, select the ingredients you prefer from the list above");
         System.out.println("Press f to to finish selecting the ingredients");
         System.out.print("Ingredients chosen: ");
@@ -27,14 +27,14 @@ public class Pizzeria {
         String selection = selectIngredients();
         ArrayList<Ingredient> selectedIngredients = toIngredients(selection);
 
+        for(Ingredient i : selectedIngredients) {
+            newPizza.addIngredient(i);
+        }
+
         System.out.println("Your ordered ingredients: ");
         printIngredients(selectedIngredients);
-
-        Pizza newPizza = makePizza();
-        newPizza.setIngredients(selectedIngredients);
         makeOrder(newPizza);
 
-        System.out.println();
         System.out.println("Press f to finish ordering, and n to make a new order");
     }
 
@@ -68,12 +68,12 @@ public class Pizzeria {
 
     private static ArrayList<Ingredient> toIngredients(String input) {
         ArrayList<Ingredient> toReturnList = new ArrayList<>();
-        ArrayList<Ingredient> availableIngrList = Pizza.allAvailableIngredients;
+        ArrayList<Ingredient> list = Pizza.allAvailableIngredients;
 
         for(int i = 0; i < input.length(); i++) {
-            String c = "" + input.charAt(i);                      //gets each number of the selected ingredients
-            int indexOfIngredient = Integer.parseInt(c);                 //parses into integer
-            toReturnList.add(availableIngrList.get(indexOfIngredient));        //adds the ingredient to the list
+            String c = "" + input.charAt(i);                   //gets each number of the selected ingredients
+            int indexOfIngredient = Integer.parseInt(c);            //parses into integer
+            toReturnList.add(list.get(indexOfIngredient));               //adds the corresponding ingredient to the list
         }
 
         return toReturnList;
@@ -111,19 +111,61 @@ public class Pizzeria {
 
     private static void makeOrder(Pizza pizza) {
         Order order = new Order();
-        order.placeOrder(pizza);
         if(pizza.getName().length() < 4 || pizza.getName().length() > 20) {
-            pizza.setName("customer_name_" + pizza.getOrder().getOrderNumber());
+            System.out.print("Your pizza's name is too short. Specify your name: ");
+            Scanner scanner = new Scanner(System.in);
+            String customerName = scanner.next();
+            order.placeOrder(pizza, new Customer(order.getCustomerNumber(), customerName));
+            pizza.setName(order.getCustomer().getCustomerName() + "_" + pizza.getOrder().getOrderNumber());
+        } else {
+            order.placeOrder(pizza, new Customer(order.getCustomerNumber(), null));  //no need for the customer's name
         }
         System.out.println();
         System.out.println("            ORDER");
         order.checkout();
+        System.out.println();
+        System.out.println("Order made at " + order.getTime().getHour()
+                                      + ":" + order.getTime().getMinute()
+                                      + ":" + order.getTime().getSecond());
         order.printTotalPrice();
     }
 
     private static void printIngredients(ArrayList<Ingredient> list) {
-        for (Ingredient ing:list) {
+        for(Ingredient ing : list) {
             System.out.println(" - " + ing.getName());
         }
+    }
+
+    public static void printCheck(Order order) {
+        System.out.println("********************************");
+        System.out.println("Order: " + order.getOrderNumber());
+        System.out.println("Client: " + order.getCustomer().getId());
+        System.out.println("Order made at " + order.getTime().getHour()
+                                      + ":" + order.getTime().getMinute()
+                                      + ":" + order.getTime().getSecond());
+
+        for(Pizza pizza : order.getPizzaItems()) {
+            System.out.println("Name: " + pizza.getName());
+            System.out.println("--------------------------------");
+
+            if(pizza.getType() == Pizza.Type.CALZONE) {
+                System.out.println("Pizza Base (Calzone) - $1.50");
+            } else {
+                System.out.println("Pizza Base (Regular) - $1.0");
+            }
+
+            for(Ingredient ingredient : pizza.getIngredients()) {
+                System.out.println(ingredient.getName() + " - $" + ingredient.getPrice());
+            }
+            System.out.println("--------------------------------");
+
+            System.out.println("Amount: $" + pizza.calculatePrice());
+            System.out.println("Quantity: " + pizza.getQuantity());
+            System.out.println("--------------------------------");
+        }
+
+        System.out.println("Total amount: $" + order.calculateTotalPrice());
+        System.out.println("********************************");
+
     }
 }

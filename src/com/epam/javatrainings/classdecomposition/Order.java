@@ -1,5 +1,6 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public class Order {
     private int orderNumber;
     private int customerNumber;
     private List<Pizza> pizzaItems = new ArrayList<>();
+    private Customer customer;
+    private LocalTime time;
 
     public Order() {
         setOrderNumber(initialOrderNumber);
@@ -17,9 +20,19 @@ public class Order {
         initialCustomerNumber++;
     }
 
-    public void placeOrder(Pizza pizza) {
+    public void placeOrder(Pizza pizza, Customer customer) {
         pizzaItems.add(pizza);
         pizza.setOrder(this);
+        this.customer = customer;
+        this.time = LocalTime.now();
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public int getOrderNumber() {
@@ -50,8 +63,16 @@ public class Order {
         this.pizzaItems = pizzaItems;
     }
 
+    public LocalTime getTime() {
+        return time;
+    }
 
-    //utility methods
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+
+    //Some utility methods
     public void checkout() {
         System.out.println("-----------------------------------------");
         List<Pizza> pizzas = getPizzaItems();
@@ -65,12 +86,12 @@ public class Order {
         System.out.println("Total price for order #" + orderNumber + " - $" + price);
     }
 
-    private double calculateTotalPrice() {
+    public double calculateTotalPrice() {
         double totalPrice = 0;
         List<Pizza> pizzas = getPizzaItems();
         for (Pizza p: pizzas) {
             for(int i = 0; i < p.getQuantity(); i++) {
-                totalPrice += p.calculatePrice(p.getIngredients());
+                totalPrice += p.calculatePrice();
             }
         }
         return totalPrice;

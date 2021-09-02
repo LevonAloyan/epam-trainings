@@ -22,6 +22,7 @@ public class Pizza {
         REGULAR,
         CALZONE
     }
+
     private Order order;
     private String name;
     private double price;
@@ -42,6 +43,7 @@ public class Pizza {
         setName(name);
         setQuantity(quantity);
         this.type = type;
+        this.ingredients = new ArrayList<>();
     }
 
     public String getName() {
@@ -96,14 +98,45 @@ public class Pizza {
         this.order = order;
     }
 
+
     //Some utility methods
-    public double calculatePrice(ArrayList<Ingredient> ingrs) {  //for one specific pizza with given ingredients
-        Iterator<Ingredient> iter = ingrs.iterator();
-        double price = 0.0;
-        while(iter.hasNext()) {
-            Ingredient ingredient = iter.next();
-            price += ingredient.getPrice();
+
+    /*
+       adds an ingredient to the ingredient list
+    */
+    public void addIngredient(Ingredient newIngredient) {
+        if(isFull()) {
+            System.out.println("Your pizza is already full");
+            System.exit(0);
+        } else {
+            if(this.getIngredients().contains(newIngredient)) {
+                System.out.println("Duplicate ingredient! Check the order again.");
+                System.exit(0);
+            } else  {
+                ingredients.add(newIngredient);
+            }
         }
+    }
+
+    /*
+        checks if a pizza's list of ingredients is full
+    */
+    private boolean isFull() {
+        if(getIngredients().size() == allAvailableIngredients.size()) {
+           return  true;
+        }
+        return false;
+    }
+
+    /*
+        calculates the price for one specific pizza
+    */
+    public double calculatePrice() {
+        double price = 0.0;
+        for(Ingredient i : getIngredients()) {
+            price += i.getPrice();
+        }
+
         price += 1.0;             //adds  $1.0 for base
         if(type == Type.CALZONE) {
             price += 0.5;         //adds extra $0.5 for CALZONE type
@@ -114,20 +147,27 @@ public class Pizza {
         return price;
     }
 
+    /*
+        prints the list of all available ingredients
+    */
     public static void showAllAvailableIngredients() {
-        Iterator<Ingredient> iter = allAvailableIngredients.iterator();
         int index = 0;
+        System.out.println("-----------------------------");
         System.out.println("Available Ingredients");
-        while(iter.hasNext()) {
-            Ingredient ingredient = iter.next();
-            System.out.println(index + ". " + ingredient.getName() + " - $" + ingredient.getPrice());
+        for(Ingredient i : allAvailableIngredients) {
+            System.out.println(index + ". " + i.getName() + " - $" + i.getPrice());
             index++;
         }
         System.out.println();
         System.out.println("1. Regular pizza base - " + "$1.0");
         System.out.println("2. Calzone pizza base - " + "$1.5");
+
+        System.out.println("-----------------------------");
     }
 
+    /*
+       prints orderNumber, customerNumber, name and quantity of pizza
+    */
     public void displayPizzaAttributes() {
         System.out.println("[" + order.getOrderNumber()
                        + " : " + order.getCustomerNumber()
