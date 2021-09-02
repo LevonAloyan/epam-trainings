@@ -1,12 +1,12 @@
 package com.epam.javatrainings.classdecomposition.main;
 
-import com.epam.javatrainings.classdecomposition.model.Customer;
-import com.epam.javatrainings.classdecomposition.model.Ingredient;
-import com.epam.javatrainings.classdecomposition.model.Pizza;
-import com.epam.javatrainings.classdecomposition.model.PizzaType;
+import com.epam.javatrainings.classdecomposition.model.*;
 import com.epam.javatrainings.classdecomposition.util.PizzaUtil;
 import com.epam.javatrainings.classdecomposition.validator.Validator;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -28,6 +28,34 @@ public class Main {
 
     public static void main(String[] args) {
 
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(Ingredient.TOMATO_PASTE);
+        ingredients.add(Ingredient.PEPPERONI);
+        ingredients.add(Ingredient.GARLIC);
+        ingredients.add(Ingredient.BACON);
+        Pizza pizzaMargarita = new Pizza("Margarita", ingredients);
+
+        ingredients = new ArrayList<>();
+        ingredients.add(Ingredient.TOMATO_PASTE);
+        ingredients.add(Ingredient.PEPPERONI);
+        ingredients.add(Ingredient.SALAMI);
+        ingredients.add(Ingredient.OLIVES);
+        Pizza pepperoniOroPizza = new Pizza("PepperoniOro", ingredients);
+
+        Customer customer1 = new Customer(7717, "consumer1");
+        customer1.getOrder().getPizzaList().add(new Pizza(pizzaMargarita, 2));
+        customer1.getOrder().getPizzaList().add(new Pizza(pepperoniOroPizza, 3));
+
+        ingredients = new ArrayList<>();
+        ingredients.add(Ingredient.TOMATO_PASTE);
+        ingredients.add(Ingredient.CHEESE);
+        ingredients.add(Ingredient.GARLIC);
+        ingredients.add(Ingredient.OLIVES);
+        Pizza bazePizza = new Pizza("BazePZZ", ingredients);
+
+        Customer customer2 = new Customer(4372, "cunsumer2");
+        customer1.getOrder().getPizzaList().add(new Pizza(bazePizza, 12));
+
         String command = "";
         do {
             System.out.println("-----------------------Enter 'exit' for exit------------------------------------");
@@ -41,22 +69,21 @@ public class Main {
             }
             printIngredients();
             String ingredientCommand;
-            int index = 0;
-            Ingredient[] ingredients = new Ingredient[8];
+            ingredients = new ArrayList<>();
             do {
 
                 ingredientCommand = input("Enter numbers 1-8 or other to finish");
                 if (Validator.isInt(ingredientCommand)) {
                     int number = Integer.parseInt(ingredientCommand);
                     if (number > 0 && number < 9) {
-                        ingredients[index++] = Ingredient.values()[number - 1];
+                        ingredients.add(Ingredient.values()[number - 1]);
                     } else {
                         break;
                     }
                 } else {
                     break;
                 }
-            } while (index < 8);
+            } while (ingredients.size() < 9);
             Pizza pizza = new Pizza();
             String type = input("Input type of Pizza --->REGULAR(by defalt) or CALZONE");
             if (type.toLowerCase().equals("CALZONE")) {

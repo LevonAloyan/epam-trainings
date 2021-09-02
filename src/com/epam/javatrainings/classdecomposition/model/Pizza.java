@@ -2,21 +2,70 @@ package com.epam.javatrainings.classdecomposition.model;
 
 import com.epam.javatrainings.classdecomposition.util.PizzaUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Hayk on 31.08.2021.
  */
 public class Pizza {
-    private String name;
-    private Ingredient[] ingredients = new Ingredient[8];
+
     private final double basePrice = 1;
     private double price;
     private int quantity;
+    private int orderNumber;
+    private String name;
+    private List<Ingredient> ingredients;
     private PizzaType type;
 
-    private final int orderNumber;
+    public Pizza(String name, List<Ingredient> ingredients) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.type = PizzaType.REGULAR;
+    }
+
+    public Pizza(double price, int quantity, int orderNumber, String name, PizzaType type) {
+        this.price = price;
+        this.quantity = quantity;
+        this.orderNumber = orderNumber;
+        this.name = name;
+        this.ingredients = new ArrayList<>();
+        this.type = type;
+    }
+
+    public Pizza(Pizza pizza, int quantity) {
+        this.price = pizza.price;
+        this.ingredients = pizza.ingredients;
+        this.name = pizza.name;
+        this.ingredients = pizza.ingredients;
+        this.type = pizza.type;
+        this.quantity = quantity;
+    }
+
+    public Pizza(String name, PizzaType type) {
+        this(0, 0, 0, name, type);
+    }
+
+    public Pizza(String name) {
+        this(0, 0, 0, name, null);
+    }
 
     public Pizza() {
-        orderNumber = PizzaUtil.generateOrderNumber();
+        this(0, 0, 0, null, null);
+    }
+
+    public void addIngredient(Ingredient ingredient) {
+        if (ingredients.size() == 8) {
+            System.out.println("You cant add ingredient,pizza alredy full");
+        } else if (ingredients.contains(ingredient)) {
+            System.out.println("This ingredient exist");
+        } else {
+            ingredients.add(ingredient);
+        }
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public String getName() {
@@ -27,11 +76,11 @@ public class Pizza {
         this.name = name;
     }
 
-    public Ingredient[] getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient[] ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
