@@ -1,8 +1,5 @@
 package com.epam.javatrainings.array;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ArrayUtil {
 
     /**
@@ -10,49 +7,25 @@ public class ArrayUtil {
      * such that if first number is odd then second must be even number
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
-     *
      */
+    public static void sortByOddEven(int[] array) {
+        for (int i = 0; i < array.length - 2; i++) {
+            int j = i + 1;
+            while ((array[i] + array[j]) % 2 == 0) {
+                j++;
+                if (j >= array.length) {
+                    return;
+                }
+            }
 
-    public void sortByOddAndEven(int[] array) {
-        List<Integer>oddArray = new ArrayList<>();
-        List<Integer> evenArray = new ArrayList<>();
-        List<Integer> sortedArray = new ArrayList<>();
-        for (int j : array) {
-            if (j % 2 == 0)
-                evenArray.add(j);
-            else oddArray.add(j);
+            swap(array, i + 1, j);
         }
-       if(array[0] %2 == 0){
-       for (int i =0; i<array.length; i++) {
-           if (evenArray.size() == 0) {
-               sortedArray.addAll(oddArray);
-               break;
-           }
-           if(oddArray.size() == 0){
-               sortedArray.addAll(evenArray);
-               break;
-           }
-           if (i % 2 == 0)
-               sortedArray.add(evenArray.remove(0));
-           else sortedArray.add(oddArray.remove(0));
-       }
-       }
-       else {
-           for (int i =0; i<array.length; i++) {
-               if (evenArray.size() == 0) {
-                   sortedArray.addAll(oddArray);
-                   break;
-               }
-               if(oddArray.size() == 0){
-                   sortedArray.addAll(evenArray);
-                   break;
-               }
-               if (i % 2 == 0)
-                   sortedArray.add(oddArray.remove(0));
-               else sortedArray.add(evenArray.remove(0));
-           }
-       }
-        for (Integer integer : sortedArray) System.out.println(integer);
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     /**
@@ -60,10 +33,11 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
         int max = array[0];
-        for (int j : array)
-            if (j > max)
-                max = j;
-
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
         return max;
     }
 
@@ -72,11 +46,13 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
         int min = array[0];
-        for (int j : array)
-            if (j < min)
-                min = j;
-
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
         return min;
+
     }
 
     /**
@@ -87,9 +63,9 @@ public class ArrayUtil {
      */
     public static int getSum(int[] array) {
         int sum = 0;
-        for (int j : array)
+        for (int j : array) {
             sum += j;
-
+        }
         return sum;
     }
 
@@ -100,11 +76,18 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-        int [] tempArray = new int[array.length];
-        for(int i =0; i< array.length; i++)
-            tempArray[i] = array[array.length - 1 - i];
+        int i = 0;
+        int j = array.length - 1;
 
-        return tempArray;
+        while (i < j) {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            i++;
+            j--;
+        }
+
+        return array;
     }
 
     /**
@@ -113,6 +96,10 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-        for (int j : array) System.out.println(j);
+        for (int j : array) {
+            System.out.print(j + " ");
+        }
     }
+
+
 }
