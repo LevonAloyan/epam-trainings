@@ -1,19 +1,36 @@
 package com.epam.javatrainings.classdecomposition;
 
-public class Order {
-    private PizzaBuilder.Pizza pizza;
-    private long orderingNumber;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Order(PizzaBuilder.Pizza pizza, long orderingNumber) {
-        this.pizza = pizza;
+public class Order {
+    private final List<PizzaBuilder.Pizza> pizzaList = new ArrayList<>();
+
+    public long getOrderingNumber() {
+        return orderingNumber;
+    }
+
+    private final long orderingNumber;
+
+    public Order(long orderingNumber) {
         this.orderingNumber = orderingNumber;
+    }
+
+    public void addPizzaToPizzaList(PizzaBuilder.Pizza pizza) {
+        if (pizza != null){
+            pizzaList.add(pizza);
+        }
+    }
+
+    public List<PizzaBuilder.Pizza> getPizzaList() {
+        return pizzaList;
     }
 
     @Override
     public String toString() {
-        return "Order{" +
-                "pizza=" + pizza +
-                ", orderingNumber=" + orderingNumber +
+        return "Order{" + "\n" +
+                "orderingNumber : " + orderingNumber + "\n" +
+                "pizzaList=" + pizzaList + "\n" +
                 '}';
     }
 }

@@ -11,7 +11,7 @@ public class PizzeriaPalmetto {
 
         private double cost;
 
-        public double getCost(){
+        public double getCost() {
             return cost;
         }
 
@@ -20,41 +20,33 @@ public class PizzeriaPalmetto {
         }
     }
 
-    private UserInterface userInterface;
+    private static int orderingFlag = 1;
     private String customerName;
     private long customerPhoneNumber;
     private PizzaBuilder.Pizza pizza;
-    private List<PizzaBuilder.Pizza> pizzaList = new ArrayList<>();
-    private Map<Long,Customer> customers = new HashMap<>();
+    private final List<Order> orderList = new ArrayList<>();
+    private final Map<Long, Customer> customers = new HashMap<>();
     private static long orderingNumber = 10000;
-
-    public Map<Long, Customer> getCustomers() {
-        return customers;
-    }
-
 
     private static PizzeriaPalmetto pizzeriaPalmetto = null;
 
-
-
-    private PizzeriaPalmetto(){
+    private PizzeriaPalmetto() {
 
     }
 
     //creates #PizzeriaPallmeto object in a singleton pattern
-    public static PizzeriaPalmetto pizzeriaPalmettoFactory(){
+    public static PizzeriaPalmetto pizzeriaPalmettoFactory() {
 
-        if(pizzeriaPalmetto == null){
+        if (pizzeriaPalmetto == null) {
             pizzeriaPalmetto = new PizzeriaPalmetto();
         }
 
         return pizzeriaPalmetto;
     }
 
-    public List<PizzaBuilder.Pizza> getPizzaList() {
-        return pizzaList;
+    public Map<Long, Customer> getCustomers() {
+        return customers;
     }
-
 
     /**
      * take an order from customer interacting with them through console
@@ -69,99 +61,200 @@ public class PizzeriaPalmetto {
             System.out.println("Connection is failed");
         }
         //create user interface instance in singleton pattern
-        userInterface = UserInterface.userInterfaceFactory(scanner);
+        UserInterface userInterface = UserInterface.userInterfaceFactory(scanner);
 
         String pizzaName = null;
         String pizzaType = null;
         int pizzaIngredients = 0;
         int pizzaQuantity = 0;
+        int choice = 0;
 
-            //get customer name
-            customerName = userInterface.getCustomerName();
+        //get customer name
+        customerName = userInterface.getCustomerName();
 
-            //get customer phone number
-            customerPhoneNumber = userInterface.getCustomerPhoneNumber();
+        //get customer phone number
+        customerPhoneNumber = userInterface.getCustomerPhoneNumber();
 
-            //get pizza name
-            pizzaName = userInterface.getPizzaName();
+        //get pizza name
+        pizzaName = userInterface.getPizzaName();
 
-            //get pizza type
-            pizzaType = userInterface.getPizzaType();
+        //get pizza type
+        pizzaType = userInterface.getPizzaType();
 
-            //get ingredients as integer which is subject to further processing
-            pizzaIngredients = userInterface.getIngredients();
+        //get ingredients as integer which is subject to further processing
+        pizzaIngredients = userInterface.getIngredients();
 
-            //get quantity of pizza
-            pizzaQuantity = userInterface.getPizzaQuantity();
+        //get quantity of pizza
+        pizzaQuantity = userInterface.getPizzaQuantity();
 
-            //create order
-            createOrder(customerName,customerPhoneNumber, pizzaName, pizzaType, pizzaIngredients, pizzaQuantity);
+        //check if the order is completed or not
+        choice = userInterface.makeChoice();
+
+
+        while (choice <= 3) {
+            if (choice == 1) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+                break;
+
+            } else if (choice == 2) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+                //complement order
+                complementOrder(userInterface);
+                break;
+
+            } else if (choice == 3) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+
+                //change order
+                choice = changeOrder(userInterface);
+            }
+        }
+    }
+
+    /**
+     * complement order
+     *
+     * @param userInterface
+     */
+    private void complementOrder(UserInterface userInterface) {
+        String pizzaName = null;
+        String pizzaType = null;
+        int pizzaIngredients = 0;
+        int pizzaQuantity = 0;
+        int choice = 0;
+
+        //get pizza name
+        pizzaName = userInterface.getPizzaName();
+
+        //get pizza type
+        pizzaType = userInterface.getPizzaType();
+
+        //get pizza ingredients
+        pizzaIngredients = userInterface.getIngredients();
+
+        //get pizza quantity
+        pizzaQuantity = userInterface.getPizzaQuantity();
+
+        //check if the order is completed or not
+        choice = userInterface.makeChoice();
+
+        while (choice <= 3) {
+            if (choice == 1) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+                break;
+            } else if (choice == 2) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+                //complement order
+                complementOrder(userInterface);
+                break;
+
+            } else if (choice == 3) {
+                //create order
+                createOrder(
+                        customerName, customerPhoneNumber, pizzaName, pizzaType,
+                        pizzaIngredients, pizzaQuantity, choice);
+
+                //change order
+                choice = changeOrder(userInterface);
+
+            }
+        }
+
 
     }
 
     /**
      * create order using values obtained from console
-     *  @param customerName
+     *
+     * @param customerName
      * @param customerPhoneNumber
      * @param pizzaName
      * @param pizzaType
      * @param pizzaIngredients
      * @param pizzaQuantity
+     * @param choice
      */
 
-    private void createOrder(String customerName, long customerPhoneNumber, String pizzaName, String pizzaType, int pizzaIngredients, int pizzaQuantity) {
+    private void createOrder(String customerName, long customerPhoneNumber,
+                             String pizzaName, String pizzaType, int pizzaIngredients,
+                             int pizzaQuantity, int choice) {
 
-        //get ingredient list
-        Set<String> ingredients = PizzaPalmettoUtil.createIngredientList(pizzaIngredients);
-        //get default pizza name
-        String pizzaDefaultName = PizzaPalmettoUtil.pizzaDefaultNameGenerator(customerName,orderingNumber);
+        Order order;
 
         //create pizza
-        pizza = new PizzaBuilder()
-                .defaultName(pizzaDefaultName)
-                .name(pizzaName)
-                .type(pizzaType)
-                .ingredientList(ingredients)
-                .pizzaQuantity(pizzaQuantity)
-                .build();
+        pizza = PizzaPalmettoUtil.createPizza(
+                pizzaIngredients,customerName,orderingNumber,
+                pizzaName,pizzaType,pizzaQuantity);
 
-        //create order and add to customer's order list
-        //if the customer isn't in customer list create
-        //new customer and customer list
-        PizzaPalmettoUtil.createOrderAndAddToCustomerOrderList(
-                pizza,orderingNumber,customers,customerPhoneNumber,
-                customerName);
+        //create or complement order
+        order = PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, orderingFlag, 0);
+        orderingFlag = 0;
 
         //increase ordering number
-        orderingNumber++;
+        if (choice == 1) {
+            //create new customer or update already existing
+            //customer. add new customer to customer list
+            //also add order to customer order's list
+            PizzaPalmettoUtil.createCustomerOrUpdateExistingCustomer(
+                    order, customers, customerPhoneNumber,
+                    customerName);
+            PizzaPalmettoUtil.printCheck(customerName, customerPhoneNumber, order);
+            orderingFlag = 1;
+            orderingNumber++;
+        } else if (choice == 2) {
+            orderingFlag = 2;
+        }
         //add pizza to pizza list
-        pizzaList.add(pizza);
+        orderList.add(order);
 
     }
 
+    //change the order (add new ingredients to pizza ingredient's list)
+    public int changeOrder(UserInterface userInterface) {
+        int ingredients;
+        int pizzaIndex;
+        Order order;
+        order = getCurrentOrder();
+        pizzaIndex = userInterface.showCurrentOrder(order);
+        if (pizzaIndex < 0) {
+            return userInterface.makeChoice();
+        }
+        PizzaBuilder.Pizza pizza = order.getPizzaList().get(pizzaIndex);
+        ingredients = userInterface.addIngredients(pizza);
+        //add ingredients to chosen pizza
+        addIngredients(ingredients, pizzaIndex, pizza);
 
-    public void addIngredient(){
-
+        return userInterface.makeChoice();
     }
 
-    //displays data about pizza
-    public void display(PizzaBuilder.Pizza pizza) {
-
-        StringBuilder sb = new StringBuilder();
-        sb
-                .append("[")
-                .append(orderingNumber)
-                .append(": ")
-                .append(customerPhoneNumber)
-                .append(": ")
-                .append(pizza.getName())
-                .append(": ")
-                .append(pizza.getPizzaQuantity())
-                .append("]");
-
-        System.out.println(sb);
-
-
+    //add new ingredients to chosen pizza
+    private void addIngredients(int ingredients, int pizzaIndex, PizzaBuilder.Pizza pizza) {
+        pizza = PizzaPalmettoUtil.addIngredientsToPizza(pizza, ingredients);
+        Order order =
+                PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, 3, pizzaIndex);
+        PizzaPalmettoUtil.createCustomerOrUpdateExistingCustomer(order, customers, customerPhoneNumber, customerName);
     }
+
+
+    //obtain current order from customer order list
+    private Order getCurrentOrder() {
+        return orderList.get(orderList.size() - 1);
+    }
+
 
 }
