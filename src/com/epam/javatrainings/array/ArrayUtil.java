@@ -1,5 +1,8 @@
 package com.epam.javatrainings.array;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ArrayUtil {
 
     /**
@@ -8,24 +11,34 @@ public class ArrayUtil {
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
      */
-    public static void sortByOddEven(int[] array) {
-        for (int i = 0; i < array.length - 2; i++) {
-            int j = i + 1;
-            while ((array[i] + array[j]) % 2 == 0) {
-                j++;
-                if (j >= array.length) {
-                    return;
-                }
-            }
-
-            swap(array, i + 1, j);
+    public void sortByOddAndEven(int[] array) {
+        var oddElements = new ArrayList<>();
+        var evenElements = new ArrayList<>();
+        var arrayElements = new ArrayList<>();
+        var sortedElementsEvenByOdd = new ArrayList<>();
+        var sortedElementsOddByEven = new ArrayList<>();
+        for (int i : array) {
+            if (i % 2 == 0) {
+                evenElements.add(i);
+            } else oddElements.add(i);
         }
-    }
 
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        arrayElements.addAll(evenElements);
+        arrayElements.addAll(oddElements);
+
+        //even -> odd
+        for (int i = 0, j = 0; i < evenElements.size() && j < oddElements.size(); i++, j++) {
+            sortedElementsEvenByOdd.add(evenElements.get(i));
+            sortedElementsEvenByOdd.add(oddElements.get(j));
+        }
+
+        //odd -> even
+        for (int i = 0, j = 0; i < evenElements.size() && j < oddElements.size(); i++, j++) {
+            sortedElementsOddByEven.add(oddElements.get(j));
+            sortedElementsOddByEven.add(evenElements.get(i));
+        }
+        System.out.println("Sort even by odd: " + sortedElementsEvenByOdd);
+        System.out.println("Sort odd by even: " + sortedElementsOddByEven);
     }
 
     /**
@@ -33,10 +46,9 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
         int max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-            }
+        for (int i : array) {
+            if (i > max)
+                max = i;
         }
         return max;
     }
@@ -46,13 +58,12 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
         int min = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
+        for (int i : array) {
+            if (i < min) {
+                min = i;
             }
         }
         return min;
-
     }
 
     /**
@@ -63,8 +74,8 @@ public class ArrayUtil {
      */
     public static int getSum(int[] array) {
         int sum = 0;
-        for (int j : array) {
-            sum += j;
+        for (int i : array) {
+            sum += i;
         }
         return sum;
     }
@@ -76,18 +87,13 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-        int i = 0;
-        int j = array.length - 1;
-
-        while (i < j) {
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-            i++;
-            j--;
+        var newArray = new int[array.length];
+        int j = array.length;
+        for (int k : array) {
+            newArray[j - 1] = k;
+            j = j - 1;
         }
-
-        return array;
+        return newArray;
     }
 
     /**
@@ -96,9 +102,12 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-        for (int j : array) {
-            System.out.print(j + " ");
+        //variant 1
+        for (int i : array) {
+            System.out.print(i + " ");
         }
+        //variant 2
+        System.out.println(Arrays.toString(array));
     }
 
 
