@@ -1,9 +1,8 @@
 package com.epam.javatrainings.override;
 
-public abstract class Shape {
-
-   public Number draw(){
-       return 0;
-   }
-
+public class Shape {
+    public void Show()
+    {
+        System.out.println("23");
+    }
 }
