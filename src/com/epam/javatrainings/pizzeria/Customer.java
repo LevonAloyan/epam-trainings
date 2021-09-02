@@ -8,4 +8,9 @@ public class Customer {
         this.id = (int) ((Math.random() * (9999 - 1000)) + 1000);
         this.name = name;
     }
+
+    public Customer(String name, int id){
+        this.id = id;
+        this.name = name;
+    }
 }

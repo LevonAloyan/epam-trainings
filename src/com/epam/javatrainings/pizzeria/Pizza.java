@@ -37,21 +37,40 @@ public String getName(){
     return name;
 }
 
+
 public void setType(Type t){
     this.type = t;
 }
 
-public void addIngredient (Ingredient ingredient){
-    ingredients.add(ingredient);
+public Type getType(){
+  return  this.type;
 }
 
+
+public void addIngredient (Ingredient ingredient) {
+    if (ingredients.size() == 8){
+        System.out.println("You've already used all available ingredients.");
+        return;
+    }
+
+    if (ingredients.contains(ingredient)) {
+        System.out.println("You've already added that ingredient. Please check the order again");
+    } else {
+        ingredients.add(ingredient);
+    }
+}
 public void setQuantity(int q) {
-    if (q > 10) {
+    if (q > 12) {
         System.out.println("Not enough");
     } else {
         this.quantity = q;
     }
 }
+
+    public int getQuantity(){
+        return this.quantity;
+    }
+
 public double calculateTotal(){
     double total = 0;
     for (Ingredient i : ingredients){
@@ -65,8 +84,28 @@ public double calculateTotal(){
     }
     return quantity * total;
 }
-    public void displayAttributes(){
+
+    public double calculatePrice(){
+        double total = 0;
+        for (Ingredient i : ingredients){
+            total += i.price;
+        }
+        if (this.type == Type.Calzone){
+            total += 1.5;
+        }
+        else {
+            total += 1;
+        }
+        return  total;
+    }
+
+public void displayAttributes(){
         System.out.println("[" + this.orderId + " : " + this.customer.id + " : "+ this.name + " : " + this.quantity+ "]");
     }
+
+    public  List<Ingredient> getIngredients(){
+    return this.ingredients;
+    }
+
 
 }

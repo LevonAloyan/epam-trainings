@@ -16,9 +16,58 @@ public class Main {
         ingredients[5] = new Ingredient("Corn",0.7);
         ingredients[6] = new Ingredient("Pepperoni",0.6);
         ingredients[7] = new Ingredient("Olives",0.5);
+       //------------------------------------Part 2
+        Pizza pizzaMargarita = new Pizza("Margarita", new Customer("Davit"),7777);
+        pizzaMargarita.addIngredient(ingredients[0]);
+        pizzaMargarita.addIngredient(ingredients[4]);
+        pizzaMargarita.addIngredient(ingredients[3]);
+        pizzaMargarita.addIngredient(ingredients[6]);
+
+        Pizza pizzaTashir = new Pizza("Tashir", new Customer("Davit"),7777);
+        pizzaTashir.addIngredient(ingredients[7]);
+        pizzaTashir.addIngredient(ingredients[2]);
+        pizzaTashir.addIngredient(ingredients[0]);
+        pizzaTashir.addIngredient(ingredients[1]);
+
+        //--------------------------------------------------------
+        //------------------------------------Part 3, 4
+        Customer c1 = new Customer("John", 7717);
+        Customer c2 = new Customer("Jack", 4372);
+
+        Order order1 = new Order(7717);
+        Pizza margarita = new Pizza("Margarita", c1,order1.getOrderNumber());
+        margarita.addIngredient(ingredients[0]);
+        margarita.addIngredient(ingredients[3]);
+        margarita.addIngredient(ingredients[4]);
+        margarita.addIngredient(ingredients[6]);
+        margarita.setType(Type.Calzone);
+        margarita.setQuantity(3);
+
+        Pizza pepperoniOro = new Pizza("PepperoniOro", c1,order1.getOrderNumber());
+        pepperoniOro.setType(Type.Regular);
+        pepperoniOro.addIngredient(ingredients[0]);
+        pepperoniOro.addIngredient(ingredients[1]);
+        pepperoniOro.addIngredient(ingredients[2]);
+        pepperoniOro.addIngredient(ingredients[7]);
+        pepperoniOro.setQuantity(2);
+        order1.addPizza(margarita);
+        order1.addPizza(pepperoniOro);
+        order1.printCheck();
+
+        Order order2 = new Order(4372);
+        Pizza basePZZ = new Pizza("BasePZZ", c2,order2.getOrderNumber());
+        basePZZ.addIngredient(ingredients[0]);
+        basePZZ.addIngredient(ingredients[1]);
+        basePZZ.addIngredient(ingredients[2]);
+        basePZZ.addIngredient(ingredients[5]);
+        basePZZ.setType(Type.Regular);
+        basePZZ.setQuantity(12);
+
+        order2.addPizza(basePZZ);
+        order2.printCheck();
+/*
 
         Scanner myObj = new Scanner(System.in);
-
         System.out.println("Welcome to the pizzeria Palmetto!");
         System.out.println("Please enter your name:");
         String clientName = myObj.nextLine();
@@ -69,8 +118,8 @@ public class Main {
             System.out.println("Please enter 0 to finish the order. Press any other key to continue:");
             temp1 = myObj.nextInt();
             }
-        System.out.println("Thank you for your order. It costs " + order.orderPrice() + '$');
+        System.out.println("Thank you for your order. It costs " + order.getOrderPrice() + '$');
 
-
+*/
     }
 }
