@@ -7,27 +7,8 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        //int t=30;
-        //String padded = String.format("%05d",t);
-        var Tomato_paste=new Ingredient("Tomato paste", 1);
-        var Cheese=new Ingredient("Cheese", 1);
-        var Salami=new Ingredient("Salami", 1.5);
-        var Bacon=new Ingredient("Bacon", 1.2);
-        var Garlic=new Ingredient("Garlic", 0.3);
-        var Corn=new Ingredient("Corn", 0.7);
-        var Pepperoni=new Ingredient("Pepperoni", 0.6);
-        Pizza.SetIngredientCatalogMember(Tomato_paste);
-        Pizza.SetIngredientCatalogMember(Cheese);
-        Pizza.SetIngredientCatalogMember(Salami);
-        Pizza.SetIngredientCatalogMember(Bacon);
-        Pizza.SetIngredientCatalogMember(Garlic);
-        Pizza.SetIngredientCatalogMember(Corn);
-        Pizza.SetIngredientCatalogMember(Pepperoni);
-        var RegularType = new Type("Regular", 1);
-        var ClosedType= new Type("Calzone",1.5);
-        Pizza.SetTypeCatalogMember(RegularType);
-        Pizza.SetTypeCatalogMember(ClosedType);
-
+        Pizzeria.SetIngredientCatalog();
+        Pizzeria.SetTypeCatalog();
         do{
             Pizzeria.MakeOrder();
         }
