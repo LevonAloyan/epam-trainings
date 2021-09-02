@@ -1,5 +1,7 @@
 package com.epam.javatrainings.classdecomposition.order;
 
+import com.epam.javatrainings.classdecomposition.order.orderitem.OrderItem;
+
 public class OrderPrinter {
 
     public static void printOrderDescription(Order order) {
@@ -18,4 +20,5 @@ public class OrderPrinter {
         }
         System.out.println(res);
     }
+
 }

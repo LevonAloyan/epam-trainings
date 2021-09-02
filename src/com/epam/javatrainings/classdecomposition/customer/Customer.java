@@ -6,9 +6,19 @@ public class Customer {
     private final int id;
     private final String name;
 
+    private Customer(Customer c) {
+        this.id = c.getCustomerId();
+        this.name = c.getName();
+    }
+
     public Customer(String name) {
         this.name = name;
         id = initialCustId++;
+    }
+
+
+    public Customer getCustomerCopy() {
+        return new Customer(this);
     }
 
     public int getCustomerId() {
