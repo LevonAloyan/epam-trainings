@@ -1,6 +1,7 @@
 package com.epam.javatrainings.classdecomposition.pizza;
 
 import com.epam.javatrainings.classdecomposition.ingredient.Ingredient;
+import com.epam.javatrainings.classdecomposition.ingredient.PizzaIngredients;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -36,6 +37,35 @@ public final class Pizza {
                 name.length() >= 4 &&
                 name.length() <= 20 &&
                 name.matches("\\p{IsLatin}+"));
+    }
+
+    public boolean addIngredient(Ingredient ingredient) {
+        if (isAvailable(ingredient) && !(isFull() && hasGivenIngredient(ingredient))) {
+            ingredients.add(ingredient);
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isAvailable(Ingredient ingredient) {
+        return PizzaIngredients.getPizzaIngredients().contains(ingredient);
+    }
+
+    private boolean isFull() {
+        if (ingredients.size() == PizzaIngredients.getPizzaIngredients().size()) {
+            System.out.println("Pizza is full");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasGivenIngredient(Ingredient ingredient) {
+        if (ingredients.contains(ingredient)) {
+            System.out.println("Please check order again");
+            return true;
+        }
+        return false;
     }
 
     @Override

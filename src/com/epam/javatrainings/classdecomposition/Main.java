@@ -14,42 +14,30 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Customer bob = new Customer("bob");
-        System.out.println("bob's id is: " + bob.getCustomerId());
 
-        //Create pizza with no ingredients
-        Pizza p1 = new Pizza("Mar", PizzaType.REGULAR, new ArrayList<>());
-        System.out.println("p1 = " + p1);
-        Pizza p2 = new Pizza("p2", PizzaType.CALZONE);
-        System.out.println("p2 = " + p2);
+        //Create pizza Margherita with no ingredients
+        Pizza margherita = new Pizza("Margherita", PizzaType.REGULAR);
+        System.out.println("margherita: " + margherita);
 
-        //Create pizza with ingredients
-        Pizza p3 = new Pizza("zzz", PizzaType.CALZONE,
-                new ArrayList<>(
-                        Arrays.asList(
-                                PizzaIngredients.getPizzaIngredients().get(0),
-                                PizzaIngredients.getPizzaIngredients().get(1),
-                                PizzaIngredients.getPizzaIngredients().get(3),
-                                PizzaIngredients.getPizzaIngredients().get(4)
-                        )
+        margherita.addIngredient(PizzaIngredients.findIngredientByName("tomato paste"));
+        margherita.addIngredient(PizzaIngredients.findIngredientByName("pepper"));
+        margherita.addIngredient(PizzaIngredients.findIngredientByName("garlic"));
+        margherita.addIngredient(PizzaIngredients.findIngredientByName("bacon"));
+        System.out.println("margherita filled with available ingredients: " + margherita);
 
-                )
-        );
-        System.out.println("p3 = " + p3);
+        //Create pizza AnotherOne with no ingredients
+        Pizza anotherPizza = new Pizza("AnotherOne", PizzaType.REGULAR);
+        System.out.println("anotherPizza: " + anotherPizza);
 
-        Pizza p4 = new Pizza("piz", PizzaType.REGULAR,
-                new ArrayList<>(
-                        Arrays.asList(
-                                PizzaIngredients.getPizzaIngredients().get(5),
-                                PizzaIngredients.getPizzaIngredients().get(6),
-                                PizzaIngredients.getPizzaIngredients().get(7)
-                        )
+        anotherPizza.addIngredient(PizzaIngredients.findIngredientByName("tomato paste"));
+        anotherPizza.addIngredient(PizzaIngredients.findIngredientByName("cheese"));
+        anotherPizza.addIngredient(PizzaIngredients.findIngredientByName("salami"));
+        anotherPizza.addIngredient(PizzaIngredients.findIngredientByName("olives"));
+        System.out.println("anotherPizza filled with available ingredients: " + margherita);
 
-                )
-        );
-        System.out.println("p4 = " + p4);
 
-        OrderItem orderItem1 = new OrderItem.OrderItemBuilder(p3, 3).build();
-        OrderItem orderItem2 = new OrderItem.OrderItemBuilder(p4, 7).build();
+        OrderItem orderItem1 = new OrderItem.OrderItemBuilder(margherita, 3).build();
+        OrderItem orderItem2 = new OrderItem.OrderItemBuilder(anotherPizza, 6).build();
 
         Order order = new Order.OrderBuilder(bob, new ArrayList<>(Arrays.asList(orderItem1, orderItem2))).build();
 

@@ -11,6 +11,10 @@ public class Ingredient {
         this.price = new BigDecimal(price);
     }
 
+    public String getName(){
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +

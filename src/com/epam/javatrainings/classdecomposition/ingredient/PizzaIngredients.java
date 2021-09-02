@@ -20,4 +20,13 @@ public class PizzaIngredients {
     public static List<Ingredient> getPizzaIngredients() {
         return pizzaIngredients;
     }
+
+    public static Ingredient findIngredientByName(String name) {
+        for (Ingredient ingredient : pizzaIngredients) {
+            if (name.equals(ingredient.getName().toLowerCase())) {
+                return ingredient;
+            }
+        }
+        return null;
+    }
 }
