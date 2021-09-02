@@ -11,7 +11,7 @@ public class OrderPrinter {
                     .append(": ")
                     .append(order.getCustomer().getCustomerId())
                     .append(": ")
-                    .append(orderItem.getItem().getName())
+                    .append(orderItem.getPizza().getName())
                     .append(": ")
                     .append(orderItem.getQuantity())
                     .append("]");

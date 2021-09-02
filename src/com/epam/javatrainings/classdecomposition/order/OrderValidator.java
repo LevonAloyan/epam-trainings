@@ -8,9 +8,9 @@ public class OrderValidator {
             totalQuantity += orderItem.getQuantity();
 
             //update item name if it is invalid
-            if (!orderItem.getItem().isValidName()) {
+            if (!orderItem.getPizza().isValidName()) {
                 String validName = order.getCustomer().getName() + "_" + orderItem.getOrderIndex();
-                orderItem.getItem().setName(validName);
+                orderItem.getPizza().setName(validName);
             }
         }
         if (totalQuantity > Order.MAX_ITEMS_COUNT_IN_ORDER) {

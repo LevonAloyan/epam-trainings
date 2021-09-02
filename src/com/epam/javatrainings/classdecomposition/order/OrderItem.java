@@ -1,20 +1,21 @@
 package com.epam.javatrainings.classdecomposition.order;
 
-import com.epam.javatrainings.classdecomposition.item.Item;
+
+import com.epam.javatrainings.classdecomposition.pizza.Pizza;
 
 public class OrderItem {
-    private final Item item;
+    private final Pizza pizza;
     private final int quantity;
     private int orderIndex = -1; // -1 means that this orderItem isn't in any Order yet
 
 
     private OrderItem(OrderItemBuilder builder) {
-        this.item = builder.item;
+        this.pizza = builder.pizza;
         this.quantity = builder.quantity;
     }
 
-    Item getItem() {
-        return item;
+    Pizza getPizza() {
+        return pizza;
     }
 
     int getOrderIndex() {
@@ -32,18 +33,18 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "item=" + item +
+                "pizza=" + pizza +
                 ", quantity=" + quantity +
                 ", orderIndex=" + orderIndex +
                 '}';
     }
 
     public static class OrderItemBuilder {
-        private final Item item;
+        private final Pizza pizza;
         private final int quantity;
 
-        public OrderItemBuilder(Item item, int quantity) {
-            this.item = item;
+        public OrderItemBuilder(Pizza pizza, int quantity) {
+            this.pizza = pizza;
             this.quantity = quantity;
         }
 

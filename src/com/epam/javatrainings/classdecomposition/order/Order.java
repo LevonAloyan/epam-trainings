@@ -2,9 +2,9 @@ package com.epam.javatrainings.classdecomposition.order;
 
 import com.epam.javatrainings.classdecomposition.customer.Customer;
 
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Order {
 
@@ -46,7 +46,7 @@ public class Order {
         }
 
         public OrderBuilder(Customer customer, OrderItem orderItem) {
-            this(customer, new ArrayList<>(Arrays.asList(orderItem)));
+            this(customer, new ArrayList<>(Collections.singletonList(orderItem)));
         }
 
         private Order reassignOrderItemOrderIndex(Order o) {
@@ -60,9 +60,9 @@ public class Order {
 
         public Order build() {
             Order order = new Order(this);
-            OrderValidator.validateOrder(order);
+            OrderValidator.validateOrder(reassignOrderItemOrderIndex(order));
             order.setOrderNumber(++initialOrderNumber);
-            return reassignOrderItemOrderIndex(order);
+            return order;
         }
 
     }

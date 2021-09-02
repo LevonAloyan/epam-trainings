@@ -2,8 +2,8 @@ package com.epam.javatrainings.classdecomposition;
 
 import com.epam.javatrainings.classdecomposition.customer.Customer;
 import com.epam.javatrainings.classdecomposition.ingredient.PizzaIngredients;
-import com.epam.javatrainings.classdecomposition.item.pizza.Pizza;
-import com.epam.javatrainings.classdecomposition.item.pizza.PizzaType;
+import com.epam.javatrainings.classdecomposition.pizza.Pizza;
+import com.epam.javatrainings.classdecomposition.pizza.PizzaType;
 import com.epam.javatrainings.classdecomposition.order.Order;
 import com.epam.javatrainings.classdecomposition.order.OrderItem;
 import com.epam.javatrainings.classdecomposition.order.OrderPrinter;
@@ -53,7 +53,7 @@ public class Main {
 
         Order order = new Order.OrderBuilder(bob, new ArrayList<>(Arrays.asList(orderItem1, orderItem2))).build();
 
-        new OrderPrinter().printOrderDescription(order);
+        OrderPrinter.printOrderDescription(order);
 
     }
 }
