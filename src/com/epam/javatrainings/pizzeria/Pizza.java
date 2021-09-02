@@ -29,7 +29,7 @@ if(l>= 4 && l <= 20){
 }
 
 else {
-    this.name = customer.name + '_' + count;
+    this.name = customer.getName() + '_' + count;
 }
 }
 
@@ -74,7 +74,7 @@ public void setQuantity(int q) {
 public double calculateTotal(){
     double total = 0;
     for (Ingredient i : ingredients){
-        total += i.price;
+        total += i.getPrice();
     }
     if (this.type == Type.Calzone){
         total += 1.5;
@@ -88,7 +88,7 @@ public double calculateTotal(){
     public double calculatePrice(){
         double total = 0;
         for (Ingredient i : ingredients){
-            total += i.price;
+            total += i.getPrice();
         }
         if (this.type == Type.Calzone){
             total += 1.5;
@@ -100,7 +100,7 @@ public double calculateTotal(){
     }
 
 public void displayAttributes(){
-        System.out.println("[" + this.orderId + " : " + this.customer.id + " : "+ this.name + " : " + this.quantity+ "]");
+        System.out.println("[" + this.orderId + " : " + this.customer.getId() + " : "+ this.name + " : " + this.quantity+ "]");
     }
 
     public  List<Ingredient> getIngredients(){

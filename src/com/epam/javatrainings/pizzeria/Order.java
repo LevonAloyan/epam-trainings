@@ -48,7 +48,7 @@ public class Order {
             double basePrice = p.getType().equals(Type.Calzone) ? 1.5 : 1;
             System.out.println("Pizza Base (" + p.getType() + ')' + "   " + basePrice + '$');
             for (Ingredient i : p.getIngredients()){
-                System.out.println(i.name + "  " + i.price + '$');
+                System.out.println(i.getName() + "  " + i.getPrice() + '$');
             }
             System.out.println("-----------------------------------");
             System.out.println("Amount:  " + p.calculatePrice());
