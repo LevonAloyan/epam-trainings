@@ -1,30 +1,35 @@
 package com.epam.javatrainings.classdecomposition;
 
-import java.lang.reflect.Type;
-import java.util.Random;
+import java.util.ArrayList;
 
 public class Pizza {
 
-    public Pizza() {
-
-    }
 
     enum Piiza {
         REGULAR, CARLZONE;
     }
 
+    static int x = 0;
     private String name;
-    private int count;
+    private int client;
     private double price;
     private String dough;
+    private ArrayList<String> ingredient;
+    private Order order;
 
 
 
-    public Pizza(String name, int count, double price, String dough) {
+    public Pizza(String name, double price, String dough, ArrayList<String> ingredient,Order order ) {
         this.name = name;
-        this.count = count;
+        this.client = ++x;
         this.price = price;
         this.dough = dough;
+        this.ingredient = ingredient;
+        this.order=order;
+    }
+
+    public Pizza() {
+        this.client = ++x;
     }
 
     public String getName() {
@@ -35,12 +40,8 @@ public class Pizza {
         this.name = name;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    public int getClient() {
+        return client;
     }
 
     public double getPrice() {
@@ -55,17 +56,36 @@ public class Pizza {
         return dough;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
     public void setDough(String dough) {
         this.dough = dough;
+    }
+
+    public ArrayList<String> getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(ArrayList<String> ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override
     public String toString() {
         return "Pizza{" +
                 "name='" + name + '\'' +
-                ", count=" + count +
+                ", client=" + client +
                 ", price=" + price +
-                ", dough=" + dough +
+                ", dough='" + dough + '\'' +
+                ", ingredient=" + ingredient +
+                ", order=" + order +
                 '}';
     }
+
 }
