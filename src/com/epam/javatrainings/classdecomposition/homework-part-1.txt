@@ -1,7 +1,7 @@
-Pizzeria "Palmetto" allows its customers to choose the ingredients when ordering pizza.
+Pizzeria "Palmetto" allows its customers to choose the ingredient when ordering pizza.
 Each pizza ordered has an automatically assigned, non-changeable five-digit order number that is automatically saved.
 Pizza can be of two types: regular and closed (Calzone). Customers can also give a name to your pizza and order up to 10 of them.
-Currently, it is possible to use 7 different ingredients for making pizza (the table shows the price):
+Currently, it is possible to use 7 different ingredient for making pizza (the table shows the price):
 
 Tomato paste 1 $
 Cheese	     1 $
@@ -15,15 +15,15 @@ Olives	     0.5 $
 A pizza base costs 1 $, and + 0.5$ for Calzone.
 Part 1.
 Implement a class for placing an order. It must include the order number (five-digit number), customer number,
-a list of “Pizza” items, each of which is an object containing the name of the pizza, list of ingredients, type of pizza, and quantity.
-Implement an appropriate constructor in which the ingredients are not specified yet.
+a list of “Pizza” items, each of which is an object containing the name of the pizza, list of ingredient, type of pizza, and quantity.
+Implement an appropriate constructor in which the ingredient are not specified yet.
 Check that the name of the pizza contains at least 4 and no more than 20 Latin characters. If the specified name does not satisfy this condition,
 the pizza is named "customer_name_n", where n is the index number of the pizza in the order.
 Implement a method for displaying pizza attributes, in which data about pizza is displayed as follows: [Order: Customer: Name: Quantity]
 For instance: [10001 : 7717: Margarita: 2]
 
 Part 2.
-Implement an addIngredient() method that adds a new ingredient to the pizza. If the pizza is already "full", a corresponding message should be displayed on the screen. Make sure the ingredients are not duplicated, otherwise display a message asking you to check the order again. Fill the Margarita pizza with the following ingredients: tomato paste, pepper, garlic, and bacon.
+Implement an addIngredient() method that adds a new ingredient to the pizza. If the pizza is already "full", a corresponding message should be displayed on the screen. Make sure the ingredient are not duplicated, otherwise display a message asking you to check the order again. Fill the Margarita pizza with the following ingredient: tomato paste, pepper, garlic, and bacon.
 Fill another pizza with tomato paste, cheese, salami, olives.
 
 Part 3.
