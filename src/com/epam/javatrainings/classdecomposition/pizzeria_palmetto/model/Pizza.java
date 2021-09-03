@@ -1,8 +1,10 @@
-package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
+package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
+
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.IngredientsCreator;
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class Pizza implements IngredientsCreator, Validator {
     private String name;
     private Type type;
@@ -54,11 +56,10 @@ public class Pizza implements IngredientsCreator, Validator {
     public double getCostPizza() {
         double costPizza = 0;
         for (Ingredients ingredients : Ingredients.values()) {
-            for (String name : ingredientsList) {
+            for (String name : ingredientsList)
                 if (name.equals(ingredients.getKey())) {
                     costPizza += ingredients.getCost();
                 }
-            }
         }
         return costPizza + type.getCost();
     }

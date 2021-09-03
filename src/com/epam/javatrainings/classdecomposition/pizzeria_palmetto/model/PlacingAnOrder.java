@@ -1,17 +1,16 @@
-package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
+package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
+
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.OrderCreator;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PlacingAnOrder implements OrderCreator {
     static int initialNumberOrder = 10000;
     private final int orderNumber;
     private final Customer customer;
     private final List<Pizza> orderItems = new ArrayList<>();
-    public static final Set<Integer> savedOrderNumber = new HashSet<>();
     private final LocalTime localTime;
 
     public PlacingAnOrder(Customer customer) {
@@ -33,9 +32,8 @@ public class PlacingAnOrder implements OrderCreator {
     }
 
     @Override
-    public Pizza create(String name, String type, int quantity, PlacingAnOrder order) {
+    public Pizza create(String name, String type, int quantity) {
         Pizza pizza = new Pizza(name, type, quantity, this);
-        savedOrderNumber.add(getOrderNumber());
         orderItems.add(pizza);
         return pizza;
     }

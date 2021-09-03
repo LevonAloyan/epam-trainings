@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
+package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
 public class Customer {
     private final int numberCustomer;

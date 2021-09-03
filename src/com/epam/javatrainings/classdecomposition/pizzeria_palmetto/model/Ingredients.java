@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
+package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
 public enum Ingredients {
     TOMATO_PASTE("Tomato paste", 1.0),
@@ -8,7 +8,7 @@ public enum Ingredients {
     GARLIC("Garlic", 0.3),
     CORN("Corn", 0.7),
     PEPPERONI("Pepperoni", 0.6),
-    Olives("Olives", 0.5);
+    OLIVES("Olives", 0.5);
     private final String key;
     private final Double cost;
 

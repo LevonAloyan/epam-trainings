@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
+package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
 public enum Type {
     REGULAR("regular", 1.0), CALZONE("calzone", 1.5);
