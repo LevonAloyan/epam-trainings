@@ -4,6 +4,7 @@ import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Custome
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Pizza;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.PlacingAnOrder;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.OrderPrinter;
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.PizzaService;
 
 public class Console {
   public static final String NAME_CUSTOMER_1 = "Margarita";
@@ -38,11 +39,14 @@ public class Console {
     pizza.addIngredient("Cheese");
     pizza.addIngredient("Pepperoni");
     pizza.addIngredient("Olives");
+    //Print order1
     OrderPrinter.printCheck(placingAnOrder1);
-    placingAnOrder2.create(NAME_PIZZA_3, TYPE_PIZZA_2, QUANTITY_PIZZA_3);
-    pizza.addIngredient(INGREDIENT_1);
-    pizza.addIngredient("Cheese");
-    //Print order
+   Pizza pizza1= placingAnOrder2.create(NAME_PIZZA_3, TYPE_PIZZA_2, QUANTITY_PIZZA_3);
+    pizza1.addIngredient(INGREDIENT_1);
+    pizza1.addIngredient("Cheese");
+    //Print order2
     OrderPrinter.printCheck(placingAnOrder2);
+    //Print Attributes
+    PizzaService.printAttributes(pizza1,placingAnOrder2);
   }
 }

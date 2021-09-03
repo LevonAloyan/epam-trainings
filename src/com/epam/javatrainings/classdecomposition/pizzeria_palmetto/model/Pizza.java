@@ -10,15 +10,16 @@ public class Pizza implements IngredientsCreator, Validator {
     private Type type;
     private int quantity;
     private PlacingAnOrder order;
-    public static List<String> ingredientsList;
+    public static List<String>ingredientsList;
 
     public Pizza(String name, String type, int quantity, PlacingAnOrder placingAnOrder) {
         this.setQuantity(quantity);
         this.order = placingAnOrder;
         this.setName(name);
         this.setType(type);
-        ingredientsList = new ArrayList<>();
+        ingredientsList=new ArrayList<>();
     }
+
 
 
     public String getName() {
@@ -82,18 +83,10 @@ public class Pizza implements IngredientsCreator, Validator {
                 && namePizza.length() <= 20);
     }
 
-    @Override
-    public String toString() {
-        return "[" + order.getOrderNumber() +
-                ":" + order.getCustomer().getNumberCustomer() +
-                ":" + getName() +
-                ":" + quantity + "]";
-    }
-
 
     @Override
     public boolean addIngredient(String ingredient) {
-        if (ingredientsList.size() == 8) {
+        if (ingredientsList.size() ==Ingredients.values().length) {
             System.out.println("The pizza is already full");
             return false;
         }
