@@ -1,41 +1,45 @@
 package com.epam.javatrainings.classdecomposition.model;
 
+import com.epam.javatrainings.classdecomposition.model.service.PizzaService;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order{
 
-    private int numberOfOrder;
+    public static int numberOfOrder = 10000;
     private int numberOfCustomer;
     private List<Pizza> pizzaList;
+    private double account;
+    private Customer customer;
 
-    public Order(int numberOfOrder, int numberOfCustomer, List<Pizza> pizzaList) {
-        this.numberOfOrder = numberOfOrder;
-        this.numberOfCustomer = numberOfCustomer;
-        this.pizzaList = pizzaList;
+    public Order(int numberOfOrder, List<Pizza> pizzaList, Customer customer) {
+        if (numberOfOrder == 100000) {
+            this.numberOfOrder = 10000;
+        } else {
+            this.numberOfOrder++;
+        }
+        List<Pizza> pizzas = new ArrayList<>();
+        pizzas.add(PizzaService.createPizza());
+        this.pizzaList = pizzas;
+
+
+
+        for (Pizza pizza : pizzaList) {
+            this.account += pizza.getPrice();
+        }
+        this.numberOfCustomer = Customer.getCustomerNumber();
     }
 
-    public void pizzaAttributes(Pizza pizza) {
 
-        StringBuilder sb = new StringBuilder();
-        String pizzaAttribute  = sb.append("[ ")
-                .append(numberOfOrder)
-                .append(" : ")
-                .append(numberOfCustomer)
-                .append(" : ")
-                .append(pizza.getName())
-                .append(" : ")
-                .append(pizza.getQuantity())
-                .append(" ]").toString();
+    public Order(){}
 
-        System.out.println(pizzaAttribute);
-    }
-
-    public int getNumberOfOrder() {
+    public static int getNumberOfOrder() {
         return numberOfOrder;
     }
 
-    public void setNumberOfOrder(int numberOfOrder) {
-        this.numberOfOrder = numberOfOrder;
+    public static void setNumberOfOrder(int numberOfOrder) {
+        Order.numberOfOrder = numberOfOrder;
     }
 
     public int getNumberOfCustomer() {
@@ -52,5 +56,31 @@ public class Order {
 
     public void setPizzaList(List<Pizza> pizzaList) {
         this.pizzaList = pizzaList;
+    }
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "numberOfCustomer=" + numberOfCustomer +
+                ", pizzaList=" + pizzaList +
+                ", account=" + account +
+                ", customer=" + customer +
+                '}';
     }
 }
