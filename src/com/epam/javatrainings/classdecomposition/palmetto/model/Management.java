@@ -2,6 +2,7 @@ package com.epam.javatrainings.classdecomposition.palmetto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Management {
     public List<Order> orders;
@@ -12,9 +13,8 @@ public class Management {
     }
 
     public void showOrders() {
-        orders.stream ()
-                .map (Order::getPizzaHashMap)
-                .forEach(each -> each.values ().toString ())     ;
+            orders.forEach (Order::printCheck);
+
     }
 
     public float addOrder(Order order) {
@@ -60,7 +60,7 @@ customer.getOrdered ().add(order.getOrder_id ());
                         "Garlic      \t     0.3 $\n" +
                         "Corn        \t     0.7 $\n" +
                         "Pepperoni   \t     0.6 $\n" +
-                        "Olives      \t     0.5 $");
+                        "Olives      \t     0.5 $\n");
     }
 
 }
