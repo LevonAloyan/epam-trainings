@@ -2,27 +2,26 @@ package com.epam.javatrainings.classdecomposition.palmetto.model;
 
 import com.epam.javatrainings.classdecomposition.palmetto.model.Ingredients.Ingredient;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
+
 
 public class Pizza {
     private String name;
     private float cost;
     private boolean calzone;
-    private ArrayList<Ingredient> ingredients;
+    private float base;
+    private Set<Ingredient> ingredients = new HashSet<Ingredient> ();
 
     public Pizza(boolean calzone) {
         this.calzone = calzone;
-        ingredients=new ArrayList<>();
-        if (calzone) this.cost = 1.5F;
-        else this.cost = 1F;
+        if (calzone) this.cost= this.base = 1.5F;
+        else this.cost= this.base = 1F;
     }
 
     public Pizza(String name, boolean calzone) {
 
         this.calzone = calzone;
-        this.name= name;
-        ingredients=new ArrayList<>();
+        this.name = name;
         if (calzone) this.cost = 1.5F;
         else this.cost = 1F;
     }
@@ -50,15 +49,29 @@ public class Pizza {
         return Objects.hash (name, cost, calzone, ingredients);
     }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
     public void addIngredient(Ingredient ingredient) {
-       if (ingredients.size ()<7) {this.ingredients.add (ingredient);
-        this.cost += ingredient.cost;}
-       else {
-           System.out.println ("  Ingredients are Full !!! \n");}
+        if (ingredients.size () < 7) {
+            if (ingredients.contains (ingredient)) {
+                System.out.println (" Ingredient has already added");
+            } else {
+                this.ingredients.add (ingredient);
+                this.cost += ingredient.cost;
+            }
+        } else {
+            System.out.println ("  Ingredients are Full !!! \n");
+        }
+    }
+
+    public String showIngredients() {
+        StringBuilder sb = new StringBuilder ();
+
+        ingredients
+                .forEach (each -> sb.append (each.getName ()).append (" ").append (each.getCost ()).append ("$\n"));
+        return sb.toString ();
     }
 
     public float getCost() {
@@ -67,5 +80,11 @@ public class Pizza {
 
     public String getName() {
         return name;
+    }
+    public int getIngredientsCount() {
+        return ingredients.size ();
+    }
+    public float getBase() {
+        return base;
     }
 }
