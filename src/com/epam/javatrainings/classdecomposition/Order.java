@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Order {
-	private static int count = 10000;
+	private static int numGen = 10000;
 
 	private final int orderNumber;
 	private final Customer customer;
-	private List<OrderPizza> list;
+	private List<Pizza> pizzaList;
 
 	public Order(Customer customer) {
-		orderNumber = count++;
+		orderNumber = numGen++;
 		this.customer = customer;
-		list = new ArrayList<>();
+		pizzaList = new ArrayList<>();
 	}
 
 	public int getOrderNumber() {
@@ -24,38 +24,43 @@ public class Order {
 		return customer;
 	}
 
-	public List<OrderPizza> getList() {
-		return new ArrayList<>(list);
+	public List<Pizza> getPizzaList() {
+		return new ArrayList<>(pizzaList);
 	}
 
-	public boolean add(OrderPizza orderPizza) {
-		if(list.size() == 10) {
+	public boolean addPizza(Pizza pizza) {
+		if(pizzaList.size() == 10) {
 			System.out.println("No more than 10 items can be order");
 			return false;
 		}
+		return pizzaList.add(pizza);
+	}
 
-		String name = orderPizza.getName();
-		if(name.length() < 4 || name.length() > 20) {
-			orderPizza.setName(customer.getCustomerNumber() + "_" + customer.getName() + "_" + (list.size() + 1));
-		}
-		return list.add(orderPizza);
+	public boolean removePizza(Pizza pizza) {
+		return pizzaList.remove(pizza);
 	}
 
 	public double getTotalPrice() {
 		double sum = 0.0;
-		for(OrderPizza orderPizza : list) {
-			sum += orderPizza.getPrice();
+		for(Pizza pizza : pizzaList) {
+			sum += pizza.calculatePrice();
 		}
 		return sum;
 	}
 
-	public void printDetails() {
-		System.out.printf("Order_Number: %d, Customer_Number: %d, Customer_Name: %s \n", orderNumber, 
-			customer.getCustomerNumber(), customer.getName());
-		for(int i = 0; i < list.size(); i++) {
-			System.out.printf("%d: ", (i+1));
-			list.get(i).print();
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("********************************\n");
+		sb.append("Order: " + orderNumber + "\n");
+		sb.append("Customer: " + customer.getCustomerNumber() + "\n");
+		sb.append("Name: " + customer.getName() + "\n");
+		for(Pizza pizza : pizzaList) {
+			sb.append(pizza.toString());
 		}
-		System.out.println("\nTotal_Price: " + getTotalPrice());
+		sb.append("\n--------------------------------\n");
+		sb.append("Total price: " + getTotalPrice() + "$\n");
+		sb.append("********************************\n");
+		return sb.toString();	 
 	}
 }

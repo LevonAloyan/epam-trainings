@@ -1,13 +1,13 @@
 package com.epam.javatrainings.classdecomposition;
 
 public class Customer {
-	private static int count = 10000;
+	private static int numGen = 10000;
 
 	private final int customerNumber;
-	private final String name;
+	private String name;
 
 	public Customer(String name) {
-		this.customerNumber = count++;
+		this.customerNumber = numGen++;
 		this.name = name;
 	}
 
@@ -17,5 +17,9 @@ public class Customer {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
