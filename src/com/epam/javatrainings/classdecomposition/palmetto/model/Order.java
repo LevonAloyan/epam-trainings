@@ -1,26 +1,45 @@
 package com.epam.javatrainings.classdecomposition.palmetto.model;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Order {
-    private static int uid=  9999;
+    private static int uid = 9999;
     private int order_id;
     private int customer_id;
     private HashMap<Integer, Pizza> pizzaHashMap;
-    private float finalCost=0;
+    private float finalCost;
+    private LocalTime ltime;
 
     public Order(int customer_id) {
         this.customer_id = customer_id;
-        this.order_id=++uid;
-        System.out.println ("Order_id "+ order_id);
-        pizzaHashMap= new HashMap<> ();
+        this.order_id = ++uid;
+        System.out.println ("Order_id " + order_id);
+        pizzaHashMap = new HashMap<> ();
+        this.ltime= LocalTime.now ();
     }
 
-    public void addPizza(Pizza pizza, int count){
-        pizzaHashMap.put(count,pizza);
-        finalCost+=pizza.getCost ()*count;
-        System.out.println ("Final cost : " +finalCost);
+    public void addPizza(Pizza pizza, int count) {
+        pizzaHashMap.put (count, pizza);
+        finalCost += pizza.getCost () * count;
+        System.out.println ("Final cost : " + finalCost);
+        this.ltime= LocalTime.now ();
+    }
+
+    public void printCheck() {
+        StringBuilder sb = new StringBuilder ().append ("********************************\n")
+                .append ("Order: ").append (order_id).append ("\n")
+                .append ("Client: ").append (customer_id).append ("\n  \n");
+        pizzaHashMap.forEach ((key, value) ->
+                sb.append ("Name: ").append ((value.getName () + " \n" + "--------------------------------\n")
+                        + ("   Ingredients: " + value.getIngredientsCount () + "\n" + value.showIngredients () + " \n" + "--------------------------------\n"))
+                        .append ("Amount: ").append (finalCost).append ("$\n")
+                        .append ("Quantity: ").append (key).append ("\n")
+                        .append ("********************************\n").append ("Pizza Base (Calzone) ").append (value.getBase ()).append (" $\n")
+                        .append ("Total amount: ").append (finalCost).append (" $\n")
+                        .append ("********************************"));
+        System.out.println (sb);
     }
 
     @Override
