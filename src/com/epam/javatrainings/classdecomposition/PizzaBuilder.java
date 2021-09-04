@@ -47,10 +47,6 @@ public class PizzaBuilder {
 
         }
 
-        public String getDefaultName() {
-            return defaultName;
-        }
-
         public String getType() {
             return type;
         }
@@ -90,15 +86,7 @@ public class PizzaBuilder {
 
         private void setDefaultName(String defaultName) {this.defaultName = defaultName;}
 
-        @Override
-        public String toString() {
-            return "Pizza : " +
-                    name + ": " +
-                    type + ":" +
-                    ingredientList + ": " +
-                    pizzaQuantity;
 
-        }
 
 
 

@@ -202,4 +202,36 @@ public class PizzaPalmettoUtil {
 
         return pizza;
     }
+
+    //show customer list
+    public static void showCustomerList(Map<Long, Customer> customers) {
+        System.out.println("Customer List *************************************************************");
+
+        for (Map.Entry entry : customers.entrySet()){
+            Customer customer = (Customer) entry.getValue();
+            //print customer name and phone
+            System.out.println("Name: " + customer.getName());
+            System.out.println("Phone: +374" + customer.getPhone());
+            //print customer order list
+            System.out.println("Order List-----------------------------------------------------------------");
+            List<Order> orderList = customer.getOrders();
+            for(Order order : orderList){
+                System.out.println();
+                System.out.println("Order Number: " + order.getOrderingNumber());
+                //print order pizza list
+                System.out.println("Pizza List-----------------------------------------------------------------");
+                List<PizzaBuilder.Pizza> pizzaList = order.getPizzaList();
+                int count = 0;
+                for (PizzaBuilder.Pizza pizza : pizzaList){
+                    System.out.println(++count + ": ");
+                    System.out.println("Pizza Name: " + pizza.getName());
+                    System.out.println("Pizza Type: " + pizza.getType());
+                    System.out.println("Pizza Ingredients: " + pizza.getIngredientList());
+                    System.out.println("Pizza Quantity: " + pizza.getPizzaQuantity());
+                }
+            }
+
+            System.out.println("****************************************************************************");
+        }
+    }
 }

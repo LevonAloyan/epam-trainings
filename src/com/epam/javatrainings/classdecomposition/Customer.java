@@ -17,9 +17,16 @@ public class Customer {
         orders.add(order);
     }
 
-    @Override
-    public String toString() {
-        return "Customer : " + name + ": " + phone +
-                "\n" + orders ;
+    public long getPhone() {
+        return phone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }
+

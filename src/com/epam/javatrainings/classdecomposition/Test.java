@@ -13,9 +13,7 @@ public class Test {
             scanner = new Scanner(System.in);
             PizzeriaPalmetto pp = PizzeriaPalmetto.pizzeriaPalmettoFactory(scanner);
             pp.orderPizza();
-            for (Map.Entry customer : pp.getCustomers().entrySet()){
-                System.out.println(customer.getValue());
-            }
+            pp.showPizzaPalmettoDatabase();
 
         }finally {
             if(scanner != null){

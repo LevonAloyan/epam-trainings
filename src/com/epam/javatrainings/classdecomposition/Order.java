@@ -5,11 +5,6 @@ import java.util.List;
 
 public class Order {
     private final List<PizzaBuilder.Pizza> pizzaList = new ArrayList<>();
-
-    public long getOrderingNumber() {
-        return orderingNumber;
-    }
-
     private final long orderingNumber;
 
     public Order(long orderingNumber) {
@@ -26,9 +21,8 @@ public class Order {
         return pizzaList;
     }
 
-    @Override
-    public String toString() {
-        return "Order: " + orderingNumber + "\n" +
-                pizzaList + '\n';
+    public long getOrderingNumber() {
+        return orderingNumber;
     }
+
 }

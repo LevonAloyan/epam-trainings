@@ -274,5 +274,11 @@ public class PizzeriaPalmetto {
         return orderList.get(orderList.size() - 1);
     }
 
+    //display Pizza Palmetto database
+    public void showPizzaPalmettoDatabase(){
+        System.out.println("\n\n        Pizza Palmetto Database\n");
+        PizzaPalmettoUtil.showCustomerList(customers);
+    }
+
 
 }
