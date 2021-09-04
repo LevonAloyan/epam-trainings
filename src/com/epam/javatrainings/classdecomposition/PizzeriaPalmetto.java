@@ -1,8 +1,6 @@
 package com.epam.javatrainings.classdecomposition;
 
-import java.io.IOException;
 import java.util.*;
-
 
 public class PizzeriaPalmetto {
 
@@ -10,7 +8,7 @@ public class PizzeriaPalmetto {
         TOMATO_PASTE(1.0), CHEESE(1.0), SALAMI(1.5),
         BACON(1.2), GARLIC(0.3), CORN(0.7), PEPPERONI(0.6), OLIVES(0.5);
 
-        private double cost;
+        private final double cost;
 
         public double getCost() {
             return cost;
@@ -24,12 +22,11 @@ public class PizzeriaPalmetto {
     private static int orderingFlag = 1;
     private String customerName;
     private long customerPhoneNumber;
-    private PizzaBuilder.Pizza pizza;
     private final List<Order> orderList = new ArrayList<>();
-    private final Map<Long, Customer> customers = new HashMap<>();
+    private static Map<Long, Customer> customers = new LinkedHashMap<>();
     private static long orderingNumber = 10000;
     private static UserInterface userInterface;
-    private static Scanner scanner;
+    private final Scanner scanner;
 
     private static PizzeriaPalmetto pizzeriaPalmetto = null;
 
@@ -37,13 +34,21 @@ public class PizzeriaPalmetto {
         this.scanner = scanner;
     }
 
+    private static void init(Scanner scanner){
+        //create user interface instance in singleton pattern
+        userInterface = UserInterface.userInterfaceFactory(scanner);
+        //get data from customer.txt file and init customer list
+        customers = DataStore.read();
+        orderingNumber = PizzaPalmettoUtil.getOrderingNumber(customers);
+
+    }
+
     //creates #PizzeriaPallmeto object in a singleton pattern
     public static PizzeriaPalmetto pizzeriaPalmettoFactory(Scanner scanner) {
 
         if (pizzeriaPalmetto == null) {
             pizzeriaPalmetto = new PizzeriaPalmetto(scanner);
-            //create user interface instance in singleton pattern
-            userInterface = UserInterface.userInterfaceFactory(scanner);
+            init(scanner);
         }
 
         return pizzeriaPalmetto;
@@ -201,7 +206,7 @@ public class PizzeriaPalmetto {
         Order order;
 
         //create pizza
-        pizza = PizzaPalmettoUtil.createPizza(
+        PizzaBuilder.Pizza pizza = PizzaPalmettoUtil.createPizza(
                 pizzaIngredients, customerName, orderingNumber,
                 pizzaName, pizzaType, pizzaQuantity);
 
@@ -239,6 +244,8 @@ public class PizzeriaPalmetto {
         if (choice == 1) {
             orderPizza();
         } else {
+            //write customer list to customers.txt file
+            DataStore.write(customers);
             System.out.println("Thanks for purchasing.\n" +
                     "Have a nice day.");
         }
@@ -275,7 +282,7 @@ public class PizzeriaPalmetto {
     }
 
     //display Pizza Palmetto database
-    public void showPizzaPalmettoDatabase(){
+    public static void showPizzaPalmettoDatabase(){
         System.out.println("\n\n        Pizza Palmetto Database\n");
         PizzaPalmettoUtil.showCustomerList(customers);
     }

@@ -1,12 +1,13 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
-    private long phone;
-    private String name;
-    private List<Order> orders = new ArrayList<>();
+public class Customer implements Serializable {
+    private final long phone;
+    private final String name;
+    private final List<Order> orders = new ArrayList<>();
 
     public Customer(long phone, String name) {
         this.phone = phone;

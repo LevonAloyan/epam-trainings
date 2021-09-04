@@ -1,10 +1,11 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class PizzaBuilder {
+public class PizzaBuilder implements Serializable{
 
-    private Pizza pizza = new Pizza();
+    private final Pizza pizza = new Pizza();
 
     public PizzaBuilder defaultName(String defaultName) {
         pizza.setDefaultName(defaultName);
@@ -35,7 +36,7 @@ public class PizzaBuilder {
         return pizza;
     }
 
-    class Pizza {
+    class Pizza implements Serializable{
 
         private String defaultName;
         private String name;

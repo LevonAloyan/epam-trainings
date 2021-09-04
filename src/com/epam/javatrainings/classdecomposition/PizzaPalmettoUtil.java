@@ -1,9 +1,6 @@
 package com.epam.javatrainings.classdecomposition;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class PizzaPalmettoUtil {
 
@@ -233,5 +230,24 @@ public class PizzaPalmettoUtil {
 
             System.out.println("****************************************************************************");
         }
+    }
+
+    //find and return last order number
+    public static long getOrderingNumber(Map<Long, Customer> customers) {
+        Customer customer = null;
+        long orderingNumber = -1;
+        Set<Map.Entry<Long, Customer>> set = customers.entrySet();
+        Iterator<Map.Entry<Long, Customer>> iterator = set.iterator();
+        while (iterator.hasNext()){
+           customer = iterator.next().getValue();
+        }
+        if (customer != null){
+            List<Order> orderList = customer.getOrders();
+            Order order = orderList.get(orderList.size()-1);
+            orderingNumber = order.getOrderingNumber() + 1;
+        }
+
+        return orderingNumber;
+
     }
 }

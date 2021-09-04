@@ -1,9 +1,10 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     private final List<PizzaBuilder.Pizza> pizzaList = new ArrayList<>();
     private final long orderingNumber;
 
