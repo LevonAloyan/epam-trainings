@@ -19,17 +19,15 @@ public class Order{
         } else {
             this.numberOfOrder++;
         }
-        List<Pizza> pizzas = new ArrayList<>();
-        pizzas.add(PizzaService.createPizza());
-        this.pizzaList = pizzas;
+        this.pizzaList = PizzaService.createPizza();
 
-
-
-        for (Pizza pizza : pizzaList) {
+        for (Pizza pizza : this.pizzaList) {
             this.account += pizza.getPrice();
         }
         this.numberOfCustomer = Customer.getCustomerNumber();
+        this.customer = customer;
     }
+
 
 
     public Order(){}

@@ -1,6 +1,7 @@
 package com.epam.javatrainings.classdecomposition.model;
 
 import com.epam.javatrainings.classdecomposition.model.enums.PizzaType;
+import com.epam.javatrainings.classdecomposition.model.service.PizzaService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +29,7 @@ public class Pizza {
             price += i.getPrice();
         }
         this.price = price;
+        this.ingredientList = PizzaService.setIngredientList();
     }
 
     public String getName() {

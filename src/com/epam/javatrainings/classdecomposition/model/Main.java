@@ -15,7 +15,7 @@ public class Main {
         Customer customer = new Customer();
 
         Order order = new Order(Order.numberOfOrder, availablePizzas,customer);
-        availablePizzas.add(new Pizza(PizzaService.setName(customer,order), PizzaType.REGULAR, 3 , PizzaService.setIngredientList()));
+        availablePizzas.add(new Pizza(PizzaService.setName(order), PizzaType.REGULAR, 3 , PizzaService.setIngredientList()));
 
         System.out.println(order);
 

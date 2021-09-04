@@ -13,23 +13,35 @@ import java.util.Scanner;
 public class PizzaService {
 
 
-    public static Pizza createPizza() {
-        Customer customer = new Customer();
+    public static List<Pizza> createPizza() {
         Order order = new Order();
-        Scanner scanner = new Scanner(System.in);
-        String name = setName(customer, order);
-        System.out.println("Enter type of pizza");
-        String type = scanner.nextLine();
-        PizzaType pizzaType;
-        if (type.equals(PizzaType.REGULAR)) {
-            pizzaType = PizzaType.REGULAR;
-        } else {
-            pizzaType = PizzaType.CLOSED;
-        }
-        System.out.println("Enter quantity :");
-        int quantity = scanner.nextInt();
+        List<Pizza> pizzas = new ArrayList<>();
+        String name = null;
+        PizzaType pizzaType = null;
+        for (int i = 0; i < 10; i++) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter  and add other pizza or finish");
+            String enter =  scanner.nextLine();
+            if(enter.equals("finish")){
+                break;
+            }
 
-        return new Pizza(name, pizzaType, quantity, setIngredientList());
+            name = setName(order);
+            System.out.println("Enter type of pizza");
+            String type = scanner.nextLine();
+
+            if (type.equals(PizzaType.REGULAR.toString())) {
+                pizzaType = PizzaType.REGULAR;
+            } else {
+                pizzaType = PizzaType.CLOSED;
+            }
+            System.out.println("Enter quantity :");
+            int quantity = scanner.nextInt();
+
+            pizzas.add(new Pizza(name, pizzaType, quantity, setIngredientList()));
+        }
+
+        return pizzas;
     }
 
 
@@ -46,7 +58,7 @@ public class PizzaService {
         }
     }
 
-    public static String setName(Customer customer, Order order) {
+    public static String setName( Order order) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pizza Name : ");
 
@@ -55,7 +67,7 @@ public class PizzaService {
 
         if (!(name.length() >= 4 && name.length() <= 20)) {
             System.out.println("it;s Okay :) ");
-            return customer.getName() + "_" + order.getNumberOfOrder();
+            return order.getCustomer().getName() + "_" + order.getNumberOfOrder();
         }
 
         return name;

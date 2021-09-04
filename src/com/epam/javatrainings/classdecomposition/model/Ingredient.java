@@ -21,4 +21,12 @@ public class Ingredient {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
