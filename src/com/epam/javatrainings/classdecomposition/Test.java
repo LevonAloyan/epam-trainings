@@ -10,9 +10,12 @@ public class Test {
 
         Scanner scanner = null;
         try {
-            PizzeriaPalmetto pp = PizzeriaPalmetto.pizzeriaPalmettoFactory();
             scanner = new Scanner(System.in);
-            pp.orderPizza(scanner);
+            PizzeriaPalmetto pp = PizzeriaPalmetto.pizzeriaPalmettoFactory(scanner);
+            pp.orderPizza();
+            for (Map.Entry customer : pp.getCustomers().entrySet()){
+                System.out.println(customer.getValue());
+            }
 
         }finally {
             if(scanner != null){

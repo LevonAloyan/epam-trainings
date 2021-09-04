@@ -137,6 +137,7 @@ public class PizzaPalmettoUtil {
         return pizza;
     }
 
+    //print check with customer, order and pizza data
     public static void printCheck(String customerName, long customerPhoneNumber, Order order) {
         System.out.println("************************************");
         System.out.println("Order: " + order.getOrderingNumber());
@@ -145,6 +146,7 @@ public class PizzaPalmettoUtil {
         printPizzaData(order);
     }
 
+    //complement pizza data to check
     private static void printPizzaData(Order order) {
         List<PizzaBuilder.Pizza> pizzaList = order.getPizzaList();
 

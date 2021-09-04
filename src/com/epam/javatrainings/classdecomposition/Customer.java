@@ -19,10 +19,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "phone=" + phone +
-                ", name='" + name + '\'' +
-                ", orders=" + orders +
-                '}';
+        return "Customer : " + name + ": " + phone +
+                "\n" + orders ;
     }
 }

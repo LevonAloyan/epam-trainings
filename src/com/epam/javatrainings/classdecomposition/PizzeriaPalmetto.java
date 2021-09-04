@@ -1,5 +1,6 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -27,18 +28,22 @@ public class PizzeriaPalmetto {
     private final List<Order> orderList = new ArrayList<>();
     private final Map<Long, Customer> customers = new HashMap<>();
     private static long orderingNumber = 10000;
+    private static UserInterface userInterface;
+    private static Scanner scanner;
 
     private static PizzeriaPalmetto pizzeriaPalmetto = null;
 
-    private PizzeriaPalmetto() {
-
+    private PizzeriaPalmetto(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     //creates #PizzeriaPallmeto object in a singleton pattern
-    public static PizzeriaPalmetto pizzeriaPalmettoFactory() {
+    public static PizzeriaPalmetto pizzeriaPalmettoFactory(Scanner scanner) {
 
         if (pizzeriaPalmetto == null) {
-            pizzeriaPalmetto = new PizzeriaPalmetto();
+            pizzeriaPalmetto = new PizzeriaPalmetto(scanner);
+            //create user interface instance in singleton pattern
+            userInterface = UserInterface.userInterfaceFactory(scanner);
         }
 
         return pizzeriaPalmetto;
@@ -52,22 +57,21 @@ public class PizzeriaPalmetto {
      * take an order from customer interacting with them through console
      * method uses #Scanner and #System classes
      */
-    public void orderPizza(Scanner scanner) {
+    public void orderPizza() {
 
-        System.out.println("\n\n        Welcome Pizzeria Palmetto \n");
+        System.out.println("\n\n**********************************************");
+        System.out.println("        Welcome Pizzeria Palmetto \n");
 
         //check connection
         if (scanner == null) {
             System.out.println("Connection is failed");
         }
-        //create user interface instance in singleton pattern
-        UserInterface userInterface = UserInterface.userInterfaceFactory(scanner);
 
-        String pizzaName = null;
-        String pizzaType = null;
-        int pizzaIngredients = 0;
-        int pizzaQuantity = 0;
-        int choice = 0;
+        String pizzaName;
+        String pizzaType;
+        int pizzaIngredients;
+        int pizzaQuantity;
+        int choice;
 
         //get customer name
         customerName = userInterface.getCustomerName();
@@ -115,7 +119,7 @@ public class PizzeriaPalmetto {
                         pizzaIngredients, pizzaQuantity, choice);
 
                 //change order
-                choice = changeOrder(userInterface);
+                choice = changeOrder();
             }
         }
     }
@@ -126,11 +130,11 @@ public class PizzeriaPalmetto {
      * @param userInterface
      */
     private void complementOrder(UserInterface userInterface) {
-        String pizzaName = null;
-        String pizzaType = null;
-        int pizzaIngredients = 0;
-        int pizzaQuantity = 0;
-        int choice = 0;
+        String pizzaName;
+        String pizzaType;
+        int pizzaIngredients;
+        int pizzaQuantity;
+        int choice;
 
         //get pizza name
         pizzaName = userInterface.getPizzaName();
@@ -170,7 +174,7 @@ public class PizzeriaPalmetto {
                         pizzaIngredients, pizzaQuantity, choice);
 
                 //change order
-                choice = changeOrder(userInterface);
+                choice = changeOrder();
 
             }
         }
@@ -198,8 +202,8 @@ public class PizzeriaPalmetto {
 
         //create pizza
         pizza = PizzaPalmettoUtil.createPizza(
-                pizzaIngredients,customerName,orderingNumber,
-                pizzaName,pizzaType,pizzaQuantity);
+                pizzaIngredients, customerName, orderingNumber,
+                pizzaName, pizzaType, pizzaQuantity);
 
         //create or complement order
         order = PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, orderingFlag, 0);
@@ -213,9 +217,12 @@ public class PizzeriaPalmetto {
             PizzaPalmettoUtil.createCustomerOrUpdateExistingCustomer(
                     order, customers, customerPhoneNumber,
                     customerName);
+            //print order check
             PizzaPalmettoUtil.printCheck(customerName, customerPhoneNumber, order);
             orderingFlag = 1;
             orderingNumber++;
+            //quit or complete another order
+            quitApp();
         } else if (choice == 2) {
             orderingFlag = 2;
         }
@@ -224,8 +231,21 @@ public class PizzeriaPalmetto {
 
     }
 
+    //new order or quit app
+    private void quitApp() {
+        int choice;
+        choice = userInterface.quitApp();
+        orderList.clear();
+        if (choice == 1) {
+            orderPizza();
+        } else {
+            System.out.println("Thanks for purchasing.\n" +
+                    "Have a nice day.");
+        }
+    }
+
     //change the order (add new ingredients to pizza ingredient's list)
-    public int changeOrder(UserInterface userInterface) {
+    public int changeOrder() {
         int ingredients;
         int pizzaIndex;
         Order order;
@@ -245,9 +265,7 @@ public class PizzeriaPalmetto {
     //add new ingredients to chosen pizza
     private void addIngredients(int ingredients, int pizzaIndex, PizzaBuilder.Pizza pizza) {
         pizza = PizzaPalmettoUtil.addIngredientsToPizza(pizza, ingredients);
-        Order order =
-                PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, 3, pizzaIndex);
-        PizzaPalmettoUtil.createCustomerOrUpdateExistingCustomer(order, customers, customerPhoneNumber, customerName);
+        PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, 3, pizzaIndex);
     }
 
 

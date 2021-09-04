@@ -92,13 +92,12 @@ public class PizzaBuilder {
 
         @Override
         public String toString() {
-            return "Pizza{" +
-                    "defaultName='" + defaultName + '\'' +
-                    ", name='" + name + '\'' +
-                    ", type='" + type + '\'' +
-                    ", ingredientList=" + ingredientList +
-                    ", pizzaQuantity=" + pizzaQuantity +
-                    '}';
+            return "Pizza : " +
+                    name + ": " +
+                    type + ":" +
+                    ingredientList + ": " +
+                    pizzaQuantity;
+
         }
 
 

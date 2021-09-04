@@ -28,9 +28,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "\n" +
-                "orderingNumber : " + orderingNumber + "\n" +
-                "pizzaList=" + pizzaList + "\n" +
-                '}';
+        return "Order: " + orderingNumber + "\n" +
+                pizzaList + '\n';
     }
 }

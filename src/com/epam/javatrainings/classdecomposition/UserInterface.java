@@ -25,13 +25,16 @@ public final class UserInterface {
     public String getCustomerName() {
         String customerName;
         try {
-            System.out.println("Please enter your name");
+            System.out.println("--------------------------------------");
+            System.out.println("Please enter your name.");
             customerName = scanner.nextLine();
             customerName = customerName.length() <= 15 ? customerName : customerName.substring(0, 14);
             if (customerName.isEmpty()) {
-                throw new Exception();
+                customerName = scanner.nextLine();
+                if (customerName.isEmpty()){throw new Exception();};
             }
             System.out.println("Customer name: " + customerName);
+            System.out.println("--------------------------------------");
             return customerName;
         } catch (Exception ex) {
             scanner.nextLine();
@@ -46,9 +49,11 @@ public final class UserInterface {
     public long getCustomerPhoneNumber() {
         long customerPhoneNumber;
         try {
-            System.out.println("Please enter your phone number");
+            System.out.println("--------------------------------------");
+            System.out.println("Please enter your phone number.");
             customerPhoneNumber = scanner.nextLong();
-            System.out.println("Customer phone number: " + customerPhoneNumber);
+            System.out.println("Customer phone number: +374" + customerPhoneNumber);
+            System.out.println("--------------------------------------");
             return customerPhoneNumber;
         } catch (Exception exception) {
             scanner.nextLine();
@@ -63,11 +68,14 @@ public final class UserInterface {
     public String getPizzaName() {
         String pizzaName;
         try {
-            System.out.println("Order a pizza with options below");
-            System.out.println("Indicate the name of the pizza, it must be from four to twenty Latin letters, \n" +
-                    "otherwise, the default name will be chosen");
+            System.out.println("--------------------------------------");
+            System.out.println("Order a pizza with options below.");
+            System.out.println("Indicate the name of the pizza, it must be \n" +
+                    "from four to twenty Latin letters, otherwise,\n" +
+                    "the default name will be chosen.");
             pizzaName = scanner.next();
             System.out.println("Pizza name: " + pizzaName);
+            System.out.println("--------------------------------------");
             return pizzaName;
         } catch (Exception ex) {
             scanner.nextLine();
@@ -82,11 +90,15 @@ public final class UserInterface {
     public String getPizzaType() {
         String pizzaType;
         try {
-            System.out.println("There are two types of pizza: regular 1.0$ and closed 1.5$ \n" +
-                    "Please enter 1 if you want a closed-type pizza, otherwise, the pizza will be regular");
+            System.out.println("--------------------------------------");
+            System.out.println("There are two types of pizza: regular 1.0$ \n" +
+                    "and closed 1.5$. Please enter 1 if you want \n" +
+                    "a closed-type pizza, otherwise, the pizza \n" +
+                    "will be regular.");
             int type = scanner.nextInt();
             pizzaType = type == 1 ? "closed" : "regular";
             System.out.println("Pizza type: " + pizzaType);
+            System.out.println("--------------------------------------");
             return pizzaType;
         } catch (Exception ex) {
             scanner.nextLine();
@@ -101,8 +113,10 @@ public final class UserInterface {
     public int getIngredients() {
         int pizzaIngredients;
         try {
-            System.out.println("Please select the required ingredients by their serial number \n" +
-                    "The maximum number of ingredients allowed is seven");
+            System.out.println("--------------------------------------");
+            System.out.println("Please select the required ingredients by \n" +
+                    "their serial number. The maximum number \n" +
+                    "of ingredients allowed is seven.");
             int counter = 1;
             for (PizzeriaPalmetto.PizzaIngredients el : PizzeriaPalmetto.PizzaIngredients.values()) {
                 System.out.println(counter++ + ": " + el + "-" + el.getCost() + "$");
@@ -123,11 +137,15 @@ public final class UserInterface {
         int pizzaQuantity;
 
         try {
-            System.out.println("Please select the order quantity for pizza, the maximum possible quantity is ten");
+            System.out.println("--------------------------------------");
+            System.out.println("Please select the order quantity for pizza,\n" +
+                    "the maximum possible quantity is ten");
             pizzaQuantity = scanner.nextInt();
 
             if (pizzaQuantity > 10) {
-                System.out.println("\n\nYour order should not exceed 10 pieces!!");
+                System.out.println("--------------------------------------");
+                System.out.println("Your order should not exceed 10 pieces!!");
+                System.out.println("--------------------------------------");
                 throw new Exception();
             }
             return pizzaQuantity;
@@ -145,9 +163,9 @@ public final class UserInterface {
         int choice;
         try {
             System.out.println("---------------------------------------------");
-            System.out.println("If you have completed the order, enter 1 \n" +
-                    "If you want to complement the order, enter 2 \n" +
-                    "If you want to change the order, enter 3");
+            System.out.println("If you have completed the order, enter 1. \n" +
+                    "If you want to complement the order, enter 2.\n" +
+                    "If you want to change the order, enter 3.");
             System.out.println("1: complete");
             System.out.println("2: complement");
             System.out.println("3: change order");
@@ -168,7 +186,9 @@ public final class UserInterface {
         int choice = 0;
         List<PizzaBuilder.Pizza> pizzaList = order.getPizzaList();
         int count = 1;
+        System.out.println("--------------------------------------");
         System.out.println("Choose pizza ordering number to add ingredients");
+        System.out.println("--------------------------------------");
         for (PizzaBuilder.Pizza pizza : pizzaList) {
             System.out.println(count + ": " + pizza.getName() + " " + pizza.getIngredientList());
             count++;
@@ -186,7 +206,9 @@ public final class UserInterface {
             if (pizzaIndex >= 0 && pizzaIndex < pizzaList.size()) {
                 return pizzaIndex;
             } else {
+                System.out.println("--------------------------------------");
                 System.out.println("The pizza from this number does not exist");
+                System.out.println("--------------------------------------");
                 return  -1;
             }
         } catch (Exception ex) {
@@ -207,8 +229,10 @@ public final class UserInterface {
         int ingredients = 0;
         System.out.println(pizza.getName() + " " + ingredientList);
         if (ingredientList.size() >= 7) {
-            System.out.println("the list of pizza ingredients is already full,\n" +
-                    "you cannot add others");
+            System.out.println("--------------------------------------");
+            System.out.println("the list of pizza ingredients is already \n" +
+                    "full, you cannot add others");
+            System.out.println("--------------------------------------");
         } else {
             showAvailableIngredients(ingredientList);
             ingredients = addAvailableIngredients();
@@ -234,13 +258,35 @@ public final class UserInterface {
     //show available ingredients
     private void showAvailableIngredients(Set<String> ingredientList) {
         int counter = 1;
-        System.out.println("Please select the required ingredients by their serial number");
+        System.out.println("--------------------------------------");
+        System.out.println("Please select the required ingredients \n" +
+                "by their serial number");
 
         for (PizzeriaPalmetto.PizzaIngredients el : PizzeriaPalmetto.PizzaIngredients.values()) {
             if (!ingredientList.contains(el.name())) {
                 System.out.println(counter + ": " + el + "-" + el.getCost() + "$");
             }
             counter++;
+        }
+    }
+
+    public int quitApp(){
+        int choice;
+        try {
+            System.out.println("--------------------------------------");
+            System.out.println("For new order enter 1.");
+            System.out.println("For quiting app enter 2.");
+            System.out.println("Order: 1");
+            System.out.println("Quit: 2");
+            System.out.println("--------------------------------------");
+            choice = scanner.nextInt();
+            return choice;
+        }catch (Exception ex){
+            scanner.nextLine();
+            System.out.println("--------------------------------------");
+            System.out.println("Please follow the instruction above!!");
+            System.out.println("--------------------------------------");
+            return quitApp();
         }
     }
 }
