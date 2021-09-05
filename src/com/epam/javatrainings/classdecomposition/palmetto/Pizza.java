@@ -49,7 +49,7 @@ public class Pizza {
 
     public void checkNameLength(String name) {
         if (name.length() <= 4 || name.length() > 20) {
-            this.name = Customer.getName() +  "_" + Order.getOrderNumber();
+            this.name = Customer.getName() + "_" + Order.getOrderNumber();
         } else {
             this.name = name;
         }
@@ -89,8 +89,13 @@ public class Pizza {
     }
 
 
-    public void addIngredient() {
-
+    public void addIngredient(Set<Ingredient> ingredient) {
+        if (ingredient.size() == 7) {
+            System.out.println("Pizza already full...");
+        }
+        else {
+            this.ingredient = ingredient;
+        }
     }
 
     @Override
