@@ -1,5 +1,8 @@
 package com.epam.javatrainings.classdecomposition.palmetto;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -8,17 +11,23 @@ public class Order {
     private List<Pizza> pizza;
     private static int orderNumber;
     private static final List<Integer> collectionOfOrderNumber;
+    private final LocalTime localTime;
 
     static {
         collectionOfOrderNumber = new LinkedList<>();
     }
 
+    {
+        this.localTime = LocalTime.now();
+    }
+
     public Order() {
         generateOrderNumber();
+        System.out.println("Order time is: " + localTime.format(DateTimeFormatter.ofPattern("h:mm")));
     }
 
         public List<Pizza> getPizza() {
-        return pizza;
+            return pizza;
     }
 
     public void setPizza(List<Pizza> pizza) {
@@ -29,7 +38,7 @@ public class Order {
         return orderNumber;
     }
 
-    //Generate 5-digit unique random numbers
+    //Generate 5-digit unique random numbers (UNIQ)
     public static void generateOrderNumber() {
         Random random = new Random();
         //5-digit number generate nextInt(max + 1 - min) + min

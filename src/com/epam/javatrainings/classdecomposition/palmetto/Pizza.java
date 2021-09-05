@@ -8,19 +8,21 @@ import java.util.Set;
 
 public class Pizza {
     private List<Customer> customerList;
-    private List<Order> orderList;
+    int orderNumber;
     private String name;
-    private int rate;
+    private double rate;
     private Set<Ingredient> ingredient;
     private Type type;
     private int quantity;
 
-    public Pizza(List<Customer> customerList, List<Order> orderList, String name, int rate, int quantity) {
+    public Pizza(List<Customer> customerList, int orderNumber, String name, Type type, Set<Ingredient> ingredient) {
         this.customerList = customerList;
-        this.orderList = orderList;
+        this.orderNumber = orderNumber;
         checkNameLength(name);
-        this.rate = rate;
-        this.quantity = quantity;
+        this.customerList = customerList;
+        this.type = type;
+        //I'm checking size and then assign it(this.ingredient = ingredient)
+        checkIngredientSize(ingredient);
     }
 
     public List<Customer> getCustomerList() {
@@ -31,12 +33,12 @@ public class Pizza {
         this.customerList = customerList;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public String getName() {
@@ -47,20 +49,11 @@ public class Pizza {
         checkNameLength(name);
     }
 
-    public void checkNameLength(String name) {
-        if (name.length() <= 4 || name.length() > 20) {
-            this.name = Customer.getName() + "_" + Order.getOrderNumber();
-        } else {
-            this.name = name;
-        }
-    }
-
-
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
@@ -69,7 +62,7 @@ public class Pizza {
     }
 
     public void setIngredient(Set<Ingredient> ingredient) {
-        this.ingredient = ingredient;
+        checkIngredientSize(ingredient);
     }
 
     public Type getType() {
@@ -88,23 +81,44 @@ public class Pizza {
         this.quantity = quantity;
     }
 
+    //checking name length to the range
+    private void checkNameLength(String name) {
+        if (name.length() <= 4 || name.length() > 20) {
+            this.name = Customer.getName() + "_" + Order.getOrderNumber();
+        } else {
+            this.name = name;
+        }
+    }
 
-    public void addIngredient(Set<Ingredient> ingredient) {
+    //for check ingredients size
+    private void checkIngredientSize(Set<Ingredient> ingredient) {
         if (ingredient.size() == 7) {
             System.out.println("Pizza already full...");
-        }
-        else {
+        } else {
             this.ingredient = ingredient;
         }
+    }
+
+    //for calculate pizza rate
+    public void calculatePrice(Set<Ingredient> ingredient, Type type, int quantity) {
+        double rate = 0;
+        for (Ingredient ing : ingredient) {
+            rate += ing.getRate();
+        }
+        rate = quantity * (type.getRate() + rate);
+        this.rate = rate;
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "Pizza{" +
                 "customerList=" + customerList +
-                ", orderList=" + orderList +
+                ", orderNumber=" + orderNumber +
                 ", name='" + name + '\'' +
-                ", rate=" + rate +
+                ", type=" + type +
+                ", ingredient=" + ingredient +
+                ", rate=$" + rate +
                 ", quantity=" + quantity +
                 '}';
     }

@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Customer {
     private static String name;
-//    private String name;
     private static int customerNumber;
     private static final List<Integer> collectionOfCustomerNumber;
 
@@ -31,7 +30,7 @@ public class Customer {
         return customerNumber;
     }
 
-    //Generate 4-digit unique random numbers
+    //Generate 4-digit unique random numbers (UNIQ)
     public static void generateCustomerNumber() {
         Random random = new Random();
         //generate number between range nextInt(max + 1 - min) + min
