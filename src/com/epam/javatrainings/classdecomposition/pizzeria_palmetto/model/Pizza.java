@@ -1,10 +1,12 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
-import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.IngredientsCreator;
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants;
+
+import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza implements IngredientsCreator {
+public class Pizza {
   private String name;
   private Type type;
   private int quantity;
@@ -30,17 +32,17 @@ public class Pizza implements IngredientsCreator {
   }
 
   public void setQuantity(int quantity) {
-    if (quantity > 0 && quantity <= 10) {
+    if (quantity > QUANTITY_PIZZA_MIN && quantity <= QUANTITY_PIZZA_MAX) {
       this.quantity = quantity;
-    } else if (quantity > 10) {
-      this.quantity = 10;
-    } else if (quantity < 0) {
-      this.quantity = 1;
+    } else if (quantity > QUANTITY_PIZZA_MAX) {
+      this.quantity = QUANTITY_PIZZA_MAX;
+    } else if (quantity <= QUANTITY_PIZZA_MIN) {
+      this.quantity = QUANTITY_PIZZA_DEFAULT;
     }
   }
 
   public double getCostPizza() {
-    double costPizza = 0;
+    double costPizza = INITIAL_COST;
     for (Ingredients ingredients : Ingredients.values()) {
       for (String name : ingredientsList)
         if (name.equals(ingredients.getKey())) {
@@ -56,23 +58,5 @@ public class Pizza implements IngredientsCreator {
     } else {
       this.type = Type.REGULAR;
     }
-  }
-
-  @Override
-  public boolean addIngredient(String ingredient) {
-    if (ingredientsList.size() == Ingredients.values().length) {
-      System.out.println("The pizza is already full");
-      return false;
-    }
-    if (ingredientsList.contains(ingredient)) {
-      System.out.println("Duplicate Ingredient, please check the order again");
-      return false;
-    }
-    for (Ingredients ingredients : Ingredients.values()) {
-      if (ingredients.getKey().equals(ingredient)) {
-        ingredientsList.add(ingredient);
-      }
-    }
-    return true;
   }
 }

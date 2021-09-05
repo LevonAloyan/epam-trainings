@@ -1,65 +1,45 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
-import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.OrderCreator;
-import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Validator;
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlacingAnOrder implements OrderCreator, Validator {
-    static int initialNumberOrder = 10000;
-    private final int orderNumber;
-    private final Customer customer;
-    private final List<Pizza> orderItems = new ArrayList<>();
-    private final LocalTime localTime;
+public class PlacingAnOrder {
+  public static int initialNumberOrder = Constants.INITIAL_NUMBER_ORDER;
+  private final int orderNumber;
+  private final Customer customer;
+  private final List<Pizza> orderItems = new ArrayList<>();
+  private final LocalTime localTime;
 
-    public PlacingAnOrder(Customer customer) {
-        this.orderNumber = initialNumberOrder++;
-        this.customer = customer;
-        this.localTime = LocalTime.now();
-    }
+  public PlacingAnOrder(Customer customer) {
+    this.orderNumber = initialNumberOrder++;
+    this.customer = customer;
+    this.localTime = LocalTime.now();
+  }
 
-    public int getOrderNumber() {
-        return orderNumber;
-    }
+  public int getOrderNumber() {
+    return orderNumber;
+  }
 
-    public Customer getCustomer() {
-        return customer;
-    }
+  public Customer getCustomer() {
+    return customer;
+  }
 
-    public List<Pizza> getOrderItems() {
-        return orderItems;
-    }
+  public List<Pizza> getOrderItems() {
+    return orderItems;
+  }
 
-    @Override
-    public Pizza create(String name, String type, int quantity) {
-        Pizza pizza = new Pizza(validateName(name), type, quantity);
-        orderItems.add(pizza);
-        return pizza;
-    }
-    @Override
-    public String validateName(String namePizza) {
-             if( ((namePizza != null)
-                && (namePizza.matches("^[a-zA-Z]*$"))
-                && (namePizza.length() >= 4)
-                && namePizza.length() <= 20)){
-                 return namePizza;
-             }else {
-                 return  getCustomer().getNameCustomer() + "_" +getOrderNumber();
-             }
-    }
+  public LocalTime getLocalTime() {
+    return localTime;
+  }
 
-    public LocalTime getLocalTime() {
-        return localTime;
+  public double costOrder() {
+    double orderCost = Constants.INITIAL_COST;
+    for (Pizza pizza : orderItems) {
+      orderCost += pizza.getCostPizza() * pizza.getQuantity();
     }
-
-    public double costOrder() {
-        double orderCost = 0;
-        for (Pizza pizza : orderItems) {
-            orderCost += pizza.getCostPizza() * pizza.getQuantity();
-        }
-        return orderCost;
-    }
+    return orderCost;
+  }
 }
-

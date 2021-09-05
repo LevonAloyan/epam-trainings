@@ -1,20 +1,19 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
 public class Customer {
-    private final int numberCustomer;
-    private final String nameCustomer;
+  private final int numberCustomer;
+  private final String nameCustomer;
 
-    public Customer(String nameCustomer, int numberCustomer) {
-        this.numberCustomer = numberCustomer;
-        this.nameCustomer = nameCustomer;
-    }
+  public Customer(String nameCustomer, int numberCustomer) {
+    this.numberCustomer = numberCustomer;
+    this.nameCustomer = nameCustomer;
+  }
 
-    public int getNumberCustomer() {
-        return numberCustomer;
-    }
+  public int getNumberCustomer() {
+    return numberCustomer;
+  }
 
-    public String getNameCustomer() {
-        return nameCustomer;
-    }
-
+  public String getNameCustomer() {
+    return nameCustomer;
+  }
 }
