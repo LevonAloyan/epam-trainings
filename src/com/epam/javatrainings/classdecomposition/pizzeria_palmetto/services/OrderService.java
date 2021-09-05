@@ -52,8 +52,8 @@ public class OrderService implements OrderCreator, Validator {
   public String validateName(String namePizza) {
     if (((namePizza != null)
         && (namePizza.matches("^[a-zA-Z]*$"))
-        && (namePizza.length() >= 4)
-        && namePizza.length() <= 20)) {
+        && (namePizza.length() >= Constants.MIN_LENGTH_NAME_PIZZA)
+        && namePizza.length() <= Constants.MAX_LENGTH_NAME_PIZZA)) {
       return namePizza;
     } else {
       return order.getCustomer().getNameCustomer() + "_" + order.getOrderNumber();
