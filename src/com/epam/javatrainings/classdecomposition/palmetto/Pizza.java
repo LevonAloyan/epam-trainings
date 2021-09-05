@@ -18,6 +18,7 @@ public class Pizza {
     public Pizza(List<Customer> customerList, int orderNumber, String name, Type type, Set<Ingredient> ingredient) {
         this.customerList = customerList;
         this.orderNumber = orderNumber;
+        //I'm checking length of the name and then assign it(this.name = name)
         checkNameLength(name);
         this.customerList = customerList;
         this.type = type;
