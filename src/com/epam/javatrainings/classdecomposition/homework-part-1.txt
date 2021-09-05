@@ -23,11 +23,15 @@ Implement a method for displaying pizza attributes, in which data about pizza is
 For instance: [10001 : 7717: Margarita: 2]
 
 Part 2.
-Implement an addIngredient() method that adds a new ingredient to the pizza. If the pizza is already "full", a corresponding message should be displayed on the screen. Make sure the ingredients are not duplicated, otherwise display a message asking you to check the order again. Fill the Margarita pizza with the following ingredients: tomato paste, pepper, garlic, and bacon.
+Implement an addIngredient() method that adds a new ingredient to the pizza. If the pizza is already "full",
+ a corresponding message should be displayed on the screen.
+ Make sure the ingredients are not duplicated, otherwise display a message asking you to check the order again.
+ Fill the Margarita pizza with the following ingredients: tomato paste, pepper, garlic, and bacon.
 Fill another pizza with tomato paste, cheese, salami, olives.
 
 Part 3.
-Create a method printCheck() that creates an invoice line for each order. It is important that all information is presented in a form like the below example:
+Create a method printCheck() that creates an invoice line for each order.
+It is important that all information is presented in a form like the below example:
 ********************************
 Order: 10001
 Client: 7717
