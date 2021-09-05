@@ -4,6 +4,7 @@ import com.epam.javatrainings.classdecomposition.pizza.Pizza;
 import com.epam.javatrainings.classdecomposition.customer.Customer;
 import com.epam.javatrainings.classdecomposition.order.orderitem.OrderItem;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -14,10 +15,12 @@ public final class Order {
     private final int orderNumber;
     private final Customer customer;
     private final List<OrderItem> orderItems;
+    private final BigDecimal totalAmount;
 
     private Order(OrderBuilder orderBuilder) {
         this.customer = orderBuilder.customer;
         this.orderItems = orderBuilder.orderItems;
+        this.totalAmount = orderBuilder.totalAmount;
         orderNumber = ++initialOrderNumber;
     }
 
@@ -30,7 +33,11 @@ public final class Order {
     }
 
     public List<OrderItem> getOrderItems() {
-        return copyOrderItems(this.orderItems);
+        return copyOrderItems(orderItems);
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
     private static List<OrderItem> copyOrderItems(List<OrderItem> orderItems) {
@@ -46,15 +53,25 @@ public final class Order {
     public static final class OrderBuilder {
         private final Customer customer;
         private final List<OrderItem> orderItems;
+        private final BigDecimal totalAmount;
 
         public OrderBuilder(Customer customer, List<OrderItem> orderItems) {
             this.customer = customer;
             this.orderItems = copyOrderItems(orderItems);
+            this.totalAmount = calculateTotalAmount();
         }
-
 
         public OrderBuilder(Customer customer, OrderItem orderItem) {
             this(customer, new ArrayList<>(Arrays.asList(new OrderItem(orderItem))));
+        }
+
+        private BigDecimal calculateTotalAmount() {
+            BigDecimal totalAmount = new BigDecimal(0);
+            for (OrderItem i : orderItems) {
+                BigDecimal orderItemTotalAmount = i.getAmount().multiply(new BigDecimal(i.getQuantity()));
+                totalAmount = totalAmount.add(orderItemTotalAmount);
+            }
+            return totalAmount;
         }
 
         public Order build() {

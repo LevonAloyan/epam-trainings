@@ -5,19 +5,19 @@ import com.epam.javatrainings.classdecomposition.pizza.Pizza;
 import com.epam.javatrainings.classdecomposition.pizza.PizzaType;
 import com.epam.javatrainings.classdecomposition.customer.Customer;
 import com.epam.javatrainings.classdecomposition.order.OrderPrinter;
-import com.epam.javatrainings.classdecomposition.ingredient.Ingredient;
 import com.epam.javatrainings.classdecomposition.order.orderitem.OrderItem;
 import com.epam.javatrainings.classdecomposition.ingredient.AvailableIngredientList;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Customer bob = new Customer("bob");
-
         // Create pizza Margherita with no ingredients
-        Pizza margherita = new Pizza("Margherita", PizzaType.REGULAR);
+        Pizza margherita = new Pizza("Margherita", PizzaType.CALZONE);
         System.out.println("margherita without ingredients:\n\t" + margherita + "\n");
 
         AvailableIngredientList availableIngredients = AvailableIngredientList.getInstance();
@@ -44,5 +44,7 @@ public class Main {
         OrderItem oi2 = new OrderItem.OrderItemBuilder(anotherPizza, 7).build();
         Order order2 = new Order.OrderBuilder(new Customer("Jack"), new ArrayList<>(Arrays.asList(oi1, oi2))).build();
         OrderPrinter.printOrderDescription(order2);
+
+        OrderPrinter.printCheck(order2);
     }
 }

@@ -6,21 +6,27 @@ import com.epam.javatrainings.classdecomposition.ingredient.AvailableIngredientL
 
 import java.util.List;
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 public final class Pizza {
-    private static final double REGULAR_PRICE = 1.0;
-    private static final double CALZONE_PRICE = 0.5;
+    private static final BigDecimal REGULAR_PRICE = new BigDecimal("1.0");
+    private static final BigDecimal CALZONE_PRICE = new BigDecimal("1.5");
     private static final String BASE_NAME = "Pizza Base (Regular)";
     private static final String CALZONE_NAME = "Pizza Base (Calzone)";
 
     private String name;
     private final PizzaType type;
     private final List<Ingredient> ingredients;
+    private final String baseName;
+    private final BigDecimal basePrice;
 
     public Pizza(String name, PizzaType type, List<Ingredient> ingredients) {
         this.name = name;
         this.type = type;
+        baseName = PizzaType.REGULAR.equals(type) ? BASE_NAME : CALZONE_NAME;
+        basePrice = PizzaType.REGULAR.equals(type) ? REGULAR_PRICE : CALZONE_PRICE;
         this.ingredients = IngredientListUtil.copyIngredientList(ingredients);
+
     }
 
     public Pizza(String name, PizzaType type) {
@@ -37,6 +43,14 @@ public final class Pizza {
 
     private void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getBasePrice() {
+        return basePrice;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return IngredientListUtil.copyIngredientList(ingredients);
     }
 
     public void updateName(Pizza p, String validName) {
@@ -77,11 +91,9 @@ public final class Pizza {
     }
 
     public String getBaseDescription() {
-        String baseName = PizzaType.REGULAR.equals(type) ? BASE_NAME : CALZONE_NAME;
-        double basePrice = PizzaType.REGULAR.equals(type) ? REGULAR_PRICE : CALZONE_PRICE;
         return baseName
                 .concat(" ")
-                .concat(String.valueOf(basePrice))
+                .concat(basePrice.toString())
                 .concat(" ")
                 .concat("€");
     }

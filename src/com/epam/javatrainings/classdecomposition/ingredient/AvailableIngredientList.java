@@ -2,6 +2,8 @@ package com.epam.javatrainings.classdecomposition.ingredient;
 
 import com.epam.javatrainings.classdecomposition.taskreader.TaskReader;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public final class AvailableIngredientList {
@@ -67,9 +69,10 @@ public final class AvailableIngredientList {
                     .trim();
             int spaceIndex = cleanLine.lastIndexOf(" ");
             name = cleanLine.substring(0, spaceIndex);
-            price = cleanLine.substring(spaceIndex);
+            price = cleanLine.substring(spaceIndex).trim();
+            BigDecimal bdPrice = new BigDecimal(price).setScale(2, RoundingMode.CEILING);
 
-            ingredientList.add(new Ingredient(name, Double.parseDouble(price), currency));
+            ingredientList.add(new Ingredient(name, bdPrice, currency));
         }
         return ingredientList;
     }

@@ -1,13 +1,14 @@
 package com.epam.javatrainings.classdecomposition.ingredient;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public final class Ingredient {
     private final String name;
-    private final double price;
+    private final BigDecimal price;
     private final String currency;
 
-    public Ingredient(String name, double price, String currency) {
+    public Ingredient(String name, BigDecimal price, String currency) {
         this.name = name;
         this.price = price;
         this.currency = currency;
@@ -23,7 +24,7 @@ public final class Ingredient {
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -33,6 +34,15 @@ public final class Ingredient {
 
     public boolean isAvailable() {
         return AvailableIngredientList.getInstance().isIngredientAvailable(this);
+    }
+
+
+    public String getDescription() {
+        return name
+                .concat(" ")
+                .concat(price.toString())
+                .concat(" ")
+                .concat("€");
     }
 
     @Override
@@ -49,12 +59,13 @@ public final class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return Double.compare(that.price, price) == 0 && name.equals(that.name) && currency.equals(that.currency);
+        return Objects.equals(name, that.name) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(currency, that.currency);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, price, currency);
     }
-
 }
