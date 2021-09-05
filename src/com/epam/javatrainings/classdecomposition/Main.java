@@ -27,7 +27,6 @@ public class Main {
         pizza1.setName("AB");
         System.out.println(pizza1.getName());
         pizza1.setName("ABCDE");
-        System.out.println(pizza1.getName());
 
     }
 }
