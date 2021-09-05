@@ -1,6 +1,4 @@
-package com.epam.javatrainings.classdecomposition.customer;
-
-import com.epam.javatrainings.classdecomposition.pizza.Pizza;
+package com.epam.javatrainings.classdecomposition;
 
 import java.util.Scanner;
 
@@ -8,19 +6,14 @@ public class Customer {
     private static String customerName;
     private static int customerNumber = 0;
 
-    public Customer() {
-        Scanner scanner = new Scanner(System.in);
+    public Customer(Scanner scanner) {
         System.out.print("Enter customer name: ");
         customerName = scanner.nextLine();
-
-        Pizza.pizzaName();
+        customerNumber++;
+        System.out.println("Customer number: " + customerNumber);
     }
 
     public static String getCustomerName() {
         return customerName;
-    }
-
-    public static int getCustomerNumber() {
-        return customerNumber;
     }
 }
