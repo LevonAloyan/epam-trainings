@@ -2,6 +2,7 @@ package com.epam.javatrainings.classdecomposition;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DataStore {
@@ -30,6 +31,16 @@ public class DataStore {
 
         File file = new File(path);
         Map<Long,Customer> customers = null;
+
+        //check if file not exist or empty
+        if (!file.exists() || file.length() < 1){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return new LinkedHashMap<>();
+        }
 
         try (FileInputStream fis = new FileInputStream(file);
              ObjectInputStream ois = new ObjectInputStream(fis)){

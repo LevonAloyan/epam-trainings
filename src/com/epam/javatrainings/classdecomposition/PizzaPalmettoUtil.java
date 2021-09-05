@@ -235,7 +235,7 @@ public class PizzaPalmettoUtil {
     //find and return last order number
     public static long getOrderingNumber(Map<Long, Customer> customers) {
         Customer customer = null;
-        long orderingNumber = -1;
+        long orderingNumber = PizzeriaPalmetto.getOrderingNumber();
         Set<Map.Entry<Long, Customer>> set = customers.entrySet();
         Iterator<Map.Entry<Long, Customer>> iterator = set.iterator();
         while (iterator.hasNext()){

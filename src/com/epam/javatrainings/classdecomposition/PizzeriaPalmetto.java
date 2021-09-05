@@ -54,9 +54,11 @@ public class PizzeriaPalmetto {
         return pizzeriaPalmetto;
     }
 
-    public Map<Long, Customer> getCustomers() {
-        return customers;
+
+    public static long getOrderingNumber() {
+        return orderingNumber;
     }
+
 
     /**
      * take an order from customer interacting with them through console
@@ -271,7 +273,7 @@ public class PizzeriaPalmetto {
 
     //add new ingredients to chosen pizza
     private void addIngredients(int ingredients, int pizzaIndex, PizzaBuilder.Pizza pizza) {
-        pizza = PizzaPalmettoUtil.addIngredientsToPizza(pizza, ingredients);
+        PizzaPalmettoUtil.addIngredientsToPizza(pizza, ingredients);
         PizzaPalmettoUtil.createOrComplementOrder(pizza, orderingNumber, 3, pizzaIndex);
     }
 
