@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 public class Pizza {
 
@@ -42,8 +43,31 @@ public class Pizza {
         this.type = type;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setIngredients(Pizza pizza, List<String> ingredient){
+        pizza.ingredients.addAll(ingredient);
+
+    }
+
     public List<String> getIngredients(){
         return ingredients;
+    }
+
+    public void addIngredients(List<String> ingredients){
+        for (String ingredient : ingredients) {
+            if (this.getIngredients().contains(ingredient)) {
+                System.out.println("Make sure the ingredients are not duplicated");
+                return;
+            }
+        }
+        this.ingredients.addAll(ingredients);
     }
 
     public String getType(){
@@ -55,8 +79,16 @@ public class Pizza {
             cost = 1;
         if(type == "CALZONE")
             cost = 1.5;
-        for (String ingredient : ingredients) cost += ingredientPrice.get(ingredient);
+          for (String ingredient : ingredients) cost += ingredientPrice.get(ingredient);
         return cost;
+    }
+
+    public String getBase(){
+        if(type == "REGULAR")
+            return "(REGULAR) 1.50 ";
+        if(type == "CALZONE")
+            return "(CALZONE) 1.00 ";
+        return null;
     }
 
 }
