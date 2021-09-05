@@ -41,7 +41,7 @@ public class Pizza {
     }
   }
 
-  public double getCostPizza() {
+  public double costPizza() {
     double costPizza = INITIAL_COST;
     for (Ingredients ingredients : Ingredients.values()) {
       for (String name : ingredientsList)

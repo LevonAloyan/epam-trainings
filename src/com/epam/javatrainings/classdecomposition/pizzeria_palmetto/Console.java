@@ -3,7 +3,7 @@ package com.epam.javatrainings.classdecomposition.pizzeria_palmetto;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Customer;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Pizza;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.PlacingAnOrder;
-import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.OrderService;
+import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.PlacingAnOrderService;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.PizzaService;
 import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.*;
 
@@ -17,8 +17,8 @@ public class Console {
     // Customer can create an orders
     PlacingAnOrder placingAnOrder1 = new PlacingAnOrder(customer1);
     PlacingAnOrder placingAnOrder2 = new PlacingAnOrder(customer2);
-    OrderService orderService1 = new OrderService(placingAnOrder1);
-    OrderService orderService2 = new OrderService(placingAnOrder2);
+    PlacingAnOrderService orderService1 = new PlacingAnOrderService(placingAnOrder1);
+    PlacingAnOrderService orderService2 = new PlacingAnOrderService(placingAnOrder2);
     // Add  ingredient to pizza
     Pizza pizza = orderService1.create(NAME_PIZZA_1, TYPE_PIZZA_1, QUANTITY_PIZZA_1);
     PizzaService pizzaService = new PizzaService(pizza);

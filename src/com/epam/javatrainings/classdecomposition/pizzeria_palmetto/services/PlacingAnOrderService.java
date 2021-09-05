@@ -7,14 +7,12 @@ import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Placing
 import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.ASTERISK;
 import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.LINE;
 
-public class OrderService implements OrderCreator, Validator {
+public class PlacingAnOrderService implements OrderCreator, Validator {
   private final PlacingAnOrder order;
 
-  public OrderService(PlacingAnOrder order) {
+  public PlacingAnOrderService(PlacingAnOrder order) {
     this.order = order;
   }
-
-
 
   public void printCheck() {
     System.out.println(ASTERISK);
@@ -35,7 +33,7 @@ public class OrderService implements OrderCreator, Validator {
         }
       }
       System.out.println(LINE);
-      System.out.println("Amount: " + pizza.getCostPizza() + " €");
+      System.out.println("Amount: " + pizza.costPizza() + " €");
       System.out.println("Quantity: " + pizza.getQuantity());
       System.out.println(LINE);
     }

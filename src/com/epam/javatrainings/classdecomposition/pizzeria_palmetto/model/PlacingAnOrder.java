@@ -38,7 +38,7 @@ public class PlacingAnOrder {
   public double costOrder() {
     double orderCost = Constants.INITIAL_COST;
     for (Pizza pizza : orderItems) {
-      orderCost += pizza.getCostPizza() * pizza.getQuantity();
+      orderCost += pizza.costPizza() * pizza.getQuantity();
     }
     return orderCost;
   }
