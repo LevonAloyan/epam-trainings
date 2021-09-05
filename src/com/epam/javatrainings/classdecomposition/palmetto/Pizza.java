@@ -18,11 +18,7 @@ public class Pizza {
     public Pizza(List<Customer> customerList, List<Order> orderList, String name, int rate, int quantity) {
         this.customerList = customerList;
         this.orderList = orderList;
-        if (name.length() <= 4 || name.length() > 20) {
-            this.name = Customer.getName() +  "_" + Order.getOrderNumber();
-        } else {
-            this.name = name;
-        }
+        checkNameLength(name);
         this.rate = rate;
         this.quantity = quantity;
     }
@@ -48,8 +44,17 @@ public class Pizza {
     }
 
     public void setName(String name) {
-        this.name = name;
+        checkNameLength(name);
     }
+
+    public void checkNameLength(String name) {
+        if (name.length() <= 4 || name.length() > 20) {
+            this.name = Customer.getName() +  "_" + Order.getOrderNumber();
+        } else {
+            this.name = name;
+        }
+    }
+
 
     public int getRate() {
         return rate;
@@ -83,9 +88,6 @@ public class Pizza {
         this.quantity = quantity;
     }
 
-    public void checkNameLength() {
-            this.name = name;
-    }
 
     public void addIngredient() {
 

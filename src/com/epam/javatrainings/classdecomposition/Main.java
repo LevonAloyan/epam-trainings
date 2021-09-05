@@ -18,6 +18,10 @@ public class Main {
         Pizza pizza1 = new Pizza(List.of(new Customer("Anahit")), List.of(order1), "A", 6, 1);
         order1.setPizza(List.of(pizza1));
         System.out.println(order1.getPizza());
+        pizza1.setName("AB");
+        System.out.println(pizza1.getName());
+        pizza1.setName("ABCDE");
+        System.out.println(pizza1.getName());
 
     }
 }
