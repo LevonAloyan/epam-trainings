@@ -22,5 +22,7 @@ public class Constants {
     public static final int INITIAL_NUMBER_ORDER = 10000;
     public static final int MIN_LENGTH_NAME_PIZZA = 4;
     public static final int MAX_LENGTH_NAME_PIZZA = 20;
+    public static final String LINE = "--------------------------------";
+    public static final String ASTERISK = "********************************";
 
 }

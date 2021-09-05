@@ -4,6 +4,9 @@ import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Ingredi
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.Pizza;
 import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model.PlacingAnOrder;
 
+import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.ASTERISK;
+import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.LINE;
+
 public class OrderService implements OrderCreator, Validator {
   private final PlacingAnOrder order;
 
@@ -11,8 +14,7 @@ public class OrderService implements OrderCreator, Validator {
     this.order = order;
   }
 
-  public static final String LINE = "--------------------------------";
-  public static final String ASTERISK = "********************************";
+
 
   public void printCheck() {
     System.out.println(ASTERISK);
