@@ -7,12 +7,12 @@ import java.util.Scanner;
 public class Order {
     Random random = new Random();
     LocalTime orderTime;
-
     private final int orderNumber = 10000 + random.nextInt(89999);
 
     private int orderQuantity = 0;
     private static int ingredientCount = 0;
     private static double pizzaPrice = 0.0;
+    private int pieceCount;
 
     private static void choosePizzaName() {
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +26,6 @@ public class Order {
         for (Ingredients ingredients : Ingredients.values()) {
             System.out.println(ingredients + ": " + ingredients.getIngredientsPrice());
         }
-
         System.out.println("You can choose up to 7 ingredients");
         if (ingredientCount <= 7) {
             System.out.print("\nChoose: ");
@@ -45,10 +44,24 @@ public class Order {
 
     }
 
-    private static double getPizzaPrice() {
+    private static double getPrice() {
         for (Ingredients ingredients : Ingredients.values())
             pizzaPrice += ingredients.getIngredientsPrice();
         return pizzaPrice;
+    }
+
+    private static void pizzaPrice() {
+        if (PizzaType.valueOf("REGULAR") == PizzaType.REGULAR) {
+            addIngredients();
+            double pizzaPrice = getPrice() + PizzaType.REGULAR.getBasePrice();
+            System.out.println("Pizza price: " + pizzaPrice);
+        } else if (PizzaType.valueOf("CALZONE") == PizzaType.CALZONE) {
+            addIngredients();
+            double pizzaPrice = getPrice() + PizzaType.CALZONE.getBasePrice();
+            System.out.println("Pizza price: " + pizzaPrice);
+        } else {
+            System.out.println("We don't have this kind of pizza");
+        }
     }
 
     public void orderPizza(Customer customer) {
@@ -56,17 +69,6 @@ public class Order {
             orderTime = LocalTime.now();
             System.out.println("Order time: " + orderTime);
             choosePizzaName();
-            if (PizzaType.valueOf("REGULAR") == PizzaType.REGULAR) {
-                addIngredients();
-                double pizzaPrice = getPizzaPrice() + PizzaType.REGULAR.getBasePrice();
-                System.out.println("Pizza price: " + pizzaPrice);
-            } else if (PizzaType.valueOf("CALZONE") == PizzaType.CALZONE) {
-                addIngredients();
-                double pizzaPrice = getPizzaPrice() + PizzaType.CALZONE.getBasePrice();
-                System.out.println("Pizza price: " + pizzaPrice);
-            } else {
-                System.out.println("We don't have this kind of pizza");
-            }
 
             addIngredients();
             orderQuantity++;
@@ -75,5 +77,9 @@ public class Order {
 
     public int getOrderNumber() {
         return orderNumber;
+    }
+
+    public void setPieceCount(int pieceCount) {
+        this.pieceCount = pieceCount;
     }
 }

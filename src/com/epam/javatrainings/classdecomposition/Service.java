@@ -9,7 +9,8 @@ public class Service {
                 if (name.equals(pizzaName)) {
                     System.out.println("You choose pizza: " + pizzaName + ", " + order.getOrderNumber());
                 } else {
-                    System.out.println("Special for you: " + Customer.getCustomerName() + ", " + order.getOrderNumber());
+                    System.out.println("Special for you: " + Customer.getCustomerName() + ", "
+                            + order.getOrderNumber());
                 }
                 break;
             }
