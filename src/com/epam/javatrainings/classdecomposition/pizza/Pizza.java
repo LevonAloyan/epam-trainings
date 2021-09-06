@@ -76,7 +76,7 @@ public final class Pizza {
         return false;
     }
 
-    public String getBaseDescription() {
+    public String describe() {
         return type.label
                 .concat(" ")
                 .concat(type.price.toString())

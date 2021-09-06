@@ -1,7 +1,7 @@
 package com.epam.javatrainings.classdecomposition.ingredient;
 
-import java.math.BigDecimal;
 import java.util.Objects;
+import java.math.BigDecimal;
 
 public final class Ingredient {
     private final String name;
@@ -37,7 +37,7 @@ public final class Ingredient {
     }
 
 
-    public String getDescription() {
+    public String describe() {
         return name
                 .concat(" ")
                 .concat(price.toString())

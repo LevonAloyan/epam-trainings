@@ -2,9 +2,9 @@ package com.epam.javatrainings.classdecomposition.ingredient;
 
 import com.epam.javatrainings.classdecomposition.taskreader.TaskReader;
 
+import java.util.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
 
 public final class AvailableIngredientList {
 

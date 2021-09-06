@@ -24,7 +24,8 @@ public class OrderPrinter {
 
     public static void printCheck(Order order) {
         StringBuilder res = new StringBuilder("********************************");
-        res.append("\nOrder: ")
+        res
+                .append("\nOrder: ")
                 .append(order.getOrderNumber())
                 .append("\nClient: ")
                 .append(order.getCustomer().getCustomerId());
@@ -35,14 +36,15 @@ public class OrderPrinter {
                     .append("\n")
                     .append("--------------------------------")
                     .append("\n")
-                    .append(orderItem.getPizza().getBaseDescription())
+                    .append(orderItem.getPizza().describe())
                     .append("\n");
             for (Ingredient ingredient : orderItem.getPizza().getIngredients()) {
                 res
-                        .append(ingredient.getDescription())
+                        .append(ingredient.describe())
                         .append("\n");
             }
-            res.append("--------------------------------")
+            res
+                    .append("--------------------------------")
                     .append("\nAmount: ")
                     .append(orderItem.getAmount())
                     .append("\nQuantity: ")

@@ -1,7 +1,7 @@
 package com.epam.javatrainings.classdecomposition.ingredient;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class IngredientListUtil {
 

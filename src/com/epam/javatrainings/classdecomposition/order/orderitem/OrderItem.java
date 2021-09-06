@@ -1,10 +1,10 @@
 package com.epam.javatrainings.classdecomposition.order.orderitem;
 
-import com.epam.javatrainings.classdecomposition.ingredient.Ingredient;
 import com.epam.javatrainings.classdecomposition.pizza.Pizza;
+import com.epam.javatrainings.classdecomposition.ingredient.Ingredient;
 
-import java.math.BigDecimal;
 import java.util.Objects;
+import java.math.BigDecimal;
 
 public final class OrderItem {
     private final Pizza pizza;
@@ -79,7 +79,6 @@ public final class OrderItem {
         }
 
         private BigDecimal calculateAmount() {
-//            BigDecimal price = pizza.getBasePrice();
             BigDecimal price = pizza.getType().price;
 
             for (Ingredient i : pizza.getIngredients()) {
