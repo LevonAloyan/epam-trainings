@@ -8,7 +8,7 @@ import java.util.*;
 
 public final class AvailableIngredientList {
 
-    private static final String path = "./src/com/epam/javatrainings/classdecomposition/homework-part-1.txt";
+    private static final String filePath = "./src/com/epam/javatrainings/classdecomposition/homework-part-1.txt";
     private static final int startRowIndex = 5;
     private static final int endRowIndex = 13;
     private static AvailableIngredientList instance;
@@ -42,7 +42,7 @@ public final class AvailableIngredientList {
     }
 
     private List<String> readTask() {
-        TaskReader taskReader = new TaskReader(path);
+        TaskReader taskReader = new TaskReader(filePath);
         return taskReader.getTaskLines();
     }
 

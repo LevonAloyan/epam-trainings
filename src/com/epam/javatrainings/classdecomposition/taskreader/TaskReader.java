@@ -12,8 +12,8 @@ public class TaskReader {
 
     private final Path path;
 
-    public TaskReader(String pathString) {
-        this.path = Paths.get(pathString);
+    public TaskReader(String filePath) {
+        this.path = Paths.get(filePath);
     }
 
     public List<String> getTaskLines() {
