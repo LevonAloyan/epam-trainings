@@ -8,12 +8,21 @@ public class Cup {
     private String material;
     private boolean hasHandle;
 
+<<<<<<< HEAD
     public Cup() {
         new Cup();
         objectCount++;
     }
 
     public Cup(double volume) {
+=======
+    public Cup (){
+      new Cup();
+        objectCount++;
+    }
+
+    public Cup (double volume){
+>>>>>>> master
         this.volume = volume;
     }
 
@@ -21,6 +30,7 @@ public class Cup {
         return objectCount;
     }
 
+<<<<<<< HEAD
     boolean isEmpty() {
         return false;
     }
@@ -30,6 +40,17 @@ public class Cup {
     }
 
     public void fill() {
+=======
+    boolean isEmpty(){
+        return false;
+    }
+
+    public void empty(){
+
+    }
+
+    public void fill(){
+>>>>>>> master
 
     }
 
@@ -41,6 +62,21 @@ public class Cup {
         this.volume = volume;
     }
 
+<<<<<<< HEAD
+=======
+    public static void method1 (Integer i, int a){
+
+    }
+
+    public static void method1(int i, Integer a){
+
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+>>>>>>> master
     public double getMaxTemperature() {
         return maxTemperature;
     }
