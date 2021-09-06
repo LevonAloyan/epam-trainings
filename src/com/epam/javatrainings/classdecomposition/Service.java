@@ -7,10 +7,9 @@ public class Service {
         if (pizzaName.length() > 3 && pizzaName.length() < 21) {
             for (String name : Pizza.getPizzaName()) {
                 if (name.equals(pizzaName)) {
-                    System.out.println("You choose pizza: " + pizzaName + ", " + order.getOrderNumber());
+                    System.out.println("You choose pizza: " + pizzaName);
                 } else {
-                    System.out.println("Special for you: " + Customer.getCustomerName() + ", "
-                            + order.getOrderNumber());
+                    System.out.println("Special for you: " + Customer.getCustomerName());
                 }
                 break;
             }

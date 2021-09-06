@@ -26,22 +26,21 @@ public class Order {
         for (Ingredients ingredients : Ingredients.values()) {
             System.out.println(ingredients + ": " + ingredients.getIngredientsPrice());
         }
-        System.out.println("You can choose up to 7 ingredients");
-        if (ingredientCount <= 7) {
-            System.out.print("\nChoose: ");
-            for (Ingredients ingredients : Ingredients.values()) {
-                Scanner scanner = new Scanner(System.in);
-                String ingredient = scanner.nextLine();
-               /* if (ingredient.equals(ingredients)) {
-                    System.out.print(ingredient);
-                    ingredientCount++;
-                }*/
-                System.out.println("");
-            }
-        } else {
-            System.out.println("Ingredients full");
-        }
 
+        System.out.println("You can choose up to 7 ingredients");
+        Scanner scanner = new Scanner(System.in);
+        for (Ingredients ingredients : Ingredients.values()) {
+            String ingredientName = scanner.nextLine();
+            if (ingredientName.equals(ingredients)) {
+                System.out.println(ingredients + " ");
+                ingredientCount++;
+                if (ingredientCount==7){
+                    System.out.println("Full");
+                }
+            }else {
+                System.out.println("We don't have this ingredient");
+            }
+        }
     }
 
     private static double getPrice() {
@@ -68,9 +67,9 @@ public class Order {
         while (orderQuantity < 11) {
             orderTime = LocalTime.now();
             System.out.println("Order time: " + orderTime);
+            System.out.println("Order number: " + orderNumber);
             choosePizzaName();
-
-            addIngredients();
+            pizzaPrice();
             orderQuantity++;
         }
     }
