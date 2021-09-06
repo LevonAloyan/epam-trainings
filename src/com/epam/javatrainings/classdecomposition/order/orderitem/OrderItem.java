@@ -79,7 +79,8 @@ public final class OrderItem {
         }
 
         private BigDecimal calculateAmount() {
-            BigDecimal price = pizza.getBasePrice();
+//            BigDecimal price = pizza.getBasePrice();
+            BigDecimal price = pizza.getType().price;
 
             for (Ingredient i : pizza.getIngredients()) {
                 price = price.add(i.getPrice());

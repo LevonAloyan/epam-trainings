@@ -6,25 +6,15 @@ import com.epam.javatrainings.classdecomposition.ingredient.AvailableIngredientL
 
 import java.util.List;
 import java.util.ArrayList;
-import java.math.BigDecimal;
 
 public final class Pizza {
-    private static final BigDecimal REGULAR_PRICE = new BigDecimal("1.0");
-    private static final BigDecimal CALZONE_PRICE = new BigDecimal("1.5");
-    private static final String BASE_NAME = "Pizza Base (Regular)";
-    private static final String CALZONE_NAME = "Pizza Base (Calzone)";
-
     private String name;
     private final PizzaType type;
     private final List<Ingredient> ingredients;
-    private final String baseName;
-    private final BigDecimal basePrice;
 
     public Pizza(String name, PizzaType type, List<Ingredient> ingredients) {
         this.name = name;
         this.type = type;
-        baseName = PizzaType.REGULAR.equals(type) ? BASE_NAME : CALZONE_NAME;
-        basePrice = PizzaType.REGULAR.equals(type) ? REGULAR_PRICE : CALZONE_PRICE;
         this.ingredients = IngredientListUtil.copyIngredientList(ingredients);
 
     }
@@ -41,8 +31,8 @@ public final class Pizza {
         return name;
     }
 
-    public BigDecimal getBasePrice() {
-        return basePrice;
+    public PizzaType getType() {
+        return type;
     }
 
     public List<Ingredient> getIngredients() {
@@ -87,9 +77,9 @@ public final class Pizza {
     }
 
     public String getBaseDescription() {
-        return baseName
+        return type.label
                 .concat(" ")
-                .concat(basePrice.toString())
+                .concat(type.price.toString())
                 .concat(" ")
                 .concat("€");
     }
