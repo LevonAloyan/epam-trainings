@@ -42,7 +42,7 @@ public final class OrderItem {
     }
 
     public void updatePizzaName(String validPizzaName) {
-        pizza.updateName(pizza, validPizzaName);
+        pizza.updateName(validPizzaName);
     }
 
     @Override

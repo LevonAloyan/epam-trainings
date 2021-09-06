@@ -41,10 +41,6 @@ public final class Pizza {
         return name;
     }
 
-    private void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getBasePrice() {
         return basePrice;
     }
@@ -53,8 +49,8 @@ public final class Pizza {
         return IngredientListUtil.copyIngredientList(ingredients);
     }
 
-    public void updateName(Pizza p, String validName) {
-        p.setName(validName);
+    public void updateName(String validName) {
+        name = validName;
     }
 
     public boolean isValidName() {
