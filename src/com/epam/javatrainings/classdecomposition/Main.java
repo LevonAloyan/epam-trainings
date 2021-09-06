@@ -8,8 +8,6 @@ import com.epam.javatrainings.classdecomposition.order.OrderPrinter;
 import com.epam.javatrainings.classdecomposition.order.orderitem.OrderItem;
 import com.epam.javatrainings.classdecomposition.ingredient.AvailableIngredientList;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.ArrayList;
 
