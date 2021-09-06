@@ -5,15 +5,15 @@ import com.epam.javatrainings.classdecomposition.pizza.Pizza;
 
 public class OrderItemValidator {
 
-    boolean isValidQuantity(int quantity) {
-        return quantity >= 1 && quantity <= 10;
+    boolean isValidQuantity(int quantity, QuantityUnit qUnit) {
+        return quantity > 0 && quantity <= qUnit.maxCount;
     }
 
     boolean isValidPizza(Pizza p) {
         return p != null;
     }
 
-    boolean validate(Pizza p, int q) {
-        return isValidQuantity(q) && isValidPizza(p);
+    boolean validate(Pizza p, int q, QuantityUnit qUnit) {
+        return isValidQuantity(q, qUnit) && isValidPizza(p);
     }
 }

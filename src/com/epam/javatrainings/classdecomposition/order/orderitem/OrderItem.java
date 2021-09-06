@@ -9,20 +9,23 @@ import java.math.BigDecimal;
 public final class OrderItem {
     private final Pizza pizza;
     private final int quantity;
+    private final QuantityUnit quantityUnit;
+    private final BigDecimal unitPrice;
     private int index;
-    private final BigDecimal amount;
 
     private OrderItem(OrderItemBuilder builder) {
         this.pizza = builder.pizza;
         this.quantity = builder.quantity;
-        this.amount = builder.amount;
+        this.unitPrice = builder.unitPrice;
+        this.quantityUnit = builder.quantityUnit;
     }
 
     public OrderItem(OrderItem orderItem) {
         this.pizza = orderItem.getPizza();
         this.quantity = orderItem.quantity;
+        this.quantityUnit = orderItem.quantityUnit;
+        this.unitPrice = orderItem.unitPrice;
         this.index = orderItem.index;
-        this.amount = orderItem.amount;
     }
 
     public Pizza getPizza() {
@@ -33,8 +36,12 @@ public final class OrderItem {
         return quantity;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public QuantityUnit getQuantityUnit() {
+        return quantityUnit;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
     public void updateIndex(int index) {
@@ -70,26 +77,34 @@ public final class OrderItem {
     public static class OrderItemBuilder {
         private final Pizza pizza;
         private final int quantity;
-        private final BigDecimal amount;
+        private final QuantityUnit quantityUnit;
+        private final BigDecimal unitPrice;
 
-        public OrderItemBuilder(Pizza pizza, int quantity) {
+        public OrderItemBuilder(Pizza pizza, int quantity, QuantityUnit quantityUnit) {
             this.pizza = new Pizza(pizza);
             this.quantity = quantity;
-            this.amount = calculateAmount();
+            this.quantityUnit = quantityUnit;
+            this.unitPrice = calculateUnitPrice();
         }
 
-        private BigDecimal calculateAmount() {
-            BigDecimal price = pizza.getType().price;
+        private BigDecimal calculateUnitPrice() {
+            BigDecimal basePrice = pizza.getType().price;
+            BigDecimal ingredientsPrice = new BigDecimal("0");
 
             for (Ingredient i : pizza.getIngredients()) {
-                price = price.add(i.getPrice());
+                ingredientsPrice = ingredientsPrice.add(i.getPrice());
             }
-            return price;
+            BigDecimal res = basePrice.add(ingredientsPrice); // whole pizza price
+            if (QuantityUnit.SLICE.equals(quantityUnit)) {
+                // slice price
+                res = res.divide(new BigDecimal(Pizza.SLICE_COUNT), 2, BigDecimal.ROUND_HALF_UP);
+            }
+            return res;
         }
 
         public OrderItem build() {
             OrderItemValidator v = new OrderItemValidator();
-            if (!v.validate(new Pizza(pizza), quantity)) {
+            if (!v.validate(new Pizza(pizza), quantity, quantityUnit)) {
                 throw new IllegalArgumentException("Failed to create an OrderItem with given args.");
             }
             return new OrderItem(this);

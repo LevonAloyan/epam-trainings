@@ -46,8 +46,8 @@ public class OrderPrinter {
             res
                     .append("--------------------------------")
                     .append("\nAmount: ")
-                    .append(orderItem.getAmount())
-                    .append("\nQuantity: ")
+                    .append(orderItem.getUnitPrice())
+                    .append(" €\nQuantity: ")
                     .append(orderItem.getQuantity())
                     .append("\n")
                     .append("--------------------------------");
@@ -55,7 +55,7 @@ public class OrderPrinter {
         res
                 .append("\nTotal amount: ")
                 .append(order.getTotalAmount())
-                .append("\n")
+                .append(" €\n")
                 .append("********************************");
 
         System.out.println(res);

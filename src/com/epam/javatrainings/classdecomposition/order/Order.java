@@ -4,10 +4,10 @@ import com.epam.javatrainings.classdecomposition.pizza.Pizza;
 import com.epam.javatrainings.classdecomposition.customer.Customer;
 import com.epam.javatrainings.classdecomposition.order.orderitem.OrderItem;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 public final class Order {
     public static final int MAX_PIZZA_COUNT_IN_ORDER = 10;
@@ -16,11 +16,13 @@ public final class Order {
     private final Customer customer;
     private final List<OrderItem> orderItems;
     private final BigDecimal totalAmount;
+    private final boolean isForDelivery;
 
     private Order(OrderBuilder orderBuilder) {
         this.customer = orderBuilder.customer;
         this.orderItems = orderBuilder.orderItems;
         this.totalAmount = orderBuilder.totalAmount;
+        this.isForDelivery = orderBuilder.isForDelivery;
         orderNumber = ++initialOrderNumber;
     }
 
@@ -40,6 +42,10 @@ public final class Order {
         return totalAmount;
     }
 
+    public boolean isForDelivery() {
+        return isForDelivery;
+    }
+
     private static List<OrderItem> copyOrderItems(List<OrderItem> orderItems) {
         List<OrderItem> copy = new ArrayList<>();
         for (OrderItem orderItem : orderItems) {
@@ -54,21 +60,34 @@ public final class Order {
         private final Customer customer;
         private final List<OrderItem> orderItems;
         private final BigDecimal totalAmount;
+        private final boolean isForDelivery;
+
+        public OrderBuilder(Customer customer, List<OrderItem> orderItems, boolean isForDelivery) {
+            this.customer = customer;
+            this.orderItems = copyOrderItems(orderItems);
+            this.totalAmount = calculateTotalAmount();
+            this.isForDelivery = isForDelivery;
+        }
+
+        public OrderBuilder(Customer customer, OrderItem orderItem, boolean isForDelivery) {
+            this(customer, new ArrayList<>(Arrays.asList(new OrderItem(orderItem))), isForDelivery);
+        }
 
         public OrderBuilder(Customer customer, List<OrderItem> orderItems) {
             this.customer = customer;
             this.orderItems = copyOrderItems(orderItems);
             this.totalAmount = calculateTotalAmount();
+            this.isForDelivery = false;
         }
 
         public OrderBuilder(Customer customer, OrderItem orderItem) {
-            this(customer, new ArrayList<>(Arrays.asList(new OrderItem(orderItem))));
+            this(customer, new ArrayList<>(Arrays.asList(new OrderItem(orderItem))), false);
         }
 
         private BigDecimal calculateTotalAmount() {
             BigDecimal totalAmount = new BigDecimal(0);
             for (OrderItem i : orderItems) {
-                BigDecimal orderItemTotalAmount = i.getAmount().multiply(new BigDecimal(i.getQuantity()));
+                BigDecimal orderItemTotalAmount = i.getUnitPrice().multiply(new BigDecimal(i.getQuantity()));
                 totalAmount = totalAmount.add(orderItemTotalAmount);
             }
             return totalAmount;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public final class Pizza {
+    public static final int SLICE_COUNT = 6;
     private String name;
     private final PizzaType type;
     private final List<Ingredient> ingredients;
