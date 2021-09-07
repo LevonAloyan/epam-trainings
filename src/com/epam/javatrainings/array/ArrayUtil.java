@@ -1,5 +1,8 @@
 package com.epam.javatrainings.array;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArrayUtil {
 
     /**
@@ -7,25 +10,66 @@ public class ArrayUtil {
      * such that if first number is odd then second must be even number
      * this means that it will be found the next even number and swap with the second element
      * if the second element is odd. And so on for the next elements of the array
+     *
      */
-    public static void sortByOddEven(int[] array) {
-        for (int i = 0; i < array.length - 2; i++) {
-            int j = i + 1;
-            while ((array[i] + array[j]) % 2 == 0) {
-                j++;
-                if (j >= array.length) {
-                    return;
+    public void sortByOddAndEven(int[] array) {
+
+        boolean flag;
+
+        List<Integer> evenarr = new ArrayList<>();
+        List<Integer> oddarr = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+
+        if (array[0] % 2 == 0) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0) {
+                evenarr.add(array[i]);
+            } else {
+                oddarr.add(array[i]);
+            }
+        }
+
+        int k = 0;
+
+        if (flag) {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] % 2 == 0 && k < evenarr.size()) {
+                    result.add(array[i]);
+                    result.add(evenarr.get(k));
+                    k++;
                 }
             }
-
-            swap(array, i + 1, j);
+        } else {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] % 2 != 0 && k < oddarr.size()) {
+                    result.add(array[i]);
+                    result.add(oddarr.get(k));
+                    k++;
+                }
+            }
         }
-    }
 
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        if (oddarr.size() > evenarr.size()) {
+            for (int i = k; i < oddarr.size(); i++) {
+                result.add(oddarr.get(i));
+            }
+        } else {
+            for (int i = k; i < evenarr.size(); i++) {
+                result.add(evenarr.get(i));
+            }
+        }
+
+        System.out.println(evenarr);
+        System.out.println(oddarr);
+        System.out.println(result);
+
+
     }
 
     /**
@@ -33,12 +77,17 @@ public class ArrayUtil {
      */
     public static int getMaximum(int[] array) {
         int max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > max) {
+
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
                 max = array[i];
             }
         }
+
         return max;
+//        Arrays.sort(array);
+//        return array[array.length - 1];
+
     }
 
     /**
@@ -46,13 +95,17 @@ public class ArrayUtil {
      */
     public static int getMinimum(int[] array) {
         int min = array[0];
+
         for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
+            if (min > array[i]) {
                 min = array[i];
             }
         }
+
         return min;
 
+//        Arrays.sort(array);
+//        return array[0];
     }
 
     /**
@@ -62,10 +115,12 @@ public class ArrayUtil {
      * @return the sum of the specified array elements
      */
     public static int getSum(int[] array) {
+
         int sum = 0;
-        for (int j : array) {
-            sum += j;
+        for (int i = 0; i < array.length; i++) {
+            sum = sum + array[i];
         }
+
         return sum;
     }
 
@@ -76,18 +131,15 @@ public class ArrayUtil {
      * Expected array [6,2,3,7,5,2]
      */
     public static int[] reverse(int[] array) {
-        int i = 0;
-        int j = array.length - 1;
 
-        while (i < j) {
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-            i++;
-            j--;
+        int[] revarr = new int[array.length];
+        int j = 0;
+        for (int i = array.length - 1; i >= 0; i--) {
+            revarr[j] = array[i];
+            j++;
         }
 
-        return array;
+        return revarr;
     }
 
     /**
@@ -96,9 +148,10 @@ public class ArrayUtil {
      * @param array the array to print
      */
     public static void print(int[] array) {
-        for (int j : array) {
-            System.out.print(j + " ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
         }
+
     }
 
 
