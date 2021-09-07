@@ -2,20 +2,12 @@ package com.epam.javatrainings.classdecomposition;
 
 import java.time.format.DateTimeFormatter;
 
-public class Helper {
-    private Helper() {
-
+public class Printer {
+    private Printer() {
+        throw new IllegalStateException("No instances");
     }
 
-    public static String validatePizzaName(String name, Order order) {
-        if (name.length() < 4 || name.length() > 20) {
-            return order.getCustomer().getName() + "_" + order.getOrderNumber();
-        }
-
-        return name;
-    }
-
-    public static void displayAttributes(Pizza pizza, Order order) {
+    public static void printAttributes(Pizza pizza, Order order) {
         System.out.println("[" + order.getOrderNumber() + " : " + order.getCustomer().getId() + ": " + pizza.getName() + ": " + pizza.getQuantity() + "]");
     }
 
