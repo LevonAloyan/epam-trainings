@@ -1,5 +1,7 @@
 package com.epam.javatrainings.classdecomposition;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class PizzeriaPalmetto {
@@ -26,15 +28,16 @@ public class PizzeriaPalmetto {
     private static Map<Long, Customer> customers = new LinkedHashMap<>();
     private static long orderingNumber = 10000;
     private static UserInterface userInterface;
-    private final Scanner scanner;
+    private static Scanner scanner = null;
 
     private static PizzeriaPalmetto pizzeriaPalmetto = null;
 
-    private PizzeriaPalmetto(Scanner scanner) {
-        this.scanner = scanner;
+    private PizzeriaPalmetto() {
     }
 
-    private static void init(Scanner scanner){
+    private static void init() {
+        //initialize scanner
+        scanner = new Scanner(System.in);
         //create user interface instance in singleton pattern
         userInterface = UserInterface.userInterfaceFactory(scanner);
         //get data from customer.txt file and init customer list
@@ -44,11 +47,11 @@ public class PizzeriaPalmetto {
     }
 
     //creates #PizzeriaPallmeto object in a singleton pattern
-    public static PizzeriaPalmetto pizzeriaPalmettoFactory(Scanner scanner) {
+    public static PizzeriaPalmetto pizzeriaPalmettoFactory() {
 
         if (pizzeriaPalmetto == null) {
-            pizzeriaPalmetto = new PizzeriaPalmetto(scanner);
-            init(scanner);
+            pizzeriaPalmetto = new PizzeriaPalmetto();
+            init();
         }
 
         return pizzeriaPalmetto;
@@ -68,11 +71,6 @@ public class PizzeriaPalmetto {
 
         System.out.println("\n\n**********************************************");
         System.out.println("        Welcome Pizzeria Palmetto \n");
-
-        //check connection
-        if (scanner == null) {
-            System.out.println("Connection is failed");
-        }
 
         String pizzaName;
         String pizzaType;
@@ -101,34 +99,8 @@ public class PizzeriaPalmetto {
         //check if the order is completed or not
         choice = userInterface.makeChoice();
 
-
-        while (choice <= 3) {
-            if (choice == 1) {
-                //create order
-                createOrder(
-                        customerName, customerPhoneNumber, pizzaName, pizzaType,
-                        pizzaIngredients, pizzaQuantity, choice);
-                break;
-
-            } else if (choice == 2) {
-                //create order
-                createOrder(
-                        customerName, customerPhoneNumber, pizzaName, pizzaType,
-                        pizzaIngredients, pizzaQuantity, choice);
-                //complement order
-                complementOrder(userInterface);
-                break;
-
-            } else if (choice == 3) {
-                //create order
-                createOrder(
-                        customerName, customerPhoneNumber, pizzaName, pizzaType,
-                        pizzaIngredients, pizzaQuantity, choice);
-
-                //change order
-                choice = changeOrder();
-            }
-        }
+        //complete, complement or change order
+        controlOrder(choice, pizzaName, pizzaType, pizzaIngredients, pizzaQuantity);
     }
 
     /**
@@ -158,6 +130,15 @@ public class PizzeriaPalmetto {
         //check if the order is completed or not
         choice = userInterface.makeChoice();
 
+        //complete, complement or change order
+        controlOrder(choice, pizzaName, pizzaType, pizzaIngredients, pizzaQuantity);
+
+
+    }
+
+    //complete, complement or change order
+    private void controlOrder(int choice, String pizzaName, String pizzaType, int pizzaIngredients, int pizzaQuantity) {
+
         while (choice <= 3) {
             if (choice == 1) {
                 //create order
@@ -185,8 +166,6 @@ public class PizzeriaPalmetto {
 
             }
         }
-
-
     }
 
     /**
@@ -245,7 +224,7 @@ public class PizzeriaPalmetto {
         orderList.clear();
         if (choice == 1) {
             orderPizza();
-        }else if (choice == 3){
+        } else if (choice == 3) {
             showPizzaPalmettoDatabase();
             quitApp();
         } else {
@@ -253,11 +232,16 @@ public class PizzeriaPalmetto {
             DataStore.write(customers);
             System.out.println("Thanks for purchasing.\n" +
                     "Have a nice day.");
+            //close scanner
+            if (scanner != null) {
+                scanner.close();
+            }
+
         }
     }
 
     //change the order (add new ingredients to pizza ingredient's list)
-    public int changeOrder() {
+    private int changeOrder() {
         int ingredients;
         int pizzaIndex;
         Order order;
@@ -287,7 +271,7 @@ public class PizzeriaPalmetto {
     }
 
     //display Pizza Palmetto database
-    private static void showPizzaPalmettoDatabase(){
+    private static void showPizzaPalmettoDatabase() {
         System.out.println("\n\n        Pizza Palmetto Database\n");
         PizzaPalmettoUtil.showCustomerList(customers);
     }
