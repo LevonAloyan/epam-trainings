@@ -18,31 +18,18 @@ public class Pizza {
         offeredIngredients.put("Olives", 0.5);
     }
 
-    public static final int TYPE_REGULAR = 1;
-    public static final int TYPE_CALZONE = 2;
-
     private String name;
-    private int type;
+    private PizzaType type;
     private int quantity;
-    private double cost;
 
     private HashSet<String> ingredients;
 
-    public Pizza(String name, int type, int quantity) {
+    public Pizza(String name, PizzaType type, int quantity) {
         this.type = type;
         this.name = name;
         this.setQuantity(quantity);
 
         ingredients = new HashSet<>();
-    }
-
-    public static HashMap<Integer, String> getPizzaTypeNames() {
-        HashMap<Integer, String> pizzaTypes = new HashMap<>();
-
-        pizzaTypes.put(TYPE_REGULAR, "Regular");
-        pizzaTypes.put(TYPE_CALZONE, "Calzone");
-
-        return pizzaTypes;
     }
 
     public String getName() {
@@ -53,11 +40,11 @@ public class Pizza {
         this.name = name;
     }
 
-    public int getType() {
+    public PizzaType getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(PizzaType type) {
         this.type = type;
     }
 
@@ -100,13 +87,13 @@ public class Pizza {
         return ingredientAdded;
     }
 
-    public double getCost() {
+    public double getSinglePizzaCost() {
         double cost = 0;
         for (String ingredient: ingredients) {
             cost += offeredIngredients.get(ingredient);
         }
 
-        cost += this.type == TYPE_REGULAR ? 1 : 1.5;
+        cost += this.type == PizzaType.REGULAR ? 1 : 1.5;
 
         return cost;
     }

@@ -35,7 +35,7 @@ public class Order {
         return orderItems;
     }
 
-    public Pizza addOrderItem(String name, int type, int quantity) {
+    public Pizza addOrderItem(String name, PizzaType type, int quantity) {
         Pizza pizza = new Pizza(name, type, quantity);
         orderItems.add(pizza);
 
@@ -45,7 +45,7 @@ public class Order {
     public double cost() {
         double totalCost = 0;
         for (Pizza pizza : orderItems) {
-            totalCost += pizza.getCost() * pizza.getQuantity();
+            totalCost += pizza.getSinglePizzaCost() * pizza.getQuantity();
         }
 
         return totalCost;

@@ -20,7 +20,6 @@ public class Helper {
     }
 
     public static void printCheck(Order order) {
-        var pizzaTypeNames = Pizza.getPizzaTypeNames();
         var offeredIngredients = Pizza.offeredIngredients;
 
         System.out.println("********************************");
@@ -32,14 +31,14 @@ public class Helper {
         for (Pizza pizza : order.getOrderItems()) {
             System.out.println("Name: " + pizza.getName());
             System.out.println("--------------------------------");
-            System.out.println("Pizza Base (" + pizzaTypeNames.get(pizza.getType()) + ") " + (pizza.getType() == Pizza.TYPE_REGULAR ? 1 : 1.5) + " €");
+            System.out.println("Pizza Base (" + pizza.getType() + ") " + (pizza.getType() == PizzaType.REGULAR ? 1 : 1.5) + " €");
 
             for (String ingredient : pizza.getIngredients()) {
                 System.out.println(ingredient + " " + offeredIngredients.get(ingredient) + " €");
             }
 
             System.out.println("--------------------------------");
-            System.out.println("Amount: " + pizza.getCost() + " €");
+            System.out.println("Amount: " + pizza.getSinglePizzaCost() + " €");
             System.out.println("Amount: " + pizza.getQuantity());
             System.out.println("--------------------------------");
         }

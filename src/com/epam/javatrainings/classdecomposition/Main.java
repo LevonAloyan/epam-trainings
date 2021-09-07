@@ -13,7 +13,7 @@ public class Main {
         Pizza pizzaTmp;
 
         // Add the first pizza for the customer 1
-        pizzaTmp = order1.addOrderItem(Helper.validatePizzaName("Margarita", order1), Pizza.TYPE_CALZONE, 2);
+        pizzaTmp = order1.addOrderItem(Helper.validatePizzaName("Margarita", order1), PizzaType.CALZONE, 2);
         pizzaTmp.addIngredient("ddd"); // invalid item, will not be added to the pizza
         pizzaTmp.addIngredient("Tomato paste");
         pizzaTmp.addIngredient("Tomato paste"); // Test adding duplicate ingredient
@@ -22,7 +22,7 @@ public class Main {
         pizzaTmp.addIngredient("Bacon");
 
         // Add the second pizza for the customer 1
-        pizzaTmp = order1.addOrderItem(Helper.validatePizzaName("PepperoniOro", order1), Pizza.TYPE_REGULAR, 3); // The name of pizza will be overidden, as it is too short
+        pizzaTmp = order1.addOrderItem(Helper.validatePizzaName("PepperoniOro", order1), PizzaType.REGULAR, 3); // The name of pizza will be overidden, as it is too short
         pizzaTmp.addIngredient("Tomato paste");
         pizzaTmp.addIngredient("Cheese");
         pizzaTmp.addIngredient("Salami");
@@ -33,7 +33,7 @@ public class Main {
         System.out.println("");
 
         // Add a pizza for the customer 2
-        pizzaTmp = order2.addOrderItem(Helper.validatePizzaName("BasePZZ", order2), Pizza.TYPE_REGULAR, 12);
+        pizzaTmp = order2.addOrderItem(Helper.validatePizzaName("BasePZZ", order2), PizzaType.REGULAR, 12);
         pizzaTmp.addIngredient("Cheese");
         pizzaTmp.addIngredient("Garlic");
         pizzaTmp.addIngredient("Bacon");
