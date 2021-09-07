@@ -1,7 +1,5 @@
 package com.epam.javatrainings.classdecomposition;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Test {
@@ -13,7 +11,7 @@ public class Test {
             scanner = new Scanner(System.in);
             PizzeriaPalmetto pp = PizzeriaPalmetto.pizzeriaPalmettoFactory(scanner);
             pp.orderPizza();
-            pp.showPizzaPalmettoDatabase();
+           // pp.showPizzaPalmettoDatabase();
 
         }finally {
             if(scanner != null){

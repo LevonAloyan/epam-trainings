@@ -245,6 +245,9 @@ public class PizzeriaPalmetto {
         orderList.clear();
         if (choice == 1) {
             orderPizza();
+        }else if (choice == 3){
+            showPizzaPalmettoDatabase();
+            quitApp();
         } else {
             //write customer list to customers.txt file
             DataStore.write(customers);
@@ -284,7 +287,7 @@ public class PizzeriaPalmetto {
     }
 
     //display Pizza Palmetto database
-    public static void showPizzaPalmettoDatabase(){
+    private static void showPizzaPalmettoDatabase(){
         System.out.println("\n\n        Pizza Palmetto Database\n");
         PizzaPalmettoUtil.showCustomerList(customers);
     }

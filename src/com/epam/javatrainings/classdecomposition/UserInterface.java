@@ -276,8 +276,10 @@ public final class UserInterface {
             System.out.println("--------------------------------------");
             System.out.println("For new order enter 1.");
             System.out.println("For quiting app enter 2.");
+            System.out.println("For seeing database enter 3.");
             System.out.println("Order: 1");
             System.out.println("Quit: 2");
+            System.out.println("Database: 3");
             System.out.println("--------------------------------------");
             choice = scanner.nextInt();
             return choice;
