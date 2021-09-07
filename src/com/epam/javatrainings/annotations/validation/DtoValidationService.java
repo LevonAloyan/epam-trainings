@@ -4,41 +4,39 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DtoValidationService {
     private DtoValidationService() {
         throw new IllegalStateException("No instances");
     }
 
-    public static List<String> validate(CustomerDto customer) throws IllegalAccessException {
+    public static <T> List<String> validate(T dto) throws IllegalAccessException {
         List<String> errors = new ArrayList<String>();
 
-        // Get Class object corresponding to customer object
-        Class<?> customerClass = customer.getClass();
+        // Get Class object corresponding to dto object
+        Class<?> dtoClass = dto.getClass();
 
         // Get fields of the customer class
-        Field [] fields = customerClass.getDeclaredFields();
+        Field [] fields = dtoClass.getDeclaredFields();
         for (Field field : fields) {
             // If the field is declared as private change its accessibility in order to read field's value
             if (!field.isAccessible()) {
                 field.setAccessible(true);
             }
 
-            errors.addAll(validateField(field, customer));
+            errors.addAll(validateField(field, dto));
         }
 
         return errors;
     }
 
-    private static List<String> validateField(Field field, CustomerDto customer) throws IllegalAccessException {
+    private static <T> List<String> validateField(Field field, T dto) throws IllegalAccessException {
         List<String> fieldErrors = new ArrayList<String>();
 
         Annotation[] annotations = field.getAnnotations();
         for (Annotation annotation : annotations) {
             String valMessage = null;
-            Object fieldValue = field.get(customer);
+            Object fieldValue = field.get(dto);
 
             if (annotation instanceof Length) {
                 valMessage = new LengthAnnotationProcessor().validate(field.getAnnotation(Length.class), fieldValue);

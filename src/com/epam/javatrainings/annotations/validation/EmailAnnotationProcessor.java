@@ -1,8 +1,6 @@
 package com.epam.javatrainings.annotations.validation;
 
 import java.lang.annotation.Annotation;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
