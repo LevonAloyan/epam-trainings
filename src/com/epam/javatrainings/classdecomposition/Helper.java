@@ -20,8 +20,6 @@ public class Helper {
     }
 
     public static void printCheck(Order order) {
-        var offeredIngredients = Pizza.offeredIngredients;
-
         System.out.println("********************************");
 
         System.out.println("Time: " +  order.getLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
@@ -33,8 +31,8 @@ public class Helper {
             System.out.println("--------------------------------");
             System.out.println("Pizza Base (" + pizza.getType() + ") " + (pizza.getType() == PizzaType.REGULAR ? 1 : 1.5) + " €");
 
-            for (String ingredient : pizza.getIngredients()) {
-                System.out.println(ingredient + " " + offeredIngredients.get(ingredient) + " €");
+            for (Ingredient ingredient : pizza.getIngredients()) {
+                System.out.println(ingredient + " " + ingredient.getPrice() + " €");
             }
 
             System.out.println("--------------------------------");
