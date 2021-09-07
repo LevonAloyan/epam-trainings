@@ -20,9 +20,7 @@ public class ArrayUtil {
         // if (array.length > 0 && array[0] % 2 == 0) {
         //     for (int i = 1; i < array.length; i++) {
         //         if (array[i] % 2 == 1) {
-        //             int tmp = array[i];
-        //             array[i] = array[0];
-        //             array[0] = tmp;
+        //             swap(array, i, 0);
         //             break;
         //        }
         //    }
@@ -37,9 +35,7 @@ public class ArrayUtil {
                         // Find the closest following element to i + 1 (if exists)
                         // which's mod is different from i-th element's mode
                         if (array[i] % 2 != array[j] % 2) {
-                            int tmp = array[i + 1];
-                            array[i + 1] = array[j];
-                            array[j] = tmp;
+                            swap(array, i + 1, j);
                             break;
                         }
                     }
@@ -48,6 +44,15 @@ public class ArrayUtil {
         }
 
         print(array);
+    }
+
+    /**
+     * Swaps i-th and j-th elements
+     */
+    private void swap(int [] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
     }
 
     /**
