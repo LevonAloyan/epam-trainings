@@ -7,11 +7,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        CustomerDto c = new CustomerDto("j", "john@mail.am", LocalDate.of(2004, Month.APRIL, 8), 1008);
+        CustomerDto c = new CustomerDto("j", "john@mail.am",
+                LocalDate.of(2004, Month.APRIL, 8), 1008);
         List<String> errors = new ArrayList<>();
 
         try {
-            errors = Validator.validate(c);
+            errors = DtoValidationService.validate(c);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
