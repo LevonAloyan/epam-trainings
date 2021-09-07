@@ -16,7 +16,7 @@ public class DtoValidationService {
         // Get Class object corresponding to dto object
         Class<?> dtoClass = dto.getClass();
 
-        // Get fields of the customer class
+        // Get fields of the T class
         Field [] fields = dtoClass.getDeclaredFields();
         for (Field field : fields) {
             // If the field is declared as private change its accessibility in order to read field's value
