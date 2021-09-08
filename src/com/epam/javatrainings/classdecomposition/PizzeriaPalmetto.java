@@ -236,6 +236,8 @@ public class PizzeriaPalmetto {
             if (scanner != null) {
                 scanner.close();
             }
+            //close the app
+            System.exit(0);
 
         }
     }
