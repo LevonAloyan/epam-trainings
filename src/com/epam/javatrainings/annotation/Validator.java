@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-
     void validate(CustomerDto instance) {
         try {
             Field f = instance.getClass().getDeclaredField("name");
@@ -50,6 +49,4 @@ public class Validator {
             System.out.println("Field not found");
         }
     }
-
-
 }

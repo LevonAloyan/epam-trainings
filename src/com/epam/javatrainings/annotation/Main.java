@@ -1,6 +1,8 @@
 package com.epam.javatrainings.annotation;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,5 +16,10 @@ public class Main {
 
         Validator validator = new Validator();
         validator.validate(customerDto);
+
+        ValidationErrors validationErrors = new ValidationErrors();
+        System.out.println(validationErrors.validateErrorList(customerDto));
+
+
     }
 }
