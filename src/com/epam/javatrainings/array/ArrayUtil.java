@@ -26,18 +26,16 @@ public class ArrayUtil {
         //    }
         // }
 
-        for (int i = 0; i < array.length; i++) {
-            if (i + 1 < array.length) {
-                // If neigbours are the both odd or even
-                if (array[i] % 2 == array[i+1] % 2) {
-                    // System.out.println(array[i] + " and " + array[i+1]);
-                    for (int j = i + 1; j < array.length; j++) {
-                        // Find the closest following element to i + 1 (if exists)
-                        // which's mod is different from i-th element's mode
-                        if (array[i] % 2 != array[j] % 2) {
-                            swap(array, i + 1, j);
-                            break;
-                        }
+        for (int i = 0; i < array.length - 1; i++) {
+            // If neigbours are the both odd or even
+            if (array[i] % 2 == array[i+1] % 2) {
+                // System.out.println(array[i] + " and " + array[i+1]);
+                for (int j = i + 1; j < array.length; j++) {
+                    // Find the closest following element to i + 1 (if exists)
+                    // which's mod is different from i-th element's mode
+                    if (array[i] % 2 != array[j] % 2) {
+                        swap(array, i + 1, j);
+                        break;
                     }
                 }
             }
