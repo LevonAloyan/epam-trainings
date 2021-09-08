@@ -1,8 +1,8 @@
 package com.epam.javatrainings.classdecomposition;
 
-public class Customer {
-    private int id;
-    private String name;
+public final class Customer {
+    private final int id;
+    private final String name;
 
     public Customer(int id, String name) {
         this.id = id;
@@ -13,15 +13,7 @@ public class Customer {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
