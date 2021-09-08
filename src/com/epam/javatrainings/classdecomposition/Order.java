@@ -35,11 +35,8 @@ public class Order {
         return orderItems;
     }
 
-    public Pizza addOrderItem(String name, PizzaType type, int quantity) {
-        Pizza pizza = new Pizza(name, type, quantity);
+    public void addOrderItem(Pizza pizza) {
         orderItems.add(pizza);
-
-        return pizza;
     }
 
     public double cost() {
