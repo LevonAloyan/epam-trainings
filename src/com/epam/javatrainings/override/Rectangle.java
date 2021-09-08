@@ -6,5 +6,4 @@ public class Rectangle extends Shape {
         Rectangle rectangle = new Rectangle();
         rectangle.draw();
     }
-
 }

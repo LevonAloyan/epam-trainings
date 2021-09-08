@@ -1,16 +1,15 @@
 package com.epam.javatrainings.classdecomposition;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to pizzeria 'PALMETTO'\n");
-
-        Customer customer = new Customer(scanner);
-
+        Order order1 = new Order();
         Order order = new Order();
+        System.out.println("Welcome to pizzeria 'PALMETTO'\n");
+        Printer printer = new Printer();
+        printer.checkPrint(order1);
 
-        order.orderPizza(customer);
+        System.out.println();
+
+        printer.checkPrint(order);
     }
 }
