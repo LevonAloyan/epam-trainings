@@ -10,8 +10,8 @@ public class DtoValidationService {
         throw new IllegalStateException("No instances");
     }
 
-    public static <T> List<String> validate(T dto) throws IllegalAccessException {
-        List<String> errors = new ArrayList<String>();
+    public static <T> List<Error> validate(T dto) throws IllegalAccessException {
+        List<Error> errors = new ArrayList<>();
 
         // Get Class object corresponding to dto object
         Class<?> dtoClass = dto.getClass();
@@ -30,8 +30,8 @@ public class DtoValidationService {
         return errors;
     }
 
-    private static <T> List<String> validateField(Field field, T dto) throws IllegalAccessException {
-        List<String> fieldErrors = new ArrayList<String>();
+    private static <T> List<Error> validateField(Field field, T dto) throws IllegalAccessException {
+        List<Error> fieldErrors = new ArrayList<>();
 
         Annotation[] annotations = field.getAnnotations();
         for (Annotation annotation : annotations) {
@@ -51,7 +51,7 @@ public class DtoValidationService {
             }
 
             if (valMessage != null) {
-                fieldErrors.add("Field Name: " + field.getName() + ". Field value: " + fieldValue + ". Message: " + valMessage);
+                fieldErrors.add(new Error(field.getName(), fieldValue.toString(), valMessage));
             }
 
         }

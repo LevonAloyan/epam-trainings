@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         CustomerDto c = new CustomerDto("j", "john@mail.am",
                 LocalDate.of(2004, Month.APRIL, 8), 1008);
-        List<String> errors = new ArrayList<>();
+        List<Error> errors = new ArrayList<>();
 
         try {
             errors = DtoValidationService.validate(c);
@@ -19,8 +19,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        for (String error: errors) {
-            System.out.println(error);
+        for (Error error: errors) {
+            System.out.println(error.getValidationErrorMessage());
         }
 
         System.out.println("");
@@ -36,8 +36,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        for (String error: errors) {
-            System.out.println(error);
+        for (Error error: errors) {
+            System.out.println(error.getValidationErrorMessage());
         }
     }
 }
