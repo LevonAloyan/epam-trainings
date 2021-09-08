@@ -1,2 +1,10 @@
-package com.epam.javatrainings.annotations;public @interface Length {
+package com.epam.javatrainings.annotations;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Length {
+    int min();
+    int max();
 }
