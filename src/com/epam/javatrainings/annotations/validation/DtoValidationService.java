@@ -4,11 +4,20 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DtoValidationService {
     private DtoValidationService() {
         throw new IllegalStateException("No instances");
     }
+
+    private static Map<Class<?>, ? extends AnnotationProcessor> annotationProcessorMap = Map.of(
+        Length.class, new LengthAnnotationProcessor(),
+        Adulthood.class, new AdulthoodAnnotationProcessor(18),
+        Email.class, new EmailAnnotationProcessor(),
+        Min.class, new MinAnnotationProcessor(),
+        Max.class, new MaxAnnotationProcessor()
+    );
 
     public static <T> List<Error> validate(T dto) throws IllegalAccessException {
         List<Error> errors = new ArrayList<>();
@@ -38,16 +47,10 @@ public class DtoValidationService {
             String valMessage = null;
             Object fieldValue = field.get(dto);
 
-            if (annotation instanceof Length) {
-                valMessage = new LengthAnnotationProcessor().validate(field.getAnnotation(Length.class), fieldValue);
-            } else if (annotation instanceof Min) {
-                valMessage = new MinAnnotationProcessor().validate(field.getAnnotation(Min.class), fieldValue);
-            } else if (annotation instanceof Max) {
-                valMessage = new MaxAnnotationProcessor().validate(field.getAnnotation(Max.class), fieldValue);
-            } else if (annotation instanceof Email) {
-                valMessage = new EmailAnnotationProcessor().validate(field.getAnnotation(Email.class), fieldValue);
-            } else if (annotation instanceof Adulthood) {
-                valMessage = new AdulthoodAnnotationProcessor(18).validate(field.getAnnotation(Adulthood.class), fieldValue);
+            Class<? extends Annotation> annotationType = annotation.annotationType();
+            AnnotationProcessor annotationProcessor = annotationProcessorMap.get(annotationType);
+            if (annotationProcessor != null) {
+                valMessage = annotationProcessor.validate(annotation, fieldValue);
             }
 
             if (valMessage != null) {
