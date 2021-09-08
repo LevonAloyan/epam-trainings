@@ -1,6 +1,5 @@
 package com.epam.javatrainings.classdecomposition;
 
-//type, ingredients list, name
 public class Pizza {
 
     private static final String[] pizzaNames = {
@@ -45,12 +44,12 @@ public class Pizza {
         Ingredients(double p) {
             IngredientsPrice = p;
         }
-
+        
         public static void addIngredients(String ingredientName) {
             int ingredientCount = 0;
             for (Ingredients ingredients : Ingredients.values()) {
                 if (Ingredients.valueOf(ingredientName).equals(ingredients)) {
-                    System.out.print(ingredients + " ");
+                    System.out.println(ingredients);
                     ingredientCount++;
                     System.out.println(ingredientCount);
                     return;

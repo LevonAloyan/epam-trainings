@@ -2,7 +2,6 @@ package com.epam.javatrainings.classdecomposition;
 
 import java.time.LocalTime;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Order {
     Random random = new Random();
@@ -17,8 +16,8 @@ public class Order {
     private int pieceCount;
 
     private double getPrice() {
+        Pizza.Ingredients.addIngredients("PEPPERONI");
         for (Pizza.Ingredients ingredients : Pizza.Ingredients.values()) {
-            Pizza.Ingredients.addIngredients("PEPPERONI");
             if (Pizza.PizzaType.valueOf("REGULAR") == Pizza.PizzaType.REGULAR) {
                 pizzaPrice = ingredients.getIngredientsPrice() + Pizza.PizzaType.REGULAR.getBasePrice();
             } else {
