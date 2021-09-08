@@ -5,13 +5,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailAnnotationProcessor extends AnnotationProcessor {
+    protected final String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
     @Override
     String validate(Annotation annotation, Object value) {
         if (!(value instanceof String)) {
             throw new IllegalStateException();
         }
-
-        final String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher((String)value);
