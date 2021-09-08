@@ -3,13 +3,6 @@ package com.epam.javatrainings.annotations.validation;
 import java.util.Set;
 
 public class BookDto {
-    public BookDto(Set authors, String publisher, int pages, int price) {
-        this.authors = authors;
-        this.publisher = publisher;
-        this.pages = pages;
-        this.price = price;
-    }
-
     @Length(min = 1, max = 4)
     private Set<String> authors;
 
@@ -23,4 +16,11 @@ public class BookDto {
     @Min(100)
     @Max(1000)
     private int price;
+
+    public BookDto(Set authors, String publisher, int pages, int price) {
+        this.authors = authors;
+        this.publisher = publisher;
+        this.pages = pages;
+        this.price = price;
+    }
 }
