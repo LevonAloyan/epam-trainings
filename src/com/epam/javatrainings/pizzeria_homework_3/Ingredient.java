@@ -1,4 +1,4 @@
-package com.epam.javatrainings.pizzeria;
+package com.epam.javatrainings.pizzeria_homework_3;
 
 public class Ingredient {
     private String name;

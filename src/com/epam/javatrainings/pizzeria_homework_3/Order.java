@@ -1,4 +1,4 @@
-package com.epam.javatrainings.pizzeria;
+package com.epam.javatrainings.pizzeria_homework_3;
 
 import java.util.ArrayList;
 import java.util.List;

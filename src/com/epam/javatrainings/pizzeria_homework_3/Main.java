@@ -1,8 +1,4 @@
-package com.epam.javatrainings.pizzeria;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+package com.epam.javatrainings.pizzeria_homework_3;
 
 public class Main {
     public static void main(String[] args) {
