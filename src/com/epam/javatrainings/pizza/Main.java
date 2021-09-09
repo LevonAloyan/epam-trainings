@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition;
+package com.epam.javatrainings.pizza;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,7 +7,7 @@ public class Main {
 
         System.out.println("Welcome to pizzeria 'PALMETTO'\n");
 
-        Printer printer = new Printer();
+        OrderPrinterImpl printer = new OrderPrinterImpl();
         printer.checkPrint(order1);
 
         System.out.println();
