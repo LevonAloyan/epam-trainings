@@ -1,0 +1,32 @@
+package com.epam.javatrainings.pizza.util.validators;
+
+import com.epam.javatrainings.pizza.annotations.Min;
+import com.epam.javatrainings.pizza.dto.Dto;
+
+import java.lang.reflect.Field;
+import java.util.List;
+
+public class MinValidator {
+
+    private MinValidator() {
+    }
+
+    public static boolean validateMin(Dto dto, List<String> errorMessages) {
+        boolean isValid = false;
+        try {
+            Field discountRate = dto.getClass().getDeclaredField("discountRate");
+            if (discountRate.isAnnotationPresent(Min.class)) {
+                discountRate.setAccessible(true);
+                int value = (int) discountRate.get(dto);
+                int declaredValue = discountRate.getDeclaredAnnotation(Min.class).value();
+                if (value < declaredValue) {
+                    String message = discountRate.getDeclaredAnnotation(Min.class).message();
+                    errorMessages.add(message);
+                } else isValid = true;
+            } else isValid = true; // It means that is no annotation - no restriction
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            System.out.println("Field not found");
+        }
+        return isValid;
+    }
+}

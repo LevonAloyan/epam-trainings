@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PizzaBasket {
+public class PizzaOrder {
 
     private static int globalOrderNumber = 10000;
 
@@ -15,7 +15,7 @@ public class PizzaBasket {
     private final int orderNumber;
     private final LocalDateTime orderTime;
 
-    public PizzaBasket(Customer customer) {
+    public PizzaOrder(Customer customer) {
         pizzas = new ArrayList<>();
         orderTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         this.orderNumber = globalOrderNumber++;
