@@ -12,6 +12,7 @@ public class AnnotationTypeDetector {
   static Map<String, String> error = new HashMap<>();
 
   static <T extends CustomerDto> Map<String, String> typeDetect(Field field, T customerDtoT) {
+    error.clear();
     if (field.isAnnotationPresent(Length.class)) {
       if (!LengthAnnotationProcessor.isLengthValid(
           field.getAnnotation(Length.class), customerDtoT.getName())) {
@@ -31,7 +32,7 @@ public class AnnotationTypeDetector {
       if (!EmailAnnotationProcessor.isEmailValid(customerDtoT.getEmail())) {
         error.put(field.getName(), "Email address is incorrect");
       }
-    } else if (!field.isAnnotationPresent(Adulthood.class)) {
+    } else if (field.isAnnotationPresent(Adulthood.class)) {
       if (!AdulthoodAnnotationProcessor.isAdulthoodValid(customerDtoT.getBirthDay())) {
         error.put(field.getName(), "Invalid Adult");
       }

@@ -8,7 +8,7 @@ import java.time.Period;
 public class AdulthoodAnnotationProcessor {
   public static boolean isAdulthoodValid(LocalDate birthDay) {
     if (birthDay != null) {
-      return Period.between(birthDay, LocalDate.now()).getYears() < Constants.ADULTHOOD_AGE;
+      return Period.between(birthDay, LocalDate.now()).getYears() > Constants.ADULTHOOD_AGE;
     }
     return false;
   }

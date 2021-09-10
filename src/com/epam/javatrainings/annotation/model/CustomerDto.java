@@ -8,12 +8,12 @@ public class CustomerDto {
   @Length(min = 2, max = 30)
   private String name;
 
-  @Email private final String email;
-  @Adulthood private final LocalDate birthDay;
+  @Email private String email;
+  @Adulthood private LocalDate birthDay;
 
   @Min(0)
   @Max(100)
-  private final int discountRate;
+  private int discountRate;
 
   public CustomerDto(String name, String email, LocalDate birthDay, int discountRate) {
     this.name = name;
@@ -36,5 +36,21 @@ public class CustomerDto {
 
   public int getDiscountRate() {
     return discountRate;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setDiscountRate(int discountRate) {
+    this.discountRate = discountRate;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setBirthDay(LocalDate birthDay) {
+    this.birthDay = birthDay;
   }
 }
