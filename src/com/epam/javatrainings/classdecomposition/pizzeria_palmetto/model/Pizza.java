@@ -1,22 +1,20 @@
 package com.epam.javatrainings.classdecomposition.pizzeria_palmetto.model;
 
-import com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants;
-
 import static com.epam.javatrainings.classdecomposition.pizzeria_palmetto.services.Constants.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.Set;
 
 public class Pizza {
-  private String name;
+  private final String name;
   private Type type;
   private int quantity;
-  public static List<String> ingredientsList;
+  private final Set<Ingredients> ingredientsList;
 
-  public Pizza(String name, String type, int quantity) {
+  public Pizza(String name, Type type, int quantity) {
     this.setQuantity(quantity);
     this.name = name;
     this.setType(type);
-    ingredientsList = new ArrayList<>();
+    this.ingredientsList = EnumSet.noneOf(Ingredients.class);
   }
 
   public String getName() {
@@ -31,32 +29,27 @@ public class Pizza {
     return quantity;
   }
 
+  public Set<Ingredients> getIngredientsList() {
+    return ingredientsList;
+  }
+
   public void setQuantity(int quantity) {
     if (quantity > QUANTITY_PIZZA_MIN && quantity <= QUANTITY_PIZZA_MAX) {
       this.quantity = quantity;
     } else if (quantity > QUANTITY_PIZZA_MAX) {
       this.quantity = QUANTITY_PIZZA_MAX;
-    } else if (quantity <= QUANTITY_PIZZA_MIN) {
+    } else {
       this.quantity = QUANTITY_PIZZA_DEFAULT;
     }
   }
 
   public double costPizza() {
-    double costPizza = INITIAL_COST;
-    for (Ingredients ingredients : Ingredients.values()) {
-      for (String name : ingredientsList)
-        if (name.equals(ingredients.getKey())) {
-          costPizza += ingredients.getCost();
-        }
-    }
-    return costPizza + type.getCost();
+    return ingredientsList.stream()
+        .map(Ingredients::getCost)
+        .reduce(INITIAL_COST + type.getCost(), Double::sum);
   }
 
-  public void setType(String type) {
-    if (type.equals(Type.CALZONE.getKey())) {
-      this.type = Type.CALZONE;
-    } else {
-      this.type = Type.REGULAR;
-    }
+  public void setType(Type type) {
+    this.type = type == Type.CALZONE ? Type.CALZONE : Type.REGULAR;
   }
 }
