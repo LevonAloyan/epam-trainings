@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AnnotationTypeDetector {
-  static Map<String, String> error = new HashMap<>();
+  private final Map<String, String> error;
 
-  static <T extends CustomerDto> Map<String, String> typeDetect(Field field, T customerDtoT) {
-    error.clear();
+  public AnnotationTypeDetector() {
+    this.error = new HashMap<>();
+  }
+
+  public <T extends CustomerDto> Map<String, String> typeDetect(Field field, T customerDtoT) {
     if (field.isAnnotationPresent(Length.class)) {
       if (!LengthAnnotationProcessor.isLengthValid(
           field.getAnnotation(Length.class), customerDtoT.getName())) {

@@ -7,14 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Validator {
-  static Map<String, String> error = new HashMap<>();
+  private final Map<String, String> error;
 
-  public static <T extends CustomerDto> Map<String, String> validate(T customerDto) {
-    error.clear();
+  public Validator() {
+    this.error = new HashMap<>();
+  }
+
+  public <T extends CustomerDto> Map<String, String> validate(T customerDto) {
     Class<?> dto = customerDto.getClass();
     Field[] fields = dto.getDeclaredFields();
     for (Field field : fields) {
-      error.putAll(AnnotationTypeDetector.typeDetect(field, customerDto));
+      error.putAll(new AnnotationTypeDetector().typeDetect(field, customerDto));
     }
     return error;
   }
