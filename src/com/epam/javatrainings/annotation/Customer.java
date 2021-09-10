@@ -1,5 +1,7 @@
 package com.epam.javatrainings.annotation;
 
+import com.epam.javatrainings.annotation.anotations.*;
+
 import java.time.LocalDate;
 
 public class Customer {
@@ -13,11 +15,15 @@ public class Customer {
     @Min(0)
     @Max(100)
     private int discountRate;
+    @Length(min = 2,max = 6)
+    private String nickname;
 
-    public Customer(String name, String email, LocalDate birthday, int discountRate) {
+
+    public Customer(String name, String email, LocalDate birthday, int discountRate, String nickname) {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.discountRate = discountRate;
+        this.nickname = nickname;
     }
 }

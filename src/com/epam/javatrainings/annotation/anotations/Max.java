@@ -1,4 +1,4 @@
-package com.epam.javatrainings.annotation;
+package com.epam.javatrainings.annotation.anotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Length {
-    int min();
-    int max();
+public @interface Max {
+
+    int value();
 }
