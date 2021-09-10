@@ -6,9 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailAnnotationProcessor {
+  private static final Pattern EMAIL_ADDRESS =
+      Pattern.compile(Constants.EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+
   public static boolean isEmailValid(String email) {
-    Pattern EMAIL_ADDRESS =
-        Pattern.compile(Constants.EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
     Matcher matcher = EMAIL_ADDRESS.matcher(email);
     return matcher.find();
   }
