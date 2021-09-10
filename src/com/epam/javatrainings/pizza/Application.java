@@ -6,7 +6,7 @@ import com.epam.javatrainings.pizza.util.GlobalValidator;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Order {
+public class Application {
 
     public static void main(String[] args) {
 

@@ -19,7 +19,7 @@ public class MaxValidator {
             if (discountRate.isAnnotationPresent(Max.class)) {
                 discountRate.setAccessible(true);
                 int value = (int) discountRate.get(dto);
-                int declaredValue = discountRate.getDeclaredAnnotation(Min.class).value();
+                int declaredValue = discountRate.getDeclaredAnnotation(Max.class).value();
                 if (value > declaredValue) {
                     String message = discountRate.getDeclaredAnnotation(Max.class).message();
                     errorMessages.add(message);

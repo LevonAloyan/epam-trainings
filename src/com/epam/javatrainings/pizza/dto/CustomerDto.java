@@ -8,7 +8,7 @@ public class CustomerDto implements Dto{
 
     public CustomerDto(String name, String mail, LocalDate birthDate, int discountRate) {
         this.name = name;
-        this.mail = mail;
+        this.email = mail;
         this.birthDate = birthDate;
         this.discountRate = discountRate;
     }
@@ -17,13 +17,13 @@ public class CustomerDto implements Dto{
     private String name;
 
     @Email
-    private String mail;
+    private String email;
 
     @Adulthood
     private LocalDate birthDate;
 
-    @Min
-    @Max
+    @Min(5)
+    @Max(50)
     private int discountRate;
 
 

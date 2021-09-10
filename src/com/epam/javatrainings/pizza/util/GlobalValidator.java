@@ -9,6 +9,10 @@ import java.util.List;
 public class GlobalValidator {
 
     private static final  List<String> ERROR_MESSAGES = new ArrayList<>();
+    boolean isValidEmail;
+    boolean isValidLength;
+    boolean isValidAge;
+    boolean isValidDiscountRate;
 
     private GlobalValidator() {
     }
