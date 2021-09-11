@@ -10,7 +10,7 @@ public class Order {
     private HashMap<Pizza, Integer> pizzaMap;
     private final int orderNumber;
     private String customerName;
-    LocalTime localTime;
+    private LocalTime localTime;
 
     public Order(String customerName, HashMap<Pizza, Integer> pizzaMap) {
         verifyQuantity(pizzaMap);

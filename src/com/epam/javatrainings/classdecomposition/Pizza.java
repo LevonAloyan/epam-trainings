@@ -10,8 +10,8 @@ public class Pizza {
 
     String name;
     HashMap<String, Double> ingredientPrice;
-    double cost;
-    List <String> ingredients;
+    private double cost;
+    private List <String> ingredients;
     String type;
 
 
