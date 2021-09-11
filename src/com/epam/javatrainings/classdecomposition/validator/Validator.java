@@ -12,8 +12,15 @@ public final class Validator {
     private final static String regularExpressionInt = "-?[1-9]\\d*|0";
     private static final Pattern DOUBLE_PATTERN = Pattern.compile(regularExpressionDouble);
     private static final Pattern INT_PATTERN = Pattern.compile(regularExpressionInt);
+    private final static String regularExpressionEmail = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    private final static Pattern EMAIL_PATTERN = Pattern.compile(regularExpressionEmail, Pattern.CASE_INSENSITIVE);
 
     private Validator() {
+    }
+
+    public static boolean isEmail(String expression) {
+        Matcher matcher = EMAIL_PATTERN.matcher(expression);
+        return matcher.matches();
     }
 
     public static boolean isInt(String expression) {
