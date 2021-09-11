@@ -7,13 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Validator {
-  private final Map<String, String> error;
-
-  public Validator() {
-    this.error = new HashMap<>();
-  }
 
   public <T extends CustomerDto> Map<String, String> validate(T customerDto) {
+    final Map<String, String> error = new HashMap<>();
     Class<?> dto = customerDto.getClass();
     Field[] fields = dto.getDeclaredFields();
     for (Field field : fields) {
