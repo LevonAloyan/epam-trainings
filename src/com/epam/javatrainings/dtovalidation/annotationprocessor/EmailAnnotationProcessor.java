@@ -1,6 +1,7 @@
 package com.epam.javatrainings.dtovalidation.annotationprocessor;
 
 import com.epam.javatrainings.dtovalidation.error.FieldError;
+import com.epam.javatrainings.dtovalidation.annotation.Email;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -26,6 +27,6 @@ public final class EmailAnnotationProcessor {
     if (m.matches()) {
       return Optional.empty();
     }
-    return Optional.of(new FieldError(name, "Invalid email address!"));
+    return Optional.of(new FieldError(name, ((Email) a).message()));
   }
 }

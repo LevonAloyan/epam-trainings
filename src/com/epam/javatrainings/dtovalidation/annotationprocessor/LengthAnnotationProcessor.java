@@ -20,7 +20,7 @@ public final class LengthAnnotationProcessor {
     if (fieldLength >= ((Length) a).min() && fieldLength <= ((Length) a).max()) {
       return Optional.empty();
     }
-    return Optional.of(new FieldError(name, "The LENGTH value is out-of-range!"));
+    return Optional.of(new FieldError(name, ((Length) a).message()));
   }
 
   private static boolean isValidDataType(Object o) {

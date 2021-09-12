@@ -8,4 +8,6 @@ import java.lang.annotation.RetentionPolicy;
 @Validation
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Email {}
+public @interface Email {
+    String message() default "Invalid email address!";
+}

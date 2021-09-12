@@ -1,6 +1,7 @@
 package com.epam.javatrainings.dtovalidation.annotationprocessor;
 
 import com.epam.javatrainings.dtovalidation.error.FieldError;
+import com.epam.javatrainings.dtovalidation.annotation.Adulthood;
 
 import java.time.Period;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public final class AdulthoodAnnotationProcessor {
     if (Period.between((LocalDate) val, LocalDate.now()).getYears() >= 18) {
       return Optional.empty();
     }
-    return Optional.of(new FieldError(name, "You are still underage 😃"));
+
+    return Optional.of(new FieldError(name, ((Adulthood) a).message()));
   }
 }

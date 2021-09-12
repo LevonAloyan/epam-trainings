@@ -15,7 +15,6 @@ public final class MaxAnnotationProcessor {
     if ((Integer) val <= ((Max) a).value()) {
       return Optional.empty();
     }
-    return Optional.of(
-        new FieldError(name, name.toUpperCase() + " should be lower than " + ((Max) a).value()));
+    return Optional.of(new FieldError(name, ((Max) a).message()));
   }
 }

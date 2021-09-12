@@ -15,7 +15,6 @@ public final class MinAnnotationProcessor {
     if ((Integer) val >= ((Min) a).value()) {
       return Optional.empty();
     }
-    return Optional.of(
-        new FieldError(name, name.toUpperCase() + " should be higher than " + ((Min) a).value()));
+    return Optional.of(new FieldError(name, ((Min) a).message()));
   }
 }

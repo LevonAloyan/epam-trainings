@@ -12,4 +12,6 @@ public @interface Length {
   int min();
 
   int max();
+
+  String message() default "The LENGTH value is out-of-range!";
 }

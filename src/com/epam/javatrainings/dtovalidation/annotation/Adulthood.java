@@ -8,4 +8,6 @@ import java.lang.annotation.RetentionPolicy;
 @Validation
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Adulthood {}
+public @interface Adulthood {
+    String message() default "You are still underage 😃";
+}

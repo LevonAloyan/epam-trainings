@@ -10,4 +10,5 @@ import java.lang.annotation.RetentionPolicy;
 @Target(ElementType.FIELD)
 public @interface Max {
   int value();
+  String message() default "Maximum allowed value has been exceeded";
 }
