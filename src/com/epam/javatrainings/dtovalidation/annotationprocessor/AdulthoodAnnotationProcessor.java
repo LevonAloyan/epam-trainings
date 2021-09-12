@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.time.LocalDate;
 import java.lang.annotation.Annotation;
 
-// Accepts string.
+// Accepts LocalDate
 public final class AdulthoodAnnotationProcessor {
   public static <T extends Annotation> Optional<FieldError> validate(Object val, String name, T a) {
     if (!(val instanceof LocalDate)) {
