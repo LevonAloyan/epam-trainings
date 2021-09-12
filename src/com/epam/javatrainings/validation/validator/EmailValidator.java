@@ -24,7 +24,7 @@ public class EmailValidator implements Validator {
         Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(value);
         if(!matcher.matches()) {
-            throw new IllegalArgumentException("Email pattern constraint violation");
+            throw new AppRuntimeException("Email pattern constraint violation");
         }
     }
 

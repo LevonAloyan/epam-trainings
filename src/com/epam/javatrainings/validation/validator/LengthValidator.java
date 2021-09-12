@@ -19,7 +19,7 @@ public class LengthValidator implements Validator {
         }
 
         if (value.length() > length.max() || value.length() < length.min()) {
-            throw new IllegalArgumentException("Length constraint violation");
+            throw new AppRuntimeException("Length constraint violation");
         }
     }
 }

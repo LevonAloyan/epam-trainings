@@ -19,7 +19,7 @@ public class MinValidator implements Validator {
         }
 
         if (value < min.value()) {
-          throw new IllegalArgumentException("Min value constraint violation");
+          throw new AppRuntimeException("Min value constraint violation");
         }
     }
 }

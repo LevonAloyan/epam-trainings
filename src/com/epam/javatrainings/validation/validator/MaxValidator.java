@@ -19,7 +19,7 @@ public class MaxValidator implements Validator {
         }
 
         if (value > max.value()) {
-            throw new IllegalArgumentException("Max value constraint violation");
+            throw new AppRuntimeException("Max value constraint violation");
         }
     }
 }

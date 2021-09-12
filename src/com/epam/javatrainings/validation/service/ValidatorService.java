@@ -1,5 +1,6 @@
 package com.epam.javatrainings.validation.service;
 
+import com.epam.javatrainings.validation.exceptions.AppRuntimeException;
 import com.epam.javatrainings.validation.service.error.Error;
 import com.epam.javatrainings.validation.validator.Validator;
 import com.epam.javatrainings.validation.validator.registry.Registry;
@@ -39,7 +40,7 @@ public final class ValidatorService {
                 Validator validator = registry.getValidator(annoType);
                 try {
                     validator.validate(annotation, value);
-                } catch (RuntimeException e) {
+                } catch (AppRuntimeException e) {
                     errors.add(new Error(e.getMessage() + " on field " + field.getName()));
                 }
             }

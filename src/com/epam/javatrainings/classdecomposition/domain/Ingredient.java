@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition;
+package com.epam.javatrainings.classdecomposition.domain;
 
 public enum Ingredient {
 	TOMATO_PASTE("Tomato paste", 1),

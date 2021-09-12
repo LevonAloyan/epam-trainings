@@ -1,7 +1,8 @@
-package com.epam.javatrainings.classdecomposition;
+package com.epam.javatrainings.classdecomposition.domain;
 
 public enum Type {
-	REGULAR("Regular", 1), CALZONE("Calzone", 1.5);
+	REGULAR("Regular", 1),
+	CALZONE("Calzone", 1.5);
 
 	private final String name;
 	private final double price;
