@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.domain;
+package com.epam.javatrainings.classdecomposition;
 
 public class OrderPizza {
     private final Pizza pizza;
@@ -31,7 +31,7 @@ public class OrderPizza {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(("--------------------------------\n"));
-        sb.append("'").append(name).append("'").append("\n");
+        sb.append("Pizza: ").append("'").append(name).append("'").append("\n");
         sb.append(pizza.getType().getName()).append(": ").append(pizza.getType().getPrice()).append("$\n");
         for(Ingredient ingredient : pizza.getIngredients()) {
             sb.append(ingredient.getName()).append(": ").append(ingredient.getPrice()).append("$\n");

@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.domain;
+package com.epam.javatrainings.classdecomposition;
 
 public class Customer {
 	private final long number;

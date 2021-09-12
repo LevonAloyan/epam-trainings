@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.domain;
+package com.epam.javatrainings.classdecomposition;
 
 public enum Ingredient {
 	TOMATO_PASTE("Tomato paste", 1),
@@ -13,7 +13,7 @@ public enum Ingredient {
 	private final String name;
 	private final double price;
 
-	private Ingredient(String name, double price) {
+	Ingredient(String name, double price) {
 		this.name = name;
 		this.price = price;
 	}

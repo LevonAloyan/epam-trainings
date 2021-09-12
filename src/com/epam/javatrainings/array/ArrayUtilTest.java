@@ -19,7 +19,7 @@ public class ArrayUtilTest {
         
        
         int[] reverseArr1 = ArrayUtil.reverse(array1);
-        int[] reverseArr2  =ArrayUtil.reverse(array2);
+        int[] reverseArr2 = ArrayUtil.reverse(array2);
         ArrayUtil.print(reverseArr1);
         ArrayUtil.print(reverseArr2);
     }

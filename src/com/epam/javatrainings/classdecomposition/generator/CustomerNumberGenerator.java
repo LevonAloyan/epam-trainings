@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.util.generator;
+package com.epam.javatrainings.classdecomposition.generator;
 
 public final class CustomerNumberGenerator {
     private static long current = 10000;

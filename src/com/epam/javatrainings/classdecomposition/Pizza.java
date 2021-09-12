@@ -1,4 +1,4 @@
-package com.epam.javatrainings.classdecomposition.domain;
+package com.epam.javatrainings.classdecomposition;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -20,11 +20,12 @@ public class Pizza {
 		return new ArrayList<>(ingredients);
 	}
 
-	public Pizza add(Ingredient ingredient) {
-		if(!ingredients.contains(ingredient)) {
-			ingredients.add(ingredient);
+	public boolean addIngredient(Ingredient ingredient) {
+		if(ingredients.contains(ingredient)) {
+			System.out.println("Ingredient already added");
+			return false;
 		}
-		return this;
+		return ingredients.add(ingredient);
 	}
 
 	public double calculatePrice() {
