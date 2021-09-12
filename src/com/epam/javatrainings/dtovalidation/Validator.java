@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 
-public class Validator {
+public final class Validator {
 
   public Optional<ValidationError> validate(Object dto) {
 
@@ -34,7 +34,7 @@ public class Validator {
                 "Something weird happened during PROCESS execution", e.getCause());
           }
           if (!fieldError.isEmpty()) {
-            validationError.get().addFieldError(new FieldError(fieldError.get()));
+            validationError.get().addFieldError(fieldError.get());
           }
         }
       }

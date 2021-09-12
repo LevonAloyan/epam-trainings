@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public final class CustomerDto {
   @Length(min = 2, max = 30)
-  public final String name;
+  private final String name;
 
   @Length(min = 5, max = 15)
   @Email

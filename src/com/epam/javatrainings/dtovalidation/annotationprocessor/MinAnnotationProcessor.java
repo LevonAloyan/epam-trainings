@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.lang.annotation.Annotation;
 
 // Accepts int.
-public class MinAnnotationProcessor {
+public final class MinAnnotationProcessor {
   public static <T extends Annotation> Optional<FieldError> validate(Object val, String name, T a) {
     if (!(val instanceof Integer)) {
       throw new IllegalStateException("MIN annotation is placed on inappropriate datatype");

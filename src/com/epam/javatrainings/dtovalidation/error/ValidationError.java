@@ -17,18 +17,19 @@ public final class ValidationError {
     return errorCount;
   }
 
-  public void addFieldError(FieldError f) {
+  public void addFieldError(FieldError fieldError) {
     errorCount++;
-    FieldError fieldError =
+    FieldError found =
         errors.stream()
-            .filter(e -> e.getFieldName().equals(f.getFieldName()))
+            .filter(e -> e.getFieldName().equals(fieldError.getFieldName()))
             .findFirst()
             .orElse(null);
-    if (fieldError == null) {
-      errors.add(new FieldError(f));
-      return;
+
+    if (found == null) {
+      errors.add(fieldError);
+    } else {
+      found.addMessage(fieldError);
     }
-    fieldError.addMessage(f.getMessage());
   }
 
   @Override

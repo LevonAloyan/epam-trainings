@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.lang.annotation.Annotation;
 
 // Accepts string.
-public class EmailAnnotationProcessor {
+public final class EmailAnnotationProcessor {
   // RFC 5322 Official Standard
   private static final String EMAIL_PATTERN =
       "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
