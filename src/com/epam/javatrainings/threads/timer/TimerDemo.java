@@ -17,7 +17,7 @@ public class TimerDemo {
 
         System.out.println("Starting countdown ...");
         Timer t = new Timer(Integer.valueOf(splittedInput[0]), Integer.valueOf(splittedInput[1]));
-        t.start();
+        t.getThread().start();
 
         try {
             t.getThread().join();

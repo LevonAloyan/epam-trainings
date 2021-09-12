@@ -32,8 +32,4 @@ final class Timer implements Runnable {
 
         System.out.printf("%d:%d - %s%n", 0, 0, "The time is over");
     }
-
-    public void start() {
-        t.start();
-    }
 }
