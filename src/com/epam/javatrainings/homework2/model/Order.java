@@ -50,7 +50,7 @@ public class Order {
             System.out.println("--------------------------------");
             System.out.printf("Pizza base(%d) %d %d", pizza.getType().name(), pizza.getBasePrice() + pizza.getType().getPriceOfType(), euro);
             for (Ingredient ingredient : pizza.getIngredients()) {
-                System.out.printf("%d %d %d", ingredient., ingredient.getPrice(), euro);
+                System.out.printf("%d %d %d", ingredient, ingredient.getPrice(), euro);
             }
             pizza.calculatePrice();
             amount += pizza.getPrice();
