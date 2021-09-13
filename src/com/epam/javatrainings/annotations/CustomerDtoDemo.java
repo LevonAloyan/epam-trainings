@@ -10,10 +10,7 @@ import java.time.LocalDate;
 
 public class CustomerDtoDemo {
     public static void main(String[] args) throws NoSuchFieldException, InappropriateNameException, WrongDiscountException, EmailNotValidException, InappropriateAgeException, IllegalAccessException {
-
         CustomerDto customerDto = new CustomerDto("Anna", "anya.qaramyan00@gmail.ru", LocalDate.of(2000, 7, 12), 30);
-        if(Validation.validate(customerDto)){
-            System.out.println("Everything is Okay");
-        }
+         Validation.validate(customerDto);
     }
 }
