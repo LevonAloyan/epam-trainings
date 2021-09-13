@@ -1,9 +1,9 @@
-package com.epam.javatrainings.thread;
+package com.epam.javatrainings.thread.countdowntimer;
 
 import java.util.Scanner;
 import static java.lang.Thread.sleep;
 
-public class Main {
+public class Timer {
   public static void main(String[] args) {
     Thread countDown =
         new Thread(
