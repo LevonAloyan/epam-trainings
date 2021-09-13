@@ -9,10 +9,11 @@ import java.util.concurrent.atomic.AtomicLong;
 import static java.lang.String.format;
 
 public class SizeCount {
+  private static final String PATH = "src\\com\\epam\\";
 
   public static void main(String[] args) {
 
-    Path path = Paths.get("out");
+    Path path = Paths.get(PATH);
     AtomicLong size = new AtomicLong();
 
     Thread fileSize =
