@@ -16,11 +16,12 @@ public class TimerDemo {
         String [] splittedInput = input.split(TimeFormatValidator.timeSeparator);
 
         System.out.println("Starting countdown ...");
-        Timer t = new Timer(Integer.valueOf(splittedInput[0]), Integer.valueOf(splittedInput[1]));
-        t.getThread().start();
+        Timer timer = new Timer(Integer.valueOf(splittedInput[0]), Integer.valueOf(splittedInput[1]));
+        Thread timerThread = new Thread(timer);
+        timerThread.start();
 
         try {
-            t.getThread().join();
+            timerThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
