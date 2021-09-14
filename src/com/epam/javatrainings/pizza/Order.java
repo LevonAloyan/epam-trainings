@@ -1,35 +1,62 @@
 package com.epam.javatrainings.pizza;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Order {
+    private Customer customer;
+    private List<Pizza> pizzas;
+    private LocalDateTime created;
+    private int number;
 
-    /*Pizza pizza = new Pizza("Margarita",PizzaType.REGULAR, );*/
-    Customer customer = new Customer();
-    LocalDateTime time = LocalDateTime.now();
+    public Order(final Customer customer,
+                 final List<Pizza> pizzas,
+                 final OrderNumberGenerator orderNumber) {
+        this.number = orderNumber.generate();
+        this.customer = customer;
+        this.pizzas = pizzas;
+        this.created = LocalDateTime.now();
+    }
 
-    private int orderQuantity = 0;
-    private double pizzaPrice = 0.0;
-    private int pieceCount;
-
-    private double getPrice() {
-      Pizza.addIngredients("PEPPERONI");
-        for (Ingredients ingredients : Ingredients.values()) {
-            if (PizzaType.valueOf("REGULAR") == PizzaType.REGULAR) {
-                pizzaPrice = ingredients.getIngredientsPrice() + PizzaType.REGULAR.getBasePrice();
-            } else {
-                pizzaPrice = ingredients.getIngredientsPrice() + PizzaType.CALZONE.getBasePrice();
+    public double getPrice() {
+        double totalPrice = 0.0;
+        for (Pizza pizza : pizzas) {
+            double pizzaPrice = pizza.getType().getBasePrice();
+            for (Ingredient ingredient : pizza.getIngredients()) {
+                pizzaPrice += ingredient.getPrice();
             }
+            pizzaPrice *= pizza.getQuantity();
+            totalPrice += pizzaPrice;
         }
-        return pizzaPrice;
+        return totalPrice;
     }
 
-    public void orderPizza() {
-
-        /*pizza.choosePizzaName("Margarita");*/
-        System.out.println("Order time: " + time);
-        System.out.println("Order number: ");
-        System.out.println("Order price: " + getPrice());
-        System.out.println("Piece count: " + pieceCount);
+    public LocalDateTime getCreated() {
+        return created;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
 }

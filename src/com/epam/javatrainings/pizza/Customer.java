@@ -1,15 +1,22 @@
 package com.epam.javatrainings.pizza;
 
 public class Customer {
-    private int number = 0;
-    private static String name;
 
-    public static String getName() {
+    private static int number = 0;
+
+    private String name;
+
+    public Customer(String name) {
+        this.name = name;
+        number++;
+        System.out.println("Customer number: " + number);
+    }
+
+    public String getName() {
         return name;
     }
 
-    public Customer() {
-        number++;
-        System.out.println("Customer number: " + number);
+    public int getNumber() {
+        return number;
     }
 }

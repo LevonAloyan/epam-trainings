@@ -1,13 +1,13 @@
 package com.epam.javatrainings.pizza;
 
-enum PizzaType {
+public enum Type {
     REGULAR(1.0),
     CALZONE(1.5);
 
     private final double basePrice;
 
-    PizzaType(double p) {
-        basePrice = p;
+    Type(final double basePrice) {
+        this.basePrice = basePrice;
     }
 
     public double getBasePrice() {
