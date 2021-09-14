@@ -27,7 +27,7 @@ public final class BoundedBlockingBuffer<T> {
     notifyAll();
 
     try {
-      sleep(1000); // methot sleep for test
+      sleep(1000);               // method sleep for test
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -48,7 +48,7 @@ public final class BoundedBlockingBuffer<T> {
     notifyAll();
 
     try {
-      sleep(1000); // methot sleep for test
+      sleep(1000);               // method sleep for test
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
