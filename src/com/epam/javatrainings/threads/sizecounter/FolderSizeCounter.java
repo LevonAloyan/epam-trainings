@@ -3,7 +3,6 @@ package com.epam.javatrainings.threads.sizecounter;
 import java.io.File;
 
 public class FolderSizeCounter implements Runnable {
-    private Thread thread;
     private String folderPath;
     private long folderSize;
     private int filesCount;
@@ -11,15 +10,10 @@ public class FolderSizeCounter implements Runnable {
 
     public FolderSizeCounter(String folderPath) {
         this.folderPath = folderPath;
-        thread = new Thread(this);
     }
 
     public long getFolderSize() {
         return folderSize;
-    }
-
-    public Thread getThread() {
-        return thread;
     }
 
     public int getFilesCount() {

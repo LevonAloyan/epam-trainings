@@ -1,16 +1,10 @@
 package com.epam.javatrainings.threads.sizecounter;
 
-public final class Printer implements Runnable {
-    private final Thread thread;
+public final class PrintingThread extends Thread {
     private final FolderSizeCounter counter;
 
-    public Printer(FolderSizeCounter counter) {
+    public PrintingThread(FolderSizeCounter counter) {
         this.counter = counter;
-        thread = new Thread(this);
-    }
-
-    public void printMetrics() {
-        thread.start();
     }
 
     private void printCurrentState() {
@@ -19,9 +13,10 @@ public final class Printer implements Runnable {
 
     @Override
     public void run() {
-        counter.getThread().start();
+        Thread counterThread = new Thread(counter);
+        counterThread.start();
 
-        while (counter.getThread().isAlive()) {
+        while (counterThread.isAlive()) {
             printCurrentState();
             try {
                 Thread.sleep(200);
