@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class EmailProcessor {
     private static final Pattern EMAIL_PATTERN =
             Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
-            Pattern.CASE_INSENSITIVE);
+                    Pattern.CASE_INSENSITIVE);
 
     public void doProcess(String scanPackage, String string) throws IllegalAccessException, IOException,
             ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, InvalidEmailException {
