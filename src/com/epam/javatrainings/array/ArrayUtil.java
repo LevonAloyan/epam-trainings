@@ -9,30 +9,22 @@ public class ArrayUtil {
      */
     public void sortByOddAndEven(int[] array) {
 
-        for (int i = 0; i < array.length; i += 2) {
-            if (array[i] % 2 != 0) {
-                if (array[i + 1] % 2 == 0) {
-                    System.out.print(array[i] + " " + array[i + 1] + " ");
-                } else {
-                    for (int j = i + 2; j < array.length - 2; j++) {
-                        if (array[j] % 2 == 0) {
-                            int k = array[i + 1];
-                            array[i + 1] = array[j];
-                            array[j] = k;
-                            System.out.print(array[i] + " " + array[i + 1] + " ");
-                        }
+        for (int i = 1; i < array.length - 1; i++) {
+            if ((array[i - 1] + array[i]) % 2 == 0) {
+                for (int j = i + 1; j < array.length; j++) {
+                    if ((array[i] + array[j]) % 2 != 0) {
+                        swap(i, j, array);
+                        break;
                     }
-                }
-            } else {
-                if (array[i + 1] % 2 != 0) {
-                    int k = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = k;
-
-                    System.out.print(array[i] + " " + array[i + 1] + " ");
                 }
             }
         }
+    }
+
+    public static void swap(int i, int j, int[] array) {
+        int k = array[i];
+        array[i] = array[j];
+        array[j] = k;
     }
 
     /**
