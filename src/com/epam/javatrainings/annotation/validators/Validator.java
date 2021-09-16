@@ -2,14 +2,9 @@ package com.epam.javatrainings.annotation.validators;
 
 import com.epam.javatrainings.annotation.CustomerDto;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Set;
 
 public class Validator {
   static HashMap<String, String> errors = new HashMap<>();
@@ -24,9 +19,9 @@ public class Validator {
         for (Annotation annot : fieldAnnotations) {
           Class<? extends Annotation> clas = annot.getClass();
           Annotation annotation = field.getAnnotation(annot.getClass());
-          Method method = clas.getDeclaredMethod(clas.getName());
-          String message = (String) method.getDefaultValue();
-          System.out.println(message);
+         // Method method = clas.getDeclaredMethod(clas.getName());
+         // String message = (String) method.getDefaultValue();
+         // System.out.println(message);
         }
 
       } else {
