@@ -1,5 +1,8 @@
 package com.epam.javatrainings.threads.timer;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Timer implements Runnable {
     private int minute;
     private int second;
@@ -29,6 +32,8 @@ public class Timer implements Runnable {
     public void run() {
         while (second >= 0 && minute <= 12) {
             System.out.printf("%02d:%02d\n", minute, second);
+            Toolkit.getDefaultToolkit().beep();
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
