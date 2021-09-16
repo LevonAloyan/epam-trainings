@@ -1,7 +1,5 @@
 package com.epam.javatrainings.multithreading;
 
-import java.util.ArrayList;
-
 public class BoundedBlockingBuffer<T> {
 
     private final Object[] buffer = new Object[1];
