@@ -7,18 +7,12 @@ public class BoundedBlockingBuffer<T> {
     private final Queue<T> buffer;
     private final int capacity;
 
-    private volatile boolean finish = false;
-
     public BoundedBlockingBuffer(int capacity) {
         this.capacity = capacity;
         buffer = new ArrayDeque<>(capacity);
     }
 
     public synchronized void put(T t) {
-        if (t == null) {
-            throw new NullPointerException();
-        }
-
         while (isFull()) {
             try {
                 wait();
@@ -29,23 +23,19 @@ public class BoundedBlockingBuffer<T> {
 
         buffer.add(t);
 
-        System.out.println(Thread.currentThread().getName() + " puts " + t);
+        System.out.println(Thread.currentThread().getName() + " putes " + t);
         System.out.println(buffer);
 
         notifyAll();
     }
 
     public synchronized T take() {
-        while (isEmpty() && !isFinish()) {
+        while (isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-
-        if (buffer.isEmpty()) {
-            return null;
         }
 
         T rv = buffer.poll();
@@ -57,19 +47,11 @@ public class BoundedBlockingBuffer<T> {
         return rv;
     }
 
-    public synchronized boolean isEmpty() {
+    public boolean isEmpty() {
         return buffer.isEmpty();
     }
 
     public boolean isFull() {
         return buffer.size() == capacity;
-    }
-
-    public synchronized boolean isFinish() {
-        return finish;
-    }
-
-    public synchronized void setFinish(boolean finish) {
-        this.finish = finish;
     }
 }
