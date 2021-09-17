@@ -12,9 +12,11 @@ public class Consumer<T> extends Thread {
     @Override
     public void run() {
         System.out.println(getName() + " starts");
-        while(!buffer.isFinished().get() || !buffer.isEmpty()) {
+
+        while(!buffer.isFinish() || !buffer.isEmpty()) {
             buffer.take();
         }
+
         System.out.println(getName() + " ends");
     }
 }

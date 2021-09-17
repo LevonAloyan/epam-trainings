@@ -15,13 +15,14 @@ public class Producer<T> extends Thread {
         start();
         synchronized (Producer.class) {
             count++;
-            System.out.println("count = " + count);
+            System.out.println("Producer_count = " + count);
         }
     }
 
     @Override
     public void run() {
         System.out.println(getName() + " starts");
+
         for (int i = 0; i < 5; i++) {
             T value = supplier.get();
             buffer.put(value);
@@ -29,11 +30,12 @@ public class Producer<T> extends Thread {
 
         synchronized (Producer.class) {
             count--;
-            System.out.println("count = " + count);
+            System.out.println("Producer_count = " + count);
             if (count == 0) {
-                buffer.setFinished(true);
+                buffer.setFinish(true);
             }
         }
+
         System.out.println(getName() + " ends");
     }
 }

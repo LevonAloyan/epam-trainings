@@ -2,13 +2,12 @@ package com.epam.javatrainings.blockingbuffer;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BoundedBlockingBuffer<T> {
     private final Queue<T> buffer;
     private final int capacity;
 
-    private AtomicBoolean finished = new AtomicBoolean(false);
+    private volatile boolean finish = false;
 
     public BoundedBlockingBuffer(int capacity) {
         this.capacity = capacity;
@@ -37,7 +36,7 @@ public class BoundedBlockingBuffer<T> {
     }
 
     public synchronized T take() {
-        while (isEmpty() && !isFinished().get()) {
+        while (isEmpty() && !isFinish()) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -58,7 +57,7 @@ public class BoundedBlockingBuffer<T> {
         return rv;
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return buffer.isEmpty();
     }
 
@@ -66,11 +65,11 @@ public class BoundedBlockingBuffer<T> {
         return buffer.size() == capacity;
     }
 
-    public AtomicBoolean isFinished() {
-        return finished;
+    public synchronized boolean isFinish() {
+        return finish;
     }
 
-    public void setFinished(boolean finished) {
-        this.finished.set(finished);
+    public synchronized void setFinish(boolean finish) {
+        this.finish = finish;
     }
 }
