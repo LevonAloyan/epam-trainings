@@ -5,7 +5,7 @@ import com.epam.javatrainings.timer.counter.MinutesCounter;
 
 public class Main {
   public static void main(String[] args) {
-    Timer timer = new Timer(1, 8);
+    Timer timer = new Timer.TimerBuilder(1, 11).build();
     timer.countDown();
   }
 }

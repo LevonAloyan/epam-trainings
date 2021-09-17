@@ -8,9 +8,9 @@ public class Timer {
   private final int minutes;
   private final int seconds;
 
-  public Timer(int minutes, int seconds) {
-    this.minutes = minutes;
-    this.seconds = seconds;
+  private Timer(TimerBuilder timerBuilder) {
+    minutes = timerBuilder.minutes;
+    seconds = timerBuilder.seconds;
   }
 
   public void countDown() {
@@ -22,6 +22,24 @@ public class Timer {
       timer.join();
     } catch (InterruptedException e) {
       throw new TimerInterruptedException("Interrupted during timerThread join");
+    }
+  }
+
+  public static class TimerBuilder {
+    private final int minutes;
+    private final int seconds;
+
+    public TimerBuilder(int minutes, int seconds) {
+      this.minutes = minutes;
+      this.seconds = seconds;
+    }
+
+    public Timer build() {
+      if (!(minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60)) {
+        throw new IllegalArgumentException(
+            "Invalid Timer arguments. Please provide valid int numbers in range [0-59]");
+      }
+      return new Timer(this);
     }
   }
 }
