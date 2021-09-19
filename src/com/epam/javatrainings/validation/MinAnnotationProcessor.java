@@ -2,10 +2,10 @@ package com.epam.javatrainings.validation;
 
 import java.lang.reflect.Field;
 
-public class MinAnnotationProcessor extends AnnotationProcessor {
+public class MinAnnotationProcessor implements AnnotationProcessor {
 
     @Override
-    String validate(Field field, Object obj) {
+    public String validate(Field field, Object obj) {
         if(!(obj instanceof Integer)) {
             throw new IllegalArgumentException(obj + " is not Integer type to be validated for the Min field");
         }

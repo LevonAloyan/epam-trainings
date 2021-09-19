@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Validator {
 
-    public static List<Error> validate(CustomerDto dto) throws IllegalAccessException {
+    public static <T> List<Error> validate(T dto) throws IllegalAccessException {
         List<Error> listOfErrors = new ArrayList<>();
 
-        Class<? extends CustomerDto> dtoClass = dto.getClass();
+        Class<?> dtoClass = dto.getClass();
 
         Field[] declaredFields = dtoClass.getDeclaredFields();
 
@@ -20,7 +20,7 @@ public class Validator {
             for(Annotation a : annotations) {
                 AnnotationProcessor ap = ValidatorUtils.detectAnnotationProcessor(a);
                 String errorMsg = ap.validate(df, df.get(dto));
-                if(!errorMsg.equals("")) {                               //if there is an error message
+                if(!errorMsg.equals("")) {                          //if there is an error message
                     listOfErrors.add(new Error(errorMsg));
                 }
             }

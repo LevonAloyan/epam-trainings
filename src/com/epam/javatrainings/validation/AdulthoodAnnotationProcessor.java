@@ -3,10 +3,10 @@ package com.epam.javatrainings.validation;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-public class AdulthoodAnnotationProcessor extends AnnotationProcessor {
+public class AdulthoodAnnotationProcessor implements AnnotationProcessor {
 
     @Override
-    String validate(Field field, Object obj) {
+    public String validate(Field field, Object obj) {
         String msg = "";
 
         if(!(obj instanceof LocalDate)) {

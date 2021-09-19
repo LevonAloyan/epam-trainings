@@ -2,10 +2,10 @@ package com.epam.javatrainings.validation;
 
 import java.lang.reflect.Field;
 
-public class LengthAnnotationProcessor extends AnnotationProcessor {
+public class LengthAnnotationProcessor implements AnnotationProcessor {
 
     @Override
-     String validate(Field field, Object obj) {
+    public String validate(Field field, Object obj) {
         int min = field.getAnnotation(Length.class).min();
         int max = field.getAnnotation(Length.class).max();
         String msg = "";
