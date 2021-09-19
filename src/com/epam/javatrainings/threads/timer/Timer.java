@@ -30,7 +30,7 @@ public class Timer implements Runnable {
 
     @Override
     public void run() {
-        while (second >= 0 && minute <= 12) {
+        while (second >= 0 && minute <= 59) {
             System.out.printf("%02d:%02d\n", minute, second);
             Toolkit.getDefaultToolkit().beep();
 
