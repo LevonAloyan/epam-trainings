@@ -10,30 +10,24 @@ public class ArrayUtil {
      *
      */
     public static void sortByOddAndEven(int[] array) {
-        for(int i = 0; i < array.length; i++) {
-            if(array[i] % 2 != 0) {                             //checks if current is odd or even
-                boolean found = false;
-                for(int j = i + 1; j < array.length; j++) {         //finds even in the array
-                    if(found == false && array[j] % 2 == 0) {
-                        int temp = array[i + 1];
-                        array[i + 1] = array[j];
-                        array[j] = temp;
-                        found = true;
-                    }
-                }
-            } else {
-                boolean found = false;
-                for(int j = i + 1; j < array.length; j++) {         //finds odd in the array
-                    if(found == false && array[j] % 2 != 0) {
-                        int temp = array[i + 1];
-                        array[i + 1] = array[j];
-                        array[j] = temp;
-                        found = true;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] % 2 == array[i + 1] % 2) {
+                for (int j = i + 1; j < array.length; j++) {
+                    if (array[i + 1] % 2 != array[j] % 2) {
+                        swap(array, i + 1, j);
+                        break;
                     }
                 }
             }
         }
     }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
 
     /**
      * Return maximum element from given array
@@ -83,9 +77,7 @@ public class ArrayUtil {
      */
     public static int[] reverse(int[] array) {
         for(int i = 0, j = array.length - 1; i < (array.length / 2); i++, j--) {
-            int tmp = array[i];
-            array[i] = array[j];
-            array[j] = tmp;
+            swap(array, i, j);
         }
         return array;
     }
