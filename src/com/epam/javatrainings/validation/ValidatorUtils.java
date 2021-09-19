@@ -2,21 +2,25 @@ package com.epam.javatrainings.validation;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
+import java.util.Map;
 
 public class ValidatorUtils {
 
-    public static AnnotationProcessor detectAnnotationProcessor(Annotation annotation) {
-        if(annotation instanceof Length) {
-            return new LengthAnnotationProcessor();
-        } else if(annotation instanceof Email) {
-            return new EmailAnnotationProcessor();
-        } else if(annotation instanceof Adulthood) {
-            return new AdulthoodAnnotationProcessor();
-        } else if(annotation instanceof Min) {
-            return new MinAnnotationProcessor();
-        } else {
-            return new MaxAnnotationProcessor();
+    private static Map<Class<? extends Annotation>, ? extends AnnotationProcessor> annotationProcessorsMap = Map.of(
+            Length.class, new LengthAnnotationProcessor(),
+            Adulthood.class, new AdulthoodAnnotationProcessor(),
+            Email.class, new EmailAnnotationProcessor(),
+            Max.class, new MaxAnnotationProcessor(),
+            Min.class, new MinAnnotationProcessor()
+    );
+
+    public static <T extends Annotation>  AnnotationProcessor detectAnnotationProcessor(Annotation annotation) {
+        Class<? extends Annotation> annotationType = annotation.annotationType();
+        AnnotationProcessor annotationProcessor = annotationProcessorsMap.get(annotationType);
+        if(annotationProcessor == null) {
+            throw new IllegalArgumentException("Unknown Annotation type");
         }
+        return annotationProcessor;
     }
 
     public static void printErrorMessages(List<Error> errors) {

@@ -2,7 +2,7 @@ package com.epam.javatrainings.validation;
 
 import java.lang.reflect.Field;
 
-public abstract class AnnotationProcessor {
+public interface AnnotationProcessor {
 
-    abstract String validate(Field field, Object obj);
+    String validate(Field field, Object obj);
 }
