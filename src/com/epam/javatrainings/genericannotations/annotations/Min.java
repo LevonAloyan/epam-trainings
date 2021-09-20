@@ -1,4 +1,4 @@
-package com.epam.javatrainings.pizza.annotations;
+package com.epam.javatrainings.genericannotations.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Length {
-    String message() default "The length of name must be in 3-100 characters";
-    int min() default 3;
-    int max() default 100;
+public @interface Min {
+    String message() default "The specified value must be minimum 0";
+    int value() default 0;
 }

@@ -1,10 +1,10 @@
-package com.epam.javatrainings.pizza.dto;
+package com.epam.javatrainings.genericannotations.dto;
 
-import com.epam.javatrainings.pizza.annotations.*;
+import com.epam.javatrainings.genericannotations.annotations.*;
 
 import java.time.LocalDate;
 
-public class CustomerDto implements Dto{
+public class CustomerDto {
 
     public CustomerDto(String name, String mail, LocalDate birthDate, int discountRate) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.epam.javatrainings.pizza.annotations;
+package com.epam.javatrainings.genericannotations.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Min {
-    String message() default "The specified value must be minimum 0";
-    int value() default 0;
+public @interface Adulthood {
+    String message() default "User must be adult";
 }

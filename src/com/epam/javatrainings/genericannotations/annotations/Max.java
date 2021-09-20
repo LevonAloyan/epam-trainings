@@ -1,4 +1,4 @@
-package com.epam.javatrainings.pizza.annotations;
+package com.epam.javatrainings.genericannotations.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
