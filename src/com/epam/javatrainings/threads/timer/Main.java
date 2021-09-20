@@ -16,7 +16,7 @@ public class Main {
         }
         System.out.print("Enter seconds: ");
         int second = input.nextInt();
-        if (second < 0 || second >= 59) {
+        if (second < 0 || second > 59) {
             throw new InvalidSecondException("Second have to be range of 0-59");
         }
         Thread timer = new Thread(new Timer(minute, second));
