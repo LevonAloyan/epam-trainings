@@ -3,15 +3,15 @@ package com.epam.javatrainings.array;
 public class ArrayUtilTest {
 
     public static void main(String[] args) {
-        int[] array = {2, 8, 3, 5, 4, 10, 7,11};
+        int[] array = {2, 8, 3, 5, 4, 10, 7, 11};
 
         ArrayUtil arrayUtil = new ArrayUtil();
         arrayUtil.sortByOddAndEven(array);
 
-        for (int i =0;i<array.length;i++){
-            System.out.print(array[i]+ " ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
-        
+
         //
         System.out.println("\nMaximum value is: " + ArrayUtil.getMaximum(array));
         //
