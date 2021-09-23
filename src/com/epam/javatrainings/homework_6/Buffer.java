@@ -3,16 +3,9 @@ package com.epam.javatrainings.homework_6;
 public class Buffer <T>{
     private T obj;
 
-    public T getObj() {
-        return obj;
-    }
-
-    public void setObj(T obj) {
-        this.obj = obj;
-    }
 
     public synchronized void  put(T obj) {
-        if (this.obj != null) {
+        while (this.obj != null) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -20,11 +13,11 @@ public class Buffer <T>{
             }
         }
             this.obj = obj;
-            notify();
+            notifyAll();
 
     }
     public synchronized T take(){
-         if(this.obj == null){
+         while(this.obj == null){
              try {
                  wait();
              } catch (InterruptedException e) {
@@ -33,7 +26,7 @@ public class Buffer <T>{
          }
              T temp = obj;
              obj = null;
-             notify();
+             notifyAll();
              return temp;
 
     }
