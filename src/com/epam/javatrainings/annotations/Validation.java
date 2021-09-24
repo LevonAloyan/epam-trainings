@@ -17,26 +17,41 @@ import java.util.regex.Pattern;
 
 public class Validation {
 
-    public static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    Pattern p = Pattern.compile("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
 
-    public static <T> void validate(T t) throws IllegalAccessException, InappropriateNameException, EmailNotValidException, InappropriateAgeException, WrongDiscountException {
+    public static <T> void validate(T t) throws ClassCastException,IllegalAccessException {
         Class clazz = t.getClass();
         Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
 
             if (field.isAnnotationPresent(Length.class)) {
-              new LengthAnnotationProcessor(field, t);
+                try {
+                    new LengthAnnotationProcessor(field, t);
+                } catch (InappropriateNameException e) {
+                    e.printStackTrace();
+                }
             }
             if (field.isAnnotationPresent(Email.class)) {
-              new EmailAnnotationProcessor(field, t);
+                try {
+                    new EmailAnnotationProcessor(field, t);
+                } catch (EmailNotValidException e) {
+                    e.printStackTrace();
+                }
             }
             if (field.isAnnotationPresent(Adulthood.class)) {
-               new AdulthoodAnnotationProcessor(field, t);
+                try {
+                    new AdulthoodAnnotationProcessor(field, t);
+                } catch (InappropriateAgeException e) {
+                    e.printStackTrace();
+                }
             }
-            if (field.isAnnotationPresent(Min.class) && field.isAnnotationPresent(Max.class)) {
-              new MaxAndMinAnnotationsProcessor(field,t);
+            if (field.isAnnotationPresent(Min.class) || field.isAnnotationPresent(Max.class)) {
+                try {
+                    new MaxAndMinAnnotationsProcessor(field,t);
+                } catch (WrongDiscountException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
 
