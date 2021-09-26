@@ -7,12 +7,12 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 public class AdulthoodAnnotationProcessor {
-    public static boolean checkValidateBirthDay(CustomerDto customerDto) throws NoSuchFieldException, IllegalAccessException {
+    public static<T> boolean checkValidateBirthDay(T data) throws NoSuchFieldException, IllegalAccessException {
         boolean flag = true;
-        Field birthDay = customerDto.getClass().getDeclaredField("birthDay");
+        Field birthDay = data.getClass().getDeclaredField("birthDay");
         if (birthDay.isAnnotationPresent(Adulthood.class)) {
             birthDay.setAccessible(true);
-            LocalDate birthDayValue = (LocalDate) birthDay.get(customerDto);
+            LocalDate birthDayValue = (LocalDate) birthDay.get(data);
             flag = check(birthDayValue.getYear());
         }
         return flag;

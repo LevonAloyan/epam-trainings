@@ -7,12 +7,12 @@ import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 public class EmailAnnotationProcessor {
-    public static boolean checkValidateEmail(CustomerDto customerDto) throws NoSuchFieldException, IllegalAccessException {
+    public static<T> boolean checkValidateEmail(T data) throws NoSuchFieldException, IllegalAccessException {
         boolean flag = true;
-        Field email = customerDto.getClass().getDeclaredField("email");
+        Field email = data.getClass().getDeclaredField("email");
         if (email.isAnnotationPresent(Email.class)) {
             email.setAccessible(true);
-            String emailValue = (String) email.get(customerDto);
+            String emailValue = (String) email.get(data);
             flag = check(emailValue);
         }
         return flag;

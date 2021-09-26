@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args){
         CustomerDto customerDto = CustomerDtoService.createCustomer();
         try {
-            DtoValidatorService.printAllExceptions(customerDto);
-        } catch (NoSuchFieldException | IllegalAccessException e){
+            ValidatorService.printAllExceptions(customerDto);
+        } catch (NoSuchFieldException | IllegalAccessException | NullPointerException e){
             e.printStackTrace();
         }
     }

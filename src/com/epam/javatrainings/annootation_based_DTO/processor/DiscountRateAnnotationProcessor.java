@@ -7,14 +7,14 @@ import com.epam.javatrainings.annootation_based_DTO.persistance.model.CustomerDt
 import java.lang.reflect.Field;
 
 public class DiscountRateAnnotationProcessor {
-    public static boolean checkValidateDiscountRate(CustomerDto customerDto) throws NoSuchFieldException, IllegalAccessException {
+    public static<T> boolean checkValidateDiscountRate(T data) throws NoSuchFieldException, IllegalAccessException {
         boolean flag = true;
-        Field discountRate = customerDto.getClass().getDeclaredField("discountRate");
+        Field discountRate = data.getClass().getDeclaredField("discountRate");
         if (discountRate.isAnnotationPresent(Min.class) && discountRate.isAnnotationPresent(Max.class)) {
             discountRate.setAccessible(true);
             Max max = discountRate.getAnnotation(Max.class);
             Min min = discountRate.getAnnotation(Min.class);
-            int value = (int) discountRate.get(customerDto);
+            int value = (int) discountRate.get(data);
             flag = check(value,min.value(),max.value());
         }
         return flag;
