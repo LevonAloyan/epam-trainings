@@ -6,8 +6,8 @@ import java.nio.file.Paths;
 
 public class Test {
 
-  public static final String PATH_ROOT = "C:\\Users\\Admin\\IdeaProjects\\epam-trainings\\temp";
-  public static final String EXTENSION_FILE = ".tmp";
+  private static final String PATH_ROOT = "C:\\Users\\Admin\\IdeaProjects\\epam-trainings\\temp";
+  private static final String EXTENSION_FILE = ".tmp";
 
   public static void main(String[] args) {
 
