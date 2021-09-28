@@ -34,6 +34,7 @@ public class CSVUtil {
   }
 
   private static Customer createCustomer(String[] metadata) {
+
     String name = metadata[0].trim();
     String phone = metadata[1].trim();
     int score = Integer.parseInt(metadata[2].trim());
@@ -41,6 +42,7 @@ public class CSVUtil {
   }
 
   public static void writeCustomersToCVS(List<Customer> customers, String fileName) {
+
     try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(fileName))) {
       for (Customer customer : customers) {
         bufferedWriter.write(String.valueOf(customer));
