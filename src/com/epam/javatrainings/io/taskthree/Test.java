@@ -13,7 +13,7 @@ public class Test {
 
     Path path = Paths.get(PATH_ROOT);
     try {
-      FileExtensionDetector.removeFileByExtension(path, EXTENSION_FILE);
+      FileManipulator.removeFileByExtension(path, EXTENSION_FILE);
     } catch (IOException e) {
       e.printStackTrace();
     }

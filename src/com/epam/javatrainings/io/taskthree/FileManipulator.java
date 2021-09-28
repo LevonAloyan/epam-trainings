@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-public class FileExtensionDetector {
+public class FileManipulator {
 
   public static void removeFileByExtension(Path path, String fileExtension) throws IOException {
 
