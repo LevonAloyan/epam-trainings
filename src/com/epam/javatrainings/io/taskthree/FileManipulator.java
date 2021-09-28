@@ -11,13 +11,13 @@ public class FileManipulator {
 
   public static void removeFileByExtension(Path path, String fileExtension) throws IOException {
 
-    try (Stream<Path> walk = Files.walk(path)) {
+    Stream<Path> walk = Files.walk(path))
 
       walk.filter(Files::isRegularFile)
           .filter(p -> p.getFileName().toString().endsWith(fileExtension))
           .sorted(Comparator.reverseOrder())
           .map(Path::toFile)
           .forEach(File::delete);
-    }
-  }
+
+
 }
