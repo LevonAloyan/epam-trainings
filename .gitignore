@@ -4,3 +4,5 @@
 out/
 
 resources/
+*.txt
+*.html
