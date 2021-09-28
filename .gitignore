@@ -2,3 +2,7 @@
 .idea/
 *.iml
 out/
+
+resources/
+*.txt
+*.html
