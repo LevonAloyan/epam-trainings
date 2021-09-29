@@ -24,6 +24,8 @@ public class TestBoundedBuffer {
             e.printStackTrace();
         }
 
+        System.out.println(args[0]);
+
         System.out.println("The main thread is ended");
     }
 }
