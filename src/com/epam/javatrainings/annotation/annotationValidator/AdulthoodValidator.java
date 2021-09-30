@@ -13,9 +13,8 @@ public class AdulthoodValidator implements FieldValidator<CustomerDto> {
 
     @Override
     public void check(CustomerDto obj) {
-        Field field;
         try {
-            field = obj.getClass().getDeclaredField("birthDay");
+            Field field = obj.getClass().getDeclaredField("birthDay");
             if (field.isAnnotationPresent(Adulthood.class)) {
                 field.setAccessible(true);
                 LocalDate birthDay = (LocalDate) field.get(obj);

@@ -4,7 +4,6 @@ import com.epam.javatrainings.classdecomposition.util.OrderUtil;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,28 +40,6 @@ public class Order {
 
     public LocalDate getDate() {
         return date;
-    }
-
-    public void printCheck() {
-        String euro = "\u20ac";
-        System.out.println("********************************");
-        System.out.println("Order: " + number);
-        System.out.println("Client: " + customerNumber);
-        double amount = 0;
-        for (Pizza pizza : pizzaList) {
-            System.out.println("Name:" + pizza.getName());
-            System.out.println("--------------------------------");
-            System.out.printf("Pizza base(%d) %d %d", pizza.getType().name(), pizza.getBasePrice() + pizza.getType().getPriceOfType(), euro);
-            for (Ingredient ingredient : pizza.getIngredients()) {
-                System.out.printf("%d %d %d", ingredient.name(), ingredient.getPrice(), euro);
-            }
-            pizza.calculatePrice();
-            amount += pizza.getPrice();
-            System.out.printf("Amount: %d %d", pizza.getPrice(), euro);
-            System.out.printf("Quantity: %d", pizza.getQuantity());
-            System.out.println("--------------------------------");
-        }
-        System.out.printf("Total amount: %d %d", amount, euro);
     }
 
 }
