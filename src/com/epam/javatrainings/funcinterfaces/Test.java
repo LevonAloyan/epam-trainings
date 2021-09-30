@@ -11,7 +11,7 @@ public class Test {
 
   public static void main(String[] args) {
 
-    ExtendedList<Integer> extendedList = new ExtendedList<Integer>();
+    ExtendedList<Integer> extendedList = new ExtendedList<>();
     extendedList.addAll(List.of(1, 2, 3));
 
     UnaryOperator<Integer> unaryOperator = parameter -> parameter * parameter;
