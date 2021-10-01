@@ -25,7 +25,7 @@ public class CsvIntoCustomerReader {
             String[] customer = csvLine.split(SPLIT_BY);
             try {
               customerSet.add(
-                  new Customer(customer[0], customer[1], Integer.parseInt(customer[2])));
+                  new Customer(customer[0], customer[1], Integer.parseInt(customer[2]), "cardNum"));
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
               throw new CsvManipulationException("Failed to create Customer ", e.getCause());
             }
