@@ -1,5 +1,8 @@
 package com.epam.javatrainings.io;
 
+import com.epam.javatrainings.io.homework.CsvUtility;
+import com.epam.javatrainings.io.homework.UrlProgram;
+
 import java.io.*;
 
 public class Main {
@@ -16,6 +19,11 @@ public class Main {
         main.writeObject(student, "archive.txt");
         Student student1 = main.readObject();
         System.out.println(student1);
+//ASCII Table 7-bit Character Set
+        for(int i=32;i<127;i++){
+            System.out.write(i);
+        }
+        System.out.flush();
 
     }
 
@@ -47,4 +55,10 @@ public class Main {
             }
         }
     }
+
+
+    String page = UrlProgram.getPage("http://example.com");
+CsvUtility.
+
+
 }

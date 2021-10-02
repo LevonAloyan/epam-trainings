@@ -13,8 +13,8 @@ public class Consumer<T> extends Thread {
       try {
         this.t = buffer.take();
         System.out.println(Thread.currentThread().getName() + " took " + t);
-
       } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
         e.printStackTrace();
       }
     }
