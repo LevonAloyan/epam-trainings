@@ -16,41 +16,37 @@ public class BoundedBlockingBuffer<T> {
 
   public synchronized T take() throws InterruptedException {
 
-    synchronized (queue) {
-      if (!isActive || queue.isEmpty()) {
+    if (!isActive || queue.isEmpty()) {
 
-        System.out.println(currentThread().getName() + " is waiting");
-        notifyAll();
-        Thread.sleep(1000);
-      } else {
-
-        temp = queue.peek();
-        System.out.println(temp + " is taken");
-        isActive = false;
-        Thread.sleep(1500);
-        notifyAll();
-      }
+      System.out.println(currentThread().getName() + " is waiting");
+      wait (1000);
+      notifyAll();
+    } else {
+      temp = queue.peek();
+      System.out.println(temp + " is taken");
+      isActive = false;
+      notifyAll();
     }
-  return temp;
+    return temp;
   }
 
   public synchronized void put(T data) {
-    while (isActive) {
-      synchronized (queue) {
-        try {
-          wait();
-          System.out.println(currentThread().getName() + " is waiting");
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+    if (isActive) {
+      try {
+        System.out.println(currentThread().getName() + " is waiting");
+        wait();
+        notifyAll();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    } else {
 
-        try {
-          queue.put(data);
-          isActive = true;
-          notifyAll();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+      try {
+        queue.put(data);
+        isActive = true;
+        notifyAll();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
       }
     }
   }
