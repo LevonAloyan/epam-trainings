@@ -5,10 +5,8 @@ package com.epam.javatrainings.io.customerUtil;
  */
 public class Customer {
     private String name;
-    private String phone;
+    private transient String phone;
     private int score;
-
-    public Customer(){}
 
     public Customer(String name, String phone, int score) {
         this.name = name;

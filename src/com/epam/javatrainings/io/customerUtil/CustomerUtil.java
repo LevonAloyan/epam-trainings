@@ -44,11 +44,7 @@ public final class CustomerUtil {
     }
 
     public static Customer convertToCustomer(String row){
-        Customer rv=new Customer();
         String[] str=row.split(",");
-        rv.setName(str[0]);
-        rv.setPhone(str[1]);
-        rv.setScore(Integer.parseInt(str[2].replace(" ","")));
-        return rv;
+        return new Customer(str[0],str[1],Integer.parseInt(str[2].replace(" ","")));
     }
 }
