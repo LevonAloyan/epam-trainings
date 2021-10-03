@@ -1,11 +1,14 @@
 package com.epam.javatrainings.io;
 
-import com.epam.javatrainings.io.homework.CsvUtility;
 import com.epam.javatrainings.io.homework.UrlProgram;
 
 import java.io.*;
 
 public class Main {
+
+    String page = UrlProgram.getPage("http://example.com");
+
+
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -57,8 +60,5 @@ public class Main {
     }
 
 
-    String page = UrlProgram.getPage("http://example.com");
-CsvUtility.
-
-
 }
+

@@ -8,9 +8,15 @@ public class Customer implements Serializable,Comparable{
     private int score;
     private String card;
 
-    public Customer(String name, String phone, String card) {
+    public Customer(String name, String phone, int score) {
         this.name = name;
         this.phone = phone;
+        this.score = score;
+    }
+    public Customer(String name, String phone, int score, String card) {
+        this.name = name;
+        this.phone = phone;
+        this.score = score;
         this.card = card;
     }
 
@@ -28,10 +34,6 @@ public class Customer implements Serializable,Comparable{
 
     public String getName() {
         return name;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public int getScore() {

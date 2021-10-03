@@ -9,20 +9,19 @@ import java.util.List;
 
 public class CsvUtility {
     public static List<Customer> readCustomersFrom(String path){
+        List<Customer> list = new ArrayList ();
         try(FileReader fr = new FileReader(path)){
             BufferedReader br= new BufferedReader(fr);
-            List<Customer> list = new ArrayList ();
             String str;
             while((str =br.readLine())!= null){
-//                String[] customers = str.split(" \n ");
-//                list.add(new Customer(customers[0].trim(),))
+                String[] customers = str.split(",");
+                list.add(new Customer(customers[0].trim(),customers[1].trim(),Integer.parseInt (customers[2].trim())));
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace ();
+
         } catch (IOException e) {
             e.printStackTrace ();
         }
-        return null;
+        return list;
     }
     public static void writeCustomersTo(String path, List<Customer> customers){
         try{
@@ -35,7 +34,8 @@ public class CsvUtility {
             e.printStackTrace ();
         }
     }
-    public static void sort(List<Customer> customers){
+    public static List<Customer> sort(List<Customer> customers){
         Collections.sort(customers);
+        return customers;
     }
 }
