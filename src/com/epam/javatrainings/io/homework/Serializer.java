@@ -1,6 +1,7 @@
 package com.epam.javatrainings.io.homework;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Base64;
 
 public class Serializer {
@@ -16,16 +17,17 @@ public class Serializer {
       e.printStackTrace();
     }
   }
-    public static void deSerialize(String path){
+    public static Customer deSerialize(String path){
       Customer serialized = null;
       try (FileInputStream fis = new FileInputStream(new File(path))){
           ObjectInputStream objectInputStream = new ObjectInputStream(fis);
           serialized = (Customer) objectInputStream.readObject();
-          serialized.setCard (String.valueOf (Base64.getDecoder().decode(serialized.getCard())));
+          serialized.setCard (Arrays.toString (Base64.getDecoder ().decode (serialized.getCard ())));
           fis.close();
           objectInputStream.close();
       } catch (IOException | ClassNotFoundException e) {
           e.printStackTrace ();
       }
+        return serialized;
     }
 }
