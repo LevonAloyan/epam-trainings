@@ -1,4 +1,4 @@
-package com.epam.javatrainings.io;
+package com.epam.javatrainings.io.downloadFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
