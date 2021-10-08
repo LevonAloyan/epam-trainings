@@ -7,8 +7,16 @@ public class Customer {
     private String name;
     private transient String phone;
     private int score;
+    private String cardNumber;
 
-    public Customer(String name, String phone, int score) {
+    public Customer(String name, String phone, int score, int cardNumber) {
+        this.name = name;
+        this.phone = phone;
+        this.score = score;
+        this.cardNumber = Encoder.encodeToString(cardNumber);
+    }
+
+    public Customer(String name, String phone, int score){
         this.name = name;
         this.phone = phone;
         this.score = score;
@@ -36,6 +44,14 @@ public class Customer {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void setCardNumber(int num){
+        this.cardNumber=Encoder.encodeToString(num);
+    }
+
+    public int getCardNumber(){
+        return Encoder.decodeToInt(this.cardNumber);
     }
 
     @Override
