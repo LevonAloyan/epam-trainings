@@ -41,18 +41,6 @@ public class Cup {
         this.volume = volume;
     }
 
-    public static void method1 (Integer i, int a){
-
-    }
-
-    public static void method1(int i, Integer a){
-
-    }
-
-    public static void main(String[] args) {
-
-    }
-
     public double getMaxTemperature() {
         return maxTemperature;
     }
