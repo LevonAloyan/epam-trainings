@@ -1,24 +1,22 @@
 package com.epam.javatrainings.array;
 
-import java.util.Arrays;
-
 public class ArrayUtilTest {
 
     public static void main(String[] args) {
-        int array[] = {6, 1, -3, 100, 25, 800, -500,};
-        ArrayUtil arrayUtil = new ArrayUtil();
-        arrayUtil.sortByOddEven(array);
-        arrayUtil.print(array);
-        int max = arrayUtil.getMaximum(array);
-        System.out.println("maxium" + " " + max);
-        int min = arrayUtil.getMinimum(array);
-        System.out.println("minimum" + " " + min);
-        int sum=arrayUtil.getSum(array);
-        System.out.println("sum"+" "+sum);
-//        System.out.println(Arrays.toString(array));
-        System.out.println("reverse");
-        int reversd []=arrayUtil.reverse(array);
-        System.out.println(Arrays.toString(reversd));
-
+        int[] array = new int[]{2, 4, 6, 8, 1, 3, 5};
+        System.out.println("----------Initial array----------");
+        ArrayUtil.print(array);
+        System.out.println("----------Array after sorting----------");
+        ArrayUtil.sortByOddAndEven(array);
+        ArrayUtil.print(array);
+        System.out.println("----------Minimum element of array----------");
+        System.out.println(ArrayUtil.getMinimum(array));
+        System.out.println("----------Maximum element of array----------");
+        System.out.println(ArrayUtil.getMaximum(array));
+        System.out.println("----------Sum of elements of array----------");
+        System.out.println(ArrayUtil.getSum(array));
+        System.out.println("----------Array after reverse----------");
+        ArrayUtil.reverse(array);
+        ArrayUtil.print(array);
     }
 }
