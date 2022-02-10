@@ -11,7 +11,7 @@ public class Main {
 
         //list's members demo
         System.out.print("My list: ");
-        extendList.stream().forEach(x -> System.out.print(x + " "));
+        extendList.forEach(x -> System.out.print(x + " "));
         System.out.println();
 
         //map demo
@@ -35,7 +35,11 @@ public class Main {
         System.out.print("\nLists even members: " + lists[1]);
 
         //reduce
-        int sum = extendList.reduce(Integer::sum, 0);
+        int sum = extendList.reduce(
+              /*  with lambda
+                        (acc, element) ->acc + element*/
+        //with method reference
+        Integer::sum, 0);
         System.out.println("\nList's elements sum: " + sum);
     }
 }
